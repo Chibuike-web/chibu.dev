@@ -27,7 +27,7 @@ export function Projects() {
 					<Link
 						key={project.href}
 						href={project.href}
-						prefetch={false}
+						prefetch={true}
 						className="relative w-full overflow-hidden active:scale-[1] rounded-3xl border border-border bg-surface-muted p-1.5 transition-all duration-200 ease-out group-hover/projects:opacity-35 hover:scale-[1.02] hover:!opacity-100 focus-visible:!opacity-100 md:flex-1 focus-visible:border-muted-foreground focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
 					>
 						<div className="relative aspect-[367/350] w-full overflow-hidden rounded-[1.125rem] bg-background">

@@ -42,6 +42,8 @@ import ProgressBar from "@/components/progress-bar";
 import { Suspense } from "react";
 import { ThemeButton } from "@/components/theme-button";
 
+export const prefetch = "allow-runtime";
+
 const headingClass = "text-[1.125rem] font-medium tight text-balance";
 const bodyClass = "font-medium tight text-muted-foreground text-pretty";
 const patientOnboardingGridImages = [
@@ -106,6 +108,7 @@ export default function MedibridgePage() {
 			<nav className="mount-1 flex items-center justify-between">
 				<Link
 					href="/"
+					prefetch={true}
 					aria-label="Back to home"
 					className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-full bg-surface-muted px-4 py-2 transition-colors duration-150 ease-out hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
 				>
@@ -384,7 +387,7 @@ export default function MedibridgePage() {
 					. More update will be made going forward
 				</p>
 			</section>
-			<Link href="/nomba" prefetch={false} className="case-study-nav-card">
+			<Link href="/nomba" prefetch={true} className="case-study-nav-card">
 				<ArrowUpLeft className="size-6" />
 
 				<div className="flex flex-col items-end gap-3">

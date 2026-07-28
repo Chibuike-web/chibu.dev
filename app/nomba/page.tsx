@@ -20,6 +20,8 @@ import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { ThemeButton } from "@/components/theme-button";
 
+export const prefetch = "allow-runtime";
+
 const headingClass = "text-[1.125rem] font-medium tight text-balance";
 const bodyClass = "font-medium tight text-muted-foreground text-pretty";
 const detailListClass = "my-6 rounded-xl bg-surface-muted p-4";
@@ -66,6 +68,7 @@ export default function NombaPage() {
 			<nav className="mount-1 flex items-center justify-between">
 				<Link
 					href="/"
+					prefetch={true}
 					aria-label="Back to home"
 					className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-full bg-surface-muted px-4 py-2 transition-colors duration-150 ease-out hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
 				>
@@ -392,7 +395,7 @@ export default function NombaPage() {
 					/>
 				</div>
 			</section>
-			<Link href="/medibridge" prefetch={false} className="case-study-nav-card">
+			<Link href="/medibridge" prefetch={true} className="case-study-nav-card">
 				<div className="flex flex-col gap-3">
 					<p className="text-muted-foreground font-medium no-line-height">Next</p>
 					<p className="text-foreground font-medium no-line-height">Medibridge</p>
