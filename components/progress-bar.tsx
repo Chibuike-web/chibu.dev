@@ -43,7 +43,7 @@ export default function ProgressBar({
 		return () => {
 			observer.disconnect();
 		};
-	}, []);
+	}, [items]);
 	return (
 		<div className="progress-mount fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-[21.875rem] -translate-x-1/2 overflow-hidden rounded-3xl bg-[#464648] text-white">
 			<button
