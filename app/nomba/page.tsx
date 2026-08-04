@@ -20,8 +20,6 @@ import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { ThemeButton } from "@/components/theme-button";
 
-export const prefetch = "allow-runtime";
-
 const headingClass = "text-[1.125rem] font-medium tight text-balance";
 const bodyClass = "font-medium tight text-muted-foreground text-pretty";
 const detailListClass = "my-6 rounded-xl bg-surface-muted p-4";

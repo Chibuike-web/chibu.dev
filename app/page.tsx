@@ -4,8 +4,6 @@ import { Hero } from "@/components/layouts/hero";
 import { Navbar } from "@/components/layouts/navbar";
 import { Projects } from "@/components/layouts/projects";
 
-export const prefetch = "allow-runtime";
-
 export const metadata: Metadata = {
 	title: "Chibuike Maduabuchi - Design Engineer",
 	description:

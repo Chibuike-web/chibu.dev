@@ -42,8 +42,6 @@ import ProgressBar from "@/components/progress-bar";
 import { Suspense } from "react";
 import { ThemeButton } from "@/components/theme-button";
 
-export const prefetch = "allow-runtime";
-
 const headingClass = "text-[1.125rem] font-medium tight text-balance";
 const bodyClass = "font-medium tight text-muted-foreground text-pretty";
 const patientOnboardingGridImages = [
