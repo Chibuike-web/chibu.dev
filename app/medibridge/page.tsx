@@ -1,7 +1,8 @@
 import { Tag } from "@/components/tag";
+import { BackToHome } from "@/components/layouts/back-to-home";
 import { ZoomableImageGroup } from "@/components/zoomable-image-group";
 import { cn } from "@/lib/utils";
-import { ArrowLeft, ArrowUpLeft } from "lucide-react";
+import { ArrowUpLeft } from "lucide-react";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import patientOnboardingFirst from "@/assets/medibridge/patient-onboarding-first.webp";
@@ -104,15 +105,7 @@ export default function MedibridgePage() {
 	return (
 		<main className="page-shell">
 			<nav className="mount-1 flex items-center justify-between">
-				<Link
-					href="/"
-					prefetch={true}
-					aria-label="Back to home"
-					className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-full bg-surface-muted px-4 py-2 transition-colors duration-150 ease-out hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-				>
-					<ArrowLeft className="size-5" />
-					<span className="sr-only">Back to home</span>
-				</Link>
+				<BackToHome />
 				<ThemeButton />
 			</nav>
 			<header className="mount-2 my-16 md:my-22">
@@ -248,8 +241,8 @@ export default function MedibridgePage() {
 						Patient onboarding is often the first interaction hospital staff have with a new record,
 						so the experience needed to feel simple and reliable. I limited the initial extraction
 						to essential information such as the patient’s name, age, gender, contact details, and
-						identifiers. Keeping the scope focused makes the results easier to review and reduces the
-						risk of incorrect information entering the patient’s history.
+						identifiers. Keeping the scope focused makes the results easier to review and reduces
+						the risk of incorrect information entering the patient’s history.
 					</p>
 					<p>
 						AI-extracted information is never saved automatically. Every field remains editable,
@@ -304,17 +297,17 @@ export default function MedibridgePage() {
 				<div className="mt-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
 					<p>
 						Once the information was divided into clinical sections, the next challenge was keeping
-						a growing patient record easy to navigate. Each area uses list and detail views, allowing
-						staff to scan existing records before opening a specific entry for more information.
-						Several record types also include history views, making it easier to understand how
-						individual details have changed over time.
+						a growing patient record easy to navigate. Each area uses list and detail views,
+						allowing staff to scan existing records before opening a specific entry for more
+						information. Several record types also include history views, making it easier to
+						understand how individual details have changed over time.
 					</p>
 					<p>
 						Source documents and attachments remain available when additional context is needed, but
 						staff do not have to search through every file during routine care. Confirmed patient
-						information is presented in a form that is easier to review, while the original documents
-						remain connected to the record. This creates a balance between quick access and the
-						supporting information behind each patient’s history.
+						information is presented in a form that is easier to review, while the original
+						documents remain connected to the record. This creates a balance between quick access
+						and the supporting information behind each patient’s history.
 					</p>
 				</div>
 				<div className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">
@@ -363,8 +356,8 @@ export default function MedibridgePage() {
 					<p>
 						Approval does not give the receiving hospital permanent access to the patient’s full
 						history. The recipient must verify a short-lived code before opening an expiring,
-						read-only view limited to the approved records. Transfer statuses also help the initiating
-						hospital see whether a request is pending, approved, declined, or completed.
+						read-only view limited to the approved records. Transfer statuses also help the
+						initiating hospital see whether a request is pending, approved, declined, or completed.
 					</p>
 				</div>
 				<div className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">

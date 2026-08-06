@@ -10,10 +10,11 @@ import ninth from "@/assets/nomba/ninth.webp";
 import tenth from "@/assets/nomba/tenth.webp";
 import eleventh from "@/assets/nomba/eleventh.webp";
 import twelfth from "@/assets/nomba/twelfth.webp";
+import { BackToHome } from "@/components/layouts/back-to-home";
 import { Tag } from "@/components/tag";
 import { ZoomableImage } from "@/components/zoomable-image";
 import { cn } from "@/lib/utils";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import ProgressBar from "@/components/progress-bar";
 import { cookies } from "next/headers";
@@ -64,15 +65,7 @@ export default function NombaPage() {
 	return (
 		<main className="page-shell">
 			<nav className="mount-1 flex items-center justify-between">
-				<Link
-					href="/"
-					prefetch={true}
-					aria-label="Back to home"
-					className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-full bg-surface-muted px-4 py-2 transition-colors duration-150 ease-out hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-				>
-					<ArrowLeft className="size-5" />
-					<span className="sr-only">Back to home</span>
-				</Link>
+				<BackToHome />
 				<ThemeButton />
 			</nav>
 			<header className="mount-2 my-16 md:my-22">
