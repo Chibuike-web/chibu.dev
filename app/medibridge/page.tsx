@@ -368,7 +368,7 @@ export default function MedibridgePage() {
 				<p className="my-16 md:my-22">
 					This project is currently in active development. You can follow along here{" "}
 					<a
-						className="link"
+						className="link rounded border border-transparent focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 						href="https://github.com/Chibuike-web/medibridge"
 						target="_blank"
 						rel="noopener noreferrer"

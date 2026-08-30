@@ -33,11 +33,13 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 	return (
 		<>
 			{/* Thumbnail state */}
-			<motion.div
+			<motion.button
+				type="button"
+				aria-label={`Open image preview: ${alt}`}
 				layoutId={layoutId}
 				onClick={handleOpen}
 				className={cn(
-					"w-full cursor-zoom-in overflow-hidden rounded-xl bg-surface-muted ring ring-surface-hover",
+					"w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring",
 					isZoomed && "pointer-events-none opacity-0",
 					className,
 				)}
@@ -52,7 +54,7 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 					placeholder="blur"
 					className="h-auto w-full"
 				/>
-			</motion.div>
+			</motion.button>
 
 			<AnimatePresence>
 				{isZoomed && (
@@ -64,13 +66,20 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
 							transition={{ duration: 0.2 }}
-							onClick={handleClose}
+							aria-hidden="true"
 						/>
 
 						{/* Expanded state */}
 						<motion.div
+							role="dialog"
+							aria-modal="true"
+							aria-label="Image preview"
 							className="fixed inset-0 z-[9999] flex cursor-zoom-out items-center justify-center px-4 lg:px-0"
-							onClick={handleClose}
+							onMouseDown={(event) => {
+								if (event.target === event.currentTarget) {
+									handleClose();
+								}
+							}}
 							initial={{ opacity: 1 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 1 }}
@@ -93,11 +102,12 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 
 							<button
 								type="button"
-								className="absolute right-4 top-4 z-10 text-foreground"
+								className="absolute right-4 top-4 z-10 flex size-10 items-center justify-center rounded-full border border-transparent text-foreground focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								onClick={handleClose}
 								aria-label="Close image preview"
 							>
-								<X className="size-5" />
+								<X aria-hidden="true" className="size-5" />
+								<span className="sr-only">Close preview</span>
 							</button>
 						</motion.div>
 					</>

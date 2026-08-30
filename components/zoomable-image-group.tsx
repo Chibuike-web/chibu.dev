@@ -4,6 +4,7 @@ import Image, { type StaticImageData } from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type Props = {
 	images: StaticImageData[];
@@ -98,10 +99,15 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 
 	return (
 		<>
-			<motion.div
+			<motion.button
+				type="button"
+				aria-label={`Open image preview: ${alt}`}
 				layoutId={`zoom-group-${images[0].src}`}
 				onClick={() => openPreview(0)}
-				className="w-full cursor-zoom-in overflow-hidden rounded-xl bg-surface-muted ring ring-surface-hover"
+				className={cn(
+					"w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring",
+					isPreviewOpen && openedFromIndex === 0 && "pointer-events-none opacity-0",
+				)}
 				transition={{ type: "spring", duration: 0.2, bounce: 0 }}
 			>
 				<Image
@@ -113,18 +119,23 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 					placeholder="blur"
 					className="h-auto w-full"
 				/>
-			</motion.div>
+			</motion.button>
 
 			<div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
 				{images.slice(1).map((image, index) => {
 					const imageIndex = index + 1;
 
 					return (
-						<motion.div
+						<motion.button
 							key={image.src}
+							type="button"
+							aria-label={`Open image preview: ${alt}`}
 							layoutId={`zoom-group-${image.src}`}
 							onClick={() => openPreview(imageIndex)}
-							className="w-full cursor-zoom-in overflow-hidden rounded-xl bg-surface-muted ring ring-surface-hover md:rounded-lg"
+							className={cn(
+								"w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring md:rounded-lg",
+								isPreviewOpen && openedFromIndex === imageIndex && "pointer-events-none opacity-0",
+							)}
 							transition={{ type: "spring", duration: 0.2, bounce: 0 }}
 						>
 							<Image
@@ -136,7 +147,7 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 								placeholder="blur"
 								className="h-auto w-full"
 							/>
-						</motion.div>
+						</motion.button>
 					);
 				})}
 			</div>
@@ -146,6 +157,7 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 					<>
 						<motion.div
 							className="fixed inset-0 z-[999] bg-background/90 backdrop-blur-md"
+							aria-hidden="true"
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
@@ -155,7 +167,11 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 
 						<motion.div
 							className="fixed inset-0 z-[9999] flex cursor-zoom-out items-center justify-center px-4 lg:px-0"
-							onClick={closePreview}
+							onMouseDown={(event) => {
+								if (event.target === event.currentTarget) {
+									closePreview();
+								}
+							}}
 							initial={{ opacity: 1 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 1 }}
@@ -187,9 +203,9 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 									type="button"
 									onClick={showPreviousImage}
 									aria-label="Previous image"
-									className="absolute left-4 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#464648]/80 text-white transition-colors duration-150 hover:bg-[#464648]"
+									className="absolute left-4 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-colors duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								>
-									<ArrowLeft className="size-5" />
+									<ArrowLeft className="size-5" aria-hidden />
 								</button>
 							)}
 
@@ -198,7 +214,7 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 									type="button"
 									onClick={showNextImage}
 									aria-label="Next image"
-									className="absolute right-4 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#464648]/80 text-white transition-colors duration-150 hover:bg-[#464648]"
+									className="absolute right-4 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-colors duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								>
 									<ArrowRight className="size-5" />
 								</button>
@@ -206,7 +222,7 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 
 							<button
 								type="button"
-								className="absolute right-4 top-4 z-10 text-foreground"
+								className="absolute right-4 top-4 z-10 flex size-10 items-center justify-center rounded-full border border-transparent text-foreground focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								onClick={closePreview}
 								aria-label="Close image preview"
 							>

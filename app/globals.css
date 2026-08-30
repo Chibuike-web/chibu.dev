@@ -235,7 +235,7 @@ body {
 }
 
 @utility case-study-nav-card {
-	@apply mt-22 flex items-end justify-between rounded-xl bg-surface-muted p-5 transition-colors duration-150 ease-out hover:bg-surface-hover;
+	@apply mt-22 flex items-end justify-between rounded-xl border border-transparent bg-surface-muted p-5 transition-colors duration-150 ease-out hover:bg-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring;
 }
 
 @utility no-line-height {

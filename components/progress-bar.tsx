@@ -47,7 +47,7 @@ export default function ProgressBar({
 	return (
 		<div className="progress-mount fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-[21.875rem] -translate-x-1/2 overflow-hidden rounded-3xl bg-[#464648] text-white">
 			<button
-				className="sticky top-0 z-10 flex w-full cursor-point items-center justify-between bg-[#464648] px-5 py-3 text-left"
+				className="sticky top-0 z-10 flex w-full cursor-point items-center justify-between border border-transparent bg-[#464648] px-5 py-3 text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 				onClick={() => {
 					setIsExpanded((prev) => {
 						const next = !prev;
@@ -80,7 +80,7 @@ export default function ProgressBar({
 										)}
 									>
 										<button
-											className="p-3 text-left w-full cursor-pointer"
+										className="w-full cursor-pointer rounded-full border border-transparent p-3 text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 											onClick={() => {
 												console.log("click");
 
