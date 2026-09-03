@@ -64,7 +64,7 @@ const navItems = [
 export default function NombaPage() {
 	return (
 		<main className="page-shell">
-			<nav className="mount-1 flex items-center justify-between">
+			<nav className="flex items-center justify-between">
 				<BackToHome />
 				<ThemeButton />
 			</nav>
