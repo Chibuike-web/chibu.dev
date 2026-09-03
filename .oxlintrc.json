@@ -12,7 +12,8 @@
 		"es2024": true
 	},
 	"rules": {
-		"react/react-in-jsx-scope": "off"
+		"react/react-in-jsx-scope": "off",
+		"import/no-unassigned-import": ["warn", { "allow": ["**/*.css"] }]
 	},
 	"ignorePatterns": [".next/**", "out/**", "build/**", "next-env.d.ts"]
 }

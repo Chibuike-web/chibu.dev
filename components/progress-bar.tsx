@@ -12,7 +12,7 @@ export default function ProgressBar({
 	items: Record<string, string>[];
 	initialState?: string;
 }) {
-	const parsed = initialState === "false" ? false : true;
+	const parsed = initialState !== "false";
 
 	const [activeSectionHeading, setActiveSectionHeading] = useState<string | undefined>(
 		items[0].label,

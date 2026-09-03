@@ -253,7 +253,14 @@ export default function MedibridgePage() {
 					</p>
 				</div>
 				<div className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">
-					<video controls preload="metadata" width={800} height={450}>
+					<video
+						controls
+						muted
+						preload="metadata"
+						width={800}
+						height={450}
+						aria-label="Silent screen recording of the patient onboarding flow, showing a document being uploaded and the extracted fields being reviewed and corrected before the patient is confirmed."
+					>
 						<source src="/videos/patient-onboarding.mp4" type="video/mp4" />
 					</video>
 				</div>
@@ -311,12 +318,26 @@ export default function MedibridgePage() {
 					</p>
 				</div>
 				<div className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">
-					<video controls preload="metadata" width={800} height={450}>
+					<video
+						controls
+						muted
+						preload="metadata"
+						width={800}
+						height={450}
+						aria-label="Silent screen recording of patient management, showing clinical sections in list and detail views as a record is browsed."
+					>
 						<source src="/videos/patient-management-1.mp4" type="video/mp4" />
 					</video>
 				</div>
 				<div className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">
-					<video controls preload="metadata" width={800} height={450}>
+					<video
+						controls
+						muted
+						preload="metadata"
+						width={800}
+						height={450}
+						aria-label="Silent screen recording of patient management, showing history views and the source documents that remain attached to a record."
+					>
 						<source src="/videos/patient-management-2.mp4" type="video/mp4" />
 					</video>
 				</div>
@@ -361,7 +382,14 @@ export default function MedibridgePage() {
 					</p>
 				</div>
 				<div className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">
-					<video controls preload="metadata" width={800} height={450}>
+					<video
+						controls
+						muted
+						preload="metadata"
+						width={800}
+						height={450}
+						aria-label="Silent screen recording of the records transfer flow, showing a request being created, the patient approving it by email, and the recipient verifying a code to open a read-only view."
+					>
 						<source src="/videos/patient-records-transfer.mp4" type="video/mp4" />
 					</video>
 				</div>

@@ -2,16 +2,16 @@
 
 import { Moon, Sun } from "lucide-react";
 
+const toggleTheme = () => {
+	const isDark = document.documentElement.classList.contains("dark");
+	const nextTheme = isDark ? "light" : "dark";
+
+	window.localStorage.setItem("theme", nextTheme);
+	document.documentElement.classList.toggle("dark", !isDark);
+	document.documentElement.classList.toggle("light", isDark);
+};
+
 export function ThemeButton() {
-	const toggleTheme = () => {
-		const isDark = document.documentElement.classList.contains("dark");
-		const nextTheme = isDark ? "light" : "dark";
-
-		window.localStorage.setItem("theme", nextTheme);
-		document.documentElement.classList.toggle("dark", !isDark);
-		document.documentElement.classList.toggle("light", isDark);
-	};
-
 	return (
 		<button
 			aria-label="Toggle theme"
