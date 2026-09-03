@@ -91,7 +91,8 @@ export default function NombaPage() {
 			</header>
 			<section
 				id="overview"
-				className="mount-3 my-22 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-8"
+				tabIndex={-1}
+				className="mount-3 my-22 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-8 outline-none"
 			>
 				<div className="flex w-full flex-col gap-2">
 					<p className="font-secondary font-semibold text-foreground">PROBLEM STATEMENT</p>
@@ -132,7 +133,7 @@ export default function NombaPage() {
 					</div>
 				</div>
 			</section>
-			<section id="selecting-recipients-from-contacts">
+			<section id="selecting-recipients-from-contacts" tabIndex={-1} className="outline-none">
 				<div className="flex flex-col gap-3">
 					<h2 className={headingClass}>Selecting Recipients from Contacts</h2>
 					<p className={bodyClass}>
@@ -168,7 +169,7 @@ export default function NombaPage() {
 					alt="Multi-recipient transfer flow showing contact selection and a list of recipients with multiple contacts selected."
 				/>
 			</section>
-			<section id="manually-entering-phone-numbers" className="mt-22">
+			<section id="manually-entering-phone-numbers" tabIndex={-1} className="mt-22 outline-none">
 				<div className="flex flex-col gap-3">
 					<h2 className={headingClass}>Manually Entering Phone Numbers</h2>
 					<p className={bodyClass}>
@@ -205,7 +206,7 @@ export default function NombaPage() {
 					alt="Screen for entering multiple recipient phone numbers for an airtime purchase."
 				/>
 			</section>
-			<section id="recipient-management" className="mt-22">
+			<section id="recipient-management" tabIndex={-1} className="mt-22 outline-none">
 				<h2 className={cn(headingClass, "mb-3")}>Recipient Management</h2>
 				<p className={cn(bodyClass, "mb-6")}>
 					I designed the screen to give users a clear overview of their transfer before they
@@ -219,7 +220,7 @@ export default function NombaPage() {
 					alt="Screen showing selected recipients and transfer details before purchase."
 				/>
 			</section>
-			<section id="payment-review" className="mt-22">
+			<section id="payment-review" tabIndex={-1} className="mt-22 outline-none">
 				<h2 className={cn(headingClass, "mb-3")}>Payment Review</h2>
 				<p className={cn(bodyClass, "mb-6")}>
 					Before payment, users need a chance to verify that everything is correct. I designed the
@@ -235,7 +236,7 @@ export default function NombaPage() {
 					alt="Payment review screen summarizing recipients, airtime amounts, and total cost."
 				/>
 			</section>
-			<section id="transaction-summary-details" className="mt-22">
+			<section id="transaction-summary-details" tabIndex={-1} className="mt-22 outline-none">
 				<h2 className={cn(headingClass, "mb-3")}>Transaction Summary & Details</h2>
 				<p className={cn(bodyClass, "mb-6")}>
 					The flow makes it easy to review transaction results without feeling overwhelming. The
@@ -251,7 +252,7 @@ export default function NombaPage() {
 					alt="Transaction summary and details screen for completed airtime transfers."
 				/>
 			</section>
-			<section id="design-feedback-iterations" className="mt-22">
+			<section id="design-feedback-iterations" tabIndex={-1} className="mt-22 outline-none">
 				<h2 className={cn(headingClass, "mb-3")}>Design Feedback & Iterations</h2>
 				<p className={bodyClass}>
 					During design reviews, I received useful feedback that helped shape the interaction

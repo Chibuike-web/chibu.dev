@@ -129,7 +129,7 @@ export default function MedibridgePage() {
 					</div>
 				</div>
 			</header>
-			<section id="overview" className="mount-3 my-22">
+			<section id="overview" tabIndex={-1} className="mount-3 my-22 outline-none">
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-8">
 					<div className="flex w-full flex-col gap-2">
 						<p className="font-secondary font-semibold text-foreground">PROBLEM STATEMENT</p>
@@ -216,7 +216,7 @@ export default function MedibridgePage() {
 					</p>
 				</div>
 			</section>
-			<section id="patient-onboarding">
+			<section id="patient-onboarding" tabIndex={-1} className="outline-none">
 				<h2 className={cn(headingClass, "mb-3")}>Patient Onboarding</h2>
 				<p className={cn(bodyClass, "mb-6")}>
 					One of the first problems I tried to solve was reducing the amount of manual work involved
@@ -258,7 +258,7 @@ export default function MedibridgePage() {
 					</video>
 				</div>
 			</section>
-			<section id="patient-management" className="mt-22">
+			<section id="patient-management" tabIndex={-1} className="mt-22 outline-none">
 				<h2 className={cn(headingClass, "mb-3")}>Patient Management</h2>
 				<div className="mt-3 text-muted-foreground font-medium text-pretty flex flex-col gap-2 mb-6">
 					<p>
@@ -322,7 +322,7 @@ export default function MedibridgePage() {
 				</div>
 			</section>
 
-			<section id="patient-records-transfer" className="mt-22">
+			<section id="patient-records-transfer" tabIndex={-1} className="mt-22 outline-none">
 				<h2 className={cn(headingClass, "mb-3")}>Patient Records Transfer</h2>
 				<div className="mt-3 mb-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
 					<p>
