@@ -142,6 +142,18 @@
 	color-scheme: dark;
 }
 
+:root[data-theme="system"] [data-theme-option="system"],
+:root[data-theme="light"] [data-theme-option="light"],
+:root[data-theme="dark"] [data-theme-option="dark"] {
+	color: var(--foreground);
+}
+:root[data-theme="light"] [data-theme-indicator] {
+	translate: 100% 0;
+}
+:root[data-theme="dark"] [data-theme-indicator] {
+	translate: 200% 0;
+}
+
 @theme {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);

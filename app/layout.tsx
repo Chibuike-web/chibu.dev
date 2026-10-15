@@ -9,11 +9,19 @@ const sans = Inter({
 
 const themeInitScript = String.raw`
 try {
-	const theme = window.localStorage.getItem("theme");
-	const shouldUseDark = theme === "dark";
+	const root = document.documentElement;
+	const media = window.matchMedia("(prefers-color-scheme: dark)");
+	const applyTheme = () => {
+		const shouldUseDark =
+			root.dataset.theme === "dark" || (root.dataset.theme === "system" && media.matches);
 
-	document.documentElement.classList.toggle("dark", shouldUseDark);
-	document.documentElement.classList.toggle("light", !shouldUseDark);
+		root.classList.toggle("dark", shouldUseDark);
+		root.classList.toggle("light", !shouldUseDark);
+	};
+
+	root.dataset.theme = window.localStorage.getItem("theme") ?? "system";
+	applyTheme();
+	media.addEventListener("change", applyTheme);
 } catch (_) {}
 `;
 

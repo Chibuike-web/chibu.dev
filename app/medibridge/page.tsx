@@ -42,7 +42,7 @@ import patientRecordsTransferEleventh from "@/assets/medibridge/patient-records-
 
 import ProgressBar from "@/components/progress-bar";
 import { Suspense } from "react";
-import { ThemeButton } from "@/components/theme-button";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const metadata: Metadata = {
 	title: "Medibridge",
@@ -223,7 +223,7 @@ export default function MedibridgePage() {
 		<main className="page-shell case-study-page">
 			<CaseStudyReveal as="nav" className="flex items-center justify-between">
 				<BackToHome />
-				<ThemeButton />
+				<ThemeSwitcher />
 			</CaseStudyReveal>
 			<CaseStudyReveal as="header" siblingIndex={1} className="my-16 md:my-22">
 				<div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">

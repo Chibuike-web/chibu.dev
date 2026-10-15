@@ -40,11 +40,11 @@ export function Hero() {
 					<EmailIcon className="shrink-0" /> <span className="font-semibold">Mail</span>
 				</HeroButton>
 				<HeroButton link="https://github.com/Chibuike-web">
-					<GithubIcon className="shrink-0" /> <span className="font-semibold">Github</span>
+					<GithubIcon className="shrink-0" /> <span className="font-semibold">GitHub</span>
 				</HeroButton>
 				<HeroButton link="https://www.linkedin.com/in/chibuike-maduabuchi/">
 					<LinkedinIcon className="shrink-0" />
-					<span className="font-semibold">Linkedin</span>
+					<span className="font-semibold">LinkedIn</span>
 				</HeroButton>
 				<HeroButton link="https://drive.google.com/file/d/1lB6mPhuiRfdUAimr9VTGugW6r2dQsEvZ/view?usp=sharing">
 					<ResumeIcon className="size-4 shrink-0" />

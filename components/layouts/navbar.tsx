@@ -1,5 +1,5 @@
 import { LogoIcon } from "@/icons/logo-icon";
-import { ThemeButton } from "../theme-button";
+import { ThemeSwitcher } from "../theme-switcher";
 
 export function Navbar() {
 	return (
@@ -13,7 +13,7 @@ export function Navbar() {
 					<p className="no-line-height tight text-muted-foreground">Design Engineer</p>
 				</div>
 			</div>
-			<ThemeButton />
+			<ThemeSwitcher />
 		</div>
 	);
 }
