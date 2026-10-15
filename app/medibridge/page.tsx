@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
 import { CaseStudyLink, CaseStudyReveal } from "@/components/case-study-reveal";
 import { Tag } from "@/components/tag";
 import { BackToHome } from "@/components/layouts/back-to-home";
 import { ZoomableImageGroup } from "@/components/zoomable-image-group";
 import { cn } from "@/lib/utils";
-import { ArrowUpLeft } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { cookies } from "next/headers";
 import patientOnboardingFirst from "@/assets/medibridge/patient-onboarding-first.webp";
 import patientOnboardingSecond from "@/assets/medibridge/patient-onboarding-second.webp";
@@ -43,43 +44,159 @@ import ProgressBar from "@/components/progress-bar";
 import { Suspense } from "react";
 import { ThemeButton } from "@/components/theme-button";
 
+export const metadata: Metadata = {
+	title: "Medibridge",
+	description:
+		"How I designed and built Medibridge, an AI-powered platform that turns paper, PDF, and image medical records into structured patient data and transfers them between hospitals with patient approval.",
+	openGraph: {
+		url: "/medibridge",
+		siteName: "Chibuike Maduabuchi",
+		type: "article",
+	},
+	twitter: {
+		card: "summary_large_image",
+	},
+};
+
 const headingClass = "text-[1.125rem] font-medium tight text-balance";
 const bodyClass = "font-medium tight text-muted-foreground text-pretty";
-const patientOnboardingGridImages = [
-	patientOnboardingSecond,
-	patientOnboardingThird,
-	patientOnboardingFourth,
-	patientOnboardingFifth,
-	patientOnboardingSixth,
-	patientOnboardingSeventh,
+const patientOnboardingImages = [
+	{
+		src: patientOnboardingFirst,
+		alt: "Overview page empty state with no patients yet and an Add patient button",
+	},
+	{
+		src: patientOnboardingSecond,
+		alt: "Upload Patient’s Record screen with a drop zone for JPEG, PNG, and PDF files",
+	},
+	{
+		src: patientOnboardingThird,
+		alt: "Seven patient PDFs uploaded while patient data is being extracted",
+	},
+	{
+		src: patientOnboardingFourth,
+		alt: "Confirm document selection dialog warning that files cannot be added once extraction starts",
+	},
+	{
+		src: patientOnboardingFifth,
+		alt: "All seven uploaded PDFs marked as extraction complete, with a Continue button",
+	},
+	{
+		src: patientOnboardingSixth,
+		alt: "Review Patient Information list of seven extracted patients above a Save Patient Record button",
+	},
+	{
+		src: patientOnboardingSeventh,
+		alt: "Expanded patient review card with editable extracted personal and contact fields",
+	},
 ];
-const patientManagementGridImages = [
-	patientManagementSecond,
-	patientManagementThird,
-	patientManagementFourth,
-	patientManagementFifth,
-	patientManagementSixth,
-	patientManagementSeventh,
-	patientManagementEighth,
-	patientManagementNinth,
-	patientManagementTenth,
-	patientManagementEleventh,
-	patientManagementTwelfth,
-	patientManagementThirteenth,
-	patientManagementFourteenth,
-	patientManagementFifteenth,
+const patientManagementImages = [
+	{
+		src: patientManagementFirst,
+		alt: "Patients page empty state with no patient records and an Add patient button",
+	},
+	{
+		src: patientManagementSecond,
+		alt: "Patient overview with personal and medical information and a table of recent diagnoses",
+	},
+	{
+		src: patientManagementThird,
+		alt: "Patients table filtered by gender, age, and date, with a row menu to view, transfer, export, or archive a patient",
+	},
+	{
+		src: patientManagementFourth,
+		alt: "Edit Contact Information dialog with required phone, email, address, state, and country fields",
+	},
+	{
+		src: patientManagementFifth,
+		alt: "Diagnoses table with onset, last reviewed, and status columns, and a row menu open",
+	},
+	{
+		src: patientManagementSixth,
+		alt: "Allergies table with reactions and severity, filtered by status, with a row menu open",
+	},
+	{
+		src: patientManagementSeventh,
+		alt: "Lab tests table with reference ranges and flags, with three tests selected for bulk export or archive",
+	},
+	{
+		src: patientManagementEighth,
+		alt: "Vitals page with a 30-day blood pressure trend chart above the vitals table",
+	},
+	{
+		src: patientManagementNinth,
+		alt: "Encounters table listing visit type, department, and physician, with a row menu open",
+	},
+	{
+		src: patientManagementTenth,
+		alt: "Encounter details showing the vitals and medications recorded during the visit",
+	},
+	{
+		src: patientManagementEleventh,
+		alt: "Immunization details panel for a hepatitis B dose, with its edit history",
+	},
+	{
+		src: patientManagementTwelfth,
+		alt: "Add medication form with required fields for medication, indication, dose, route, and frequency",
+	},
+	{
+		src: patientManagementThirteenth,
+		alt: "Edit document details panel for a chest X-ray report, confirming removal of an attached file",
+	},
+	{
+		src: patientManagementFourteenth,
+		alt: "Edit procedure details panel for an appendectomy, linked to a related diagnosis and medication",
+	},
+	{
+		src: patientManagementFifteenth,
+		alt: "Create encounter panel listing record types to add, from vitals and medications to lab tests and documents",
+	},
 ];
-const patientRecordsTransferGridImages = [
-	patientRecordsTransferSecond,
-	patientRecordsTransferThird,
-	patientRecordsTransferFourth,
-	patientRecordsTransferFifth,
-	patientRecordsTransferSixth,
-	patientRecordsTransferSeventh,
-	patientRecordsTransferEighth,
-	patientRecordsTransferNinth,
-	patientRecordsTransferTenth,
-	patientRecordsTransferEleventh,
+const patientRecordsTransferImages = [
+	{
+		src: patientRecordsTransferFirst,
+		alt: "Transfers page empty state with no transfers yet and a Create transfer request button",
+	},
+	{
+		src: patientRecordsTransferSecond,
+		alt: "New transfer request, step 1 of 2, with a searchable patient picker",
+	},
+	{
+		src: patientRecordsTransferThird,
+		alt: "Step 1 of 2 with four patients selected for transfer",
+	},
+	{
+		src: patientRecordsTransferFourth,
+		alt: "Step 2 of 2 for attaching clinical records by type and entering the target hospital’s name and email",
+	},
+	{
+		src: patientRecordsTransferFifth,
+		alt: "Diagnosis picker for choosing which records to attach to the transfer",
+	},
+	{
+		src: patientRecordsTransferSixth,
+		alt: "Completed step 2 of 2 with eight records attached and Enugu State Teaching Hospital as the destination",
+	},
+	{
+		src: patientRecordsTransferSeventh,
+		alt: "Confirm Transfer Request dialog with a review checklist before sending for patient approval",
+	},
+	{
+		src: patientRecordsTransferEighth,
+		alt: "Transfer Request Sent confirmation explaining that the patient approves before records reach the hospital",
+	},
+	{
+		src: patientRecordsTransferNinth,
+		alt: "Receiving hospital’s read-only view of shared diagnoses, with a banner showing when access expires",
+	},
+	{
+		src: patientRecordsTransferTenth,
+		alt: "Read-only shared medications view with an access expiring soon warning",
+	},
+	{
+		src: patientRecordsTransferEleventh,
+		alt: "Transfers table showing each request’s target hospital and status, from pending to completed or rejected",
+	},
 ];
 
 const navItems = [
@@ -150,13 +267,13 @@ export default function MedibridgePage() {
 							structured patient information from unstructured files, and streamline patient record
 							transfers between healthcare facilities. The goal is to reduce administrative
 							workload, improve accessibility of patient records, and create a faster and more
-							reliable transfer process with review and patient approval workflows.ople.
+							reliable transfer process with review and patient approval workflows.
 						</p>
 					</CaseStudyReveal>
 					<CaseStudyReveal className="flex w-full flex-col gap-2">
 						<p className="font-semibold text-foreground">SOLUTION OVERVIEW</p>
 						<p className="font-medium text-muted-foreground tight text-pretty">
-							MediBridge is an AI-powered healthcare platform designed to convert physical and
+							Medibridge is an AI-powered healthcare platform designed to convert physical and
 							unstructured medical records into structured digital patient data. The platform allows
 							healthcare staff to upload scanned documents, PDFs, and images, automatically extract
 							patient information using AI, review the extracted data, and manage patient records
@@ -204,11 +321,11 @@ export default function MedibridgePage() {
 						organize them in the first place.
 					</p>
 					<p>
-						That is where MediBridge begins. With a simple question: what if we worked with the
+						That is where Medibridge begins. With a simple question: what if we worked with the
 						records hospitals already have? The PDFs. The scanned handwritten notes. The
 						photographed lab results. The discharge summaries written in different formats across
 						different clinics. What if AI could read those records, understand them, and turn them
-						into something doctors can quickly search, review, and transfer? MediBridge is designed
+						into something doctors can quickly search, review, and transfer? Medibridge is designed
 						to fit into the way hospitals already work instead of asking them to start over. The
 						goal is simple: help the next doctor see the full picture before making critical
 						decisions. Because somewhere right now, a doctor is treating a patient without the
@@ -231,12 +348,7 @@ export default function MedibridgePage() {
 					formats and guides staff through reviewing extracted information before saving it into the
 					patient profile.
 				</CaseStudyReveal>
-				<ZoomableImageGroup
-					images={[patientOnboardingFirst, ...patientOnboardingGridImages]}
-					width={3000}
-					height={1800}
-					alt=""
-				/>
+				<ZoomableImageGroup images={patientOnboardingImages} width={3000} height={1800} />
 
 				<CaseStudyReveal className="mt-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
 					<p>
@@ -264,6 +376,7 @@ export default function MedibridgePage() {
 						preload="metadata"
 						width={800}
 						height={450}
+						poster="/videos/patient-onboarding.webp"
 						aria-label="Silent screen recording of the patient onboarding flow, showing a document being uploaded and the extracted fields being reviewed and corrected before the patient is confirmed."
 					>
 						<source src="/videos/patient-onboarding.mp4" type="video/mp4" />
@@ -305,12 +418,7 @@ export default function MedibridgePage() {
 						and carried across different stages of patient care.
 					</p>
 				</CaseStudyReveal>
-				<ZoomableImageGroup
-					images={[patientManagementFirst, ...patientManagementGridImages]}
-					width={3000}
-					height={1800}
-					alt=""
-				/>
+				<ZoomableImageGroup images={patientManagementImages} width={3000} height={1800} />
 				<CaseStudyReveal className="mt-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
 					<p>
 						Once the information was divided into clinical sections, the next challenge was keeping
@@ -337,6 +445,7 @@ export default function MedibridgePage() {
 						preload="metadata"
 						width={800}
 						height={450}
+						poster="/videos/patient-management-1.webp"
 						aria-label="Silent screen recording of patient management, showing clinical sections in list and detail views as a record is browsed."
 					>
 						<source src="/videos/patient-management-1.mp4" type="video/mp4" />
@@ -349,6 +458,7 @@ export default function MedibridgePage() {
 						preload="metadata"
 						width={800}
 						height={450}
+						poster="/videos/patient-management-2.webp"
 						aria-label="Silent screen recording of patient management, showing history views and the source documents that remain attached to a record."
 					>
 						<source src="/videos/patient-management-2.mp4" type="video/mp4" />
@@ -367,7 +477,7 @@ export default function MedibridgePage() {
 					<p>
 						Another area I focused on was improving how patient records are transferred between
 						hospitals. Transfers often rely on email, printed documents, messaging apps, or other
-						disconnected channels, making records difficult to track, review, and verify. MediBridge
+						disconnected channels, making records difficult to track, review, and verify. Medibridge
 						brings this process into a structured workflow that begins from an existing patient
 						profile.
 					</p>
@@ -378,12 +488,7 @@ export default function MedibridgePage() {
 						instead of sending raw files through disconnected channels.
 					</p>
 				</CaseStudyReveal>
-				<ZoomableImageGroup
-					images={[patientRecordsTransferFirst, ...patientRecordsTransferGridImages]}
-					width={3000}
-					height={1800}
-					alt=""
-				/>
+				<ZoomableImageGroup images={patientRecordsTransferImages} width={3000} height={1800} />
 				<CaseStudyReveal className="text-muted-foreground font-medium text-pretty flex flex-col gap-2 mt-6">
 					<p>
 						The most important part of the transfer experience was keeping the patient involved. A
@@ -409,31 +514,31 @@ export default function MedibridgePage() {
 						preload="metadata"
 						width={800}
 						height={450}
+						poster="/videos/patient-records-transfer.webp"
 						aria-label="Silent screen recording of the records transfer flow, showing a request being created, the patient approving it by email, and the recipient verifying a code to open a read-only view."
 					>
 						<source src="/videos/patient-records-transfer.mp4" type="video/mp4" />
 					</video>
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" className="my-16 md:my-22">
-					This project is currently in active development. You can follow along here{" "}
+					Medibridge is in active development. Follow along in the{" "}
 					<a
 						className="link rounded border border-transparent focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 						href="https://github.com/Chibuike-web/medibridge"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						Medibridge
+						GitHub repository
 					</a>
-					. More update will be made going forward
+					.
 				</CaseStudyReveal>
 			</section>
 			<CaseStudyLink href="/nomba" className="case-study-nav-card">
-				<ArrowUpLeft className="size-6" />
-
-				<div className="flex flex-col items-end gap-3">
-					<p className="text-muted-foreground font-medium no-line-height">Previous</p>
+				<div className="flex flex-col gap-3">
+					<p className="text-muted-foreground font-medium no-line-height">Next</p>
 					<p className="text-foreground font-medium no-line-height">Nomba</p>
 				</div>
+				<ArrowUpRight className="size-6" />
 			</CaseStudyLink>
 			<Suspense>
 				<Progress />

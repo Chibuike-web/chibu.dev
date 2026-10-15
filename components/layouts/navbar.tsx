@@ -9,7 +9,7 @@ export function Navbar() {
 					<LogoIcon />
 				</div>
 				<div className="flex flex-col gap-2.5 font-medium">
-					<p className="no-line-height tight text-foreground">Chibuike Maduabuchi</p>
+					<h1 className="no-line-height tight text-foreground">Chibuike Maduabuchi</h1>
 					<p className="no-line-height tight text-muted-foreground">Design Engineer</p>
 				</div>
 			</div>

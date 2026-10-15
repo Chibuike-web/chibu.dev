@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { CaseStudyLink, CaseStudyReveal } from "@/components/case-study-reveal";
 import first from "@/assets/nomba/first.webp";
 import second from "@/assets/nomba/second.webp";
@@ -15,11 +16,25 @@ import { BackToHome } from "@/components/layouts/back-to-home";
 import { Tag } from "@/components/tag";
 import { ZoomableImage } from "@/components/zoomable-image";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpLeft } from "lucide-react";
 import ProgressBar from "@/components/progress-bar";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { ThemeButton } from "@/components/theme-button";
+
+export const metadata: Metadata = {
+	title: "Nomba",
+	description:
+		"Designing a bulk airtime transfer feature that lets people send airtime to multiple recipients in one transaction, refined through design review feedback.",
+	openGraph: {
+		url: "/nomba",
+		siteName: "Chibuike Maduabuchi",
+		type: "article",
+	},
+	twitter: {
+		card: "summary_large_image",
+	},
+};
 
 const headingClass = "text-[1.125rem] font-medium tight text-balance";
 const bodyClass = "font-medium tight text-muted-foreground text-pretty";
@@ -398,11 +413,12 @@ export default function NombaPage() {
 				</div>
 			</section>
 			<CaseStudyLink href="/medibridge" className="case-study-nav-card">
-				<div className="flex flex-col gap-3">
-					<p className="text-muted-foreground font-medium no-line-height">Next</p>
+				<ArrowUpLeft className="size-6" />
+
+				<div className="flex flex-col items-end gap-3">
+					<p className="text-muted-foreground font-medium no-line-height">Previous</p>
 					<p className="text-foreground font-medium no-line-height">Medibridge</p>
 				</div>
-				<ArrowUpRight className="size-6" />
 			</CaseStudyLink>
 			<Suspense>
 				<Progress />

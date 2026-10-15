@@ -13,7 +13,7 @@ const experience = [
 		title: "Design Engineer / Product Engineer — Self-employed",
 		href: null,
 		description:
-			"Designed and built applications end to end, including MediBridge’s AI-assisted onboarding, structured patient records, and hospital-to-hospital transfers. Created reusable components, forms, dashboards, and validation flows.",
+			"Designed and built applications end to end, including Medibridge’s AI-assisted onboarding, structured patient records, and hospital-to-hospital transfers. Created reusable components, forms, dashboards, and validation flows.",
 	},
 	{
 		start: "Jan 2024",

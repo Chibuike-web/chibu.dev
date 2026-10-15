@@ -8,19 +8,7 @@ import { Projects } from "@/components/layouts/projects";
 export const metadata: Metadata = {
 	title: "Chibuike Maduabuchi - Design Engineer",
 	description:
-		"Chibuike Maduabuchi builds AI-driven systems and high-trust digital products. Selected work across design engineering, product design, and frontend development.",
-	openGraph: {
-		title: "Chibuike Maduabuchi - Design Engineer",
-		description: "AI systems, design engineering, and product-focused frontend work.",
-		url: "https://chibuike-maduabuchi.vercel.app",
-		images: [{ url: "/og-image.png", width: 1200, height: 630 }],
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: "Chibuike Maduabuchi - Design Engineer",
-		description: "AI systems, design engineering, and product-focused frontend work.",
-		images: ["/og-image.png"],
-	},
+		"Chibuike Maduabuchi is a design engineer who designs and builds digital products, with a focus on complex workflows, data-heavy interfaces, and healthcare software.",
 };
 
 export default function Home() {

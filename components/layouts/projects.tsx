@@ -6,16 +6,16 @@ import styles from "./projects.module.css";
 
 const projects = [
 	{
-		href: "/nomba",
-		name: "Nomba",
-		description: "Bulk Airtime Transfer",
-		image: nombaThumbnail,
-	},
-	{
 		href: "/medibridge",
 		name: "Medibridge",
 		description: "AI-Powered healthcare management system",
 		image: medibridgeThumbnail,
+	},
+	{
+		href: "/nomba",
+		name: "Nomba",
+		description: "Bulk Airtime Transfer",
+		image: nombaThumbnail,
 	},
 ] as const;
 

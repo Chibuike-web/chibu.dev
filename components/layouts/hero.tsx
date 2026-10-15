@@ -10,8 +10,8 @@ export function Hero() {
 		<div>
 			<div className="tight flex flex-col gap-2 pt-8 pb-10 font-medium text-muted-foreground text-pretty">
 				<p data-enter="1">
-					I’m a <span className="text-foreground">design engineer</span>. I design and build digital
-					products with a strong focus on structure, usability, and craft.
+					I design and build digital products with a strong focus on structure, usability, and
+					craft.
 				</p>
 				<p data-enter="2">
 					I work across product thinking, interface design, and frontend engineering, with a focus
@@ -25,14 +25,14 @@ export function Hero() {
 						prefetch={true}
 						className="link rounded border border-transparent focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 					>
-						MediBridge
+						Medibridge
 					</Link>
 					, a platform for managing and transferring patient records between hospitals. I designed
 					the workflows, structured the system, and built the frontend from the ground up.
 				</p>
 				<p data-enter="4">
-					I’m currently looking for opportunities to work with thoughtful teams building ambitious
-					products.
+					I’m currently looking for opportunities to work with teams building healthcare and applied
+					AI products.
 				</p>
 			</div>
 			<div data-enter="5" className="flex flex-wrap gap-x-3 gap-y-2">

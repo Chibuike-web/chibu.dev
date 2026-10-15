@@ -9,15 +9,14 @@ import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Props = {
-	images: StaticImageData[];
+	images: { src: StaticImageData; alt: string }[];
 	width: number;
 	height: number;
-	alt?: string;
 };
 
 const SLIDE_DISTANCE = 1000;
 
-export function ZoomableImageGroup({ images, width, height, alt }: Props) {
+export function ZoomableImageGroup({ images, width, height }: Props) {
 	const reducedMotion = useReducedMotion();
 	const [openedFromIndex, setOpenedFromIndex] = useState<number | null>(null);
 	const [previewIndex, setPreviewIndex] = useState<number | null>(null);
@@ -29,7 +28,7 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 
 	const zoomLayoutId =
 		!reducedMotion && isPreviewOpen && openedFromIndex !== null
-			? `zoom-group-${images[openedFromIndex].src}`
+			? `zoom-group-${images[openedFromIndex].src.src}`
 			: undefined;
 
 	const openPreview = (index: number) => {
@@ -67,8 +66,8 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 			<motion.button
 				{...caseStudyRevealProps(reducedMotion)}
 				type="button"
-				aria-label={`Open image preview: ${alt || "Case study image"}, 1 of ${images.length}`}
-				layoutId={reducedMotion ? undefined : `zoom-group-${images[0].src}`}
+				aria-label={`Open image preview: ${images[0].alt}, 1 of ${images.length}`}
+				layoutId={reducedMotion ? undefined : `zoom-group-${images[0].src.src}`}
 				onClick={() => openPreview(0)}
 				className={cn(
 					"w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring",
@@ -77,8 +76,8 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 				transition={{ type: "spring", duration: 0.2, bounce: 0 }}
 			>
 				<Image
-					src={images[0]}
-					alt={alt ?? ""}
+					src={images[0].src}
+					alt={images[0].alt}
 					width={width}
 					height={height}
 					loading="lazy"
@@ -94,10 +93,10 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 					return (
 						<motion.button
 							{...caseStudyRevealProps(reducedMotion, index % 2)}
-							key={image.src}
+							key={image.src.src}
 							type="button"
-							aria-label={`Open image preview: ${alt || "Case study image"}, ${imageIndex + 1} of ${images.length}`}
-							layoutId={reducedMotion ? undefined : `zoom-group-${image.src}`}
+							aria-label={`Open image preview: ${image.alt}, ${imageIndex + 1} of ${images.length}`}
+							layoutId={reducedMotion ? undefined : `zoom-group-${image.src.src}`}
 							onClick={() => openPreview(imageIndex)}
 							className={cn(
 								"w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring md:rounded-lg",
@@ -106,8 +105,8 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 							transition={{ type: "spring", duration: 0.2, bounce: 0 }}
 						>
 							<Image
-								src={image}
-								alt={alt ?? ""}
+								src={image.src}
+								alt={image.alt}
 								width={width}
 								height={height}
 								loading="lazy"
@@ -185,8 +184,8 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 								}
 							>
 								<Image
-									src={previewImage}
-									alt={alt ?? ""}
+									src={previewImage.src}
+									alt={previewImage.alt}
 									width={width}
 									height={height}
 									loading="lazy"
