@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const sans = Inter({
 	variable: "--font-sans",
-	subsets: ["latin"],
-});
-
-const mono = Geist_Mono({
-	variable: "--font-mono",
 	subsets: ["latin"],
 });
 
@@ -55,13 +50,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html
-			lang="en"
-			className={`${sans.variable} ${mono.variable} antialiased`}
-			suppressHydrationWarning
-		>
+		<html lang="en" className={`${sans.variable} antialiased`} suppressHydrationWarning>
 			<head>
 				<script type="text/javascript" dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+				<noscript>
+					<style>
+						{"[data-case-reveal] { opacity: 1 !important; transform: none !important; }"}
+					</style>
+				</noscript>
 			</head>
 			<body>
 				{children}

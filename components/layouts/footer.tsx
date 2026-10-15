@@ -12,7 +12,10 @@ export function Footer() {
 		"absolute top-1/2 left-full ml-1 size-3.5 -translate-y-1/2 transition-[opacity,filter,scale,translate] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]";
 
 	return (
-		<div className="mount-5 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between font-medium tight">
+		<div
+			data-enter="8"
+			className="mount-5 mt-16 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between font-medium tight"
+		>
 			<p className="w-full md:max-w-[12.5rem]">Designed and Developed by Chibuike ©2026</p>
 			<button
 				type="button"

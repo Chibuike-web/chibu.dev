@@ -1,9 +1,9 @@
+import { CaseStudyLink, CaseStudyReveal } from "@/components/case-study-reveal";
 import { Tag } from "@/components/tag";
 import { BackToHome } from "@/components/layouts/back-to-home";
 import { ZoomableImageGroup } from "@/components/zoomable-image-group";
 import { cn } from "@/lib/utils";
 import { ArrowUpLeft } from "lucide-react";
-import Link from "next/link";
 import { cookies } from "next/headers";
 import patientOnboardingFirst from "@/assets/medibridge/patient-onboarding-first.webp";
 import patientOnboardingSecond from "@/assets/medibridge/patient-onboarding-second.webp";
@@ -103,12 +103,12 @@ const navItems = [
 
 export default function MedibridgePage() {
 	return (
-		<main className="page-shell">
-			<nav className="flex items-center justify-between">
+		<main className="page-shell case-study-page">
+			<CaseStudyReveal as="nav" className="flex items-center justify-between">
 				<BackToHome />
 				<ThemeButton />
-			</nav>
-			<header className="mount-2 my-16 md:my-22">
+			</CaseStudyReveal>
+			<CaseStudyReveal as="header" siblingIndex={1} className="my-16 md:my-22">
 				<div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
 					<div className="flex flex-col gap-3">
 						<h1 className="text-[1.125rem] font-semibold tight text-balance">Medibridge</h1>
@@ -128,11 +128,11 @@ export default function MedibridgePage() {
 						))}
 					</div>
 				</div>
-			</header>
-			<section id="overview" tabIndex={-1} className="mount-3 my-22 outline-none">
+			</CaseStudyReveal>
+			<section id="overview" tabIndex={-1} className="my-22 outline-none">
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-8">
-					<div className="flex w-full flex-col gap-2">
-						<p className="font-secondary font-semibold text-foreground">PROBLEM STATEMENT</p>
+					<CaseStudyReveal siblingIndex={2} className="flex w-full flex-col gap-2">
+						<p className="font-semibold text-foreground">PROBLEM STATEMENT</p>
 						<p className="font-medium text-muted-foreground tight text-pretty">
 							Medical records are still commonly stored as paper files, scanned documents, PDFs, or
 							images. This makes it difficult for hospitals and clinics to quickly access, organize,
@@ -142,9 +142,9 @@ export default function MedibridgePage() {
 							structured and interoperable medical data slows down workflows and affects continuity
 							of care.
 						</p>
-					</div>
-					<div className="flex w-full flex-col gap-2">
-						<p className="font-secondary font-semibold text-foreground">OBJECTIVE</p>
+					</CaseStudyReveal>
+					<CaseStudyReveal siblingIndex={3} className="flex w-full flex-col gap-2">
+						<p className="font-semibold text-foreground">OBJECTIVE</p>
 						<p className="font-medium text-muted-foreground tight text-pretty">
 							Design a platform that helps hospitals and clinics digitize medical records, extract
 							structured patient information from unstructured files, and streamline patient record
@@ -152,9 +152,9 @@ export default function MedibridgePage() {
 							workload, improve accessibility of patient records, and create a faster and more
 							reliable transfer process with review and patient approval workflows.ople.
 						</p>
-					</div>
-					<div className="flex w-full flex-col gap-2">
-						<p className="font-secondary font-semibold text-foreground">SOLUTION OVERVIEW</p>
+					</CaseStudyReveal>
+					<CaseStudyReveal className="flex w-full flex-col gap-2">
+						<p className="font-semibold text-foreground">SOLUTION OVERVIEW</p>
 						<p className="font-medium text-muted-foreground tight text-pretty">
 							MediBridge is an AI-powered healthcare platform designed to convert physical and
 							unstructured medical records into structured digital patient data. The platform allows
@@ -164,23 +164,23 @@ export default function MedibridgePage() {
 							transfer approval flows, record sharing, and structured patient profiles to improve
 							record management and continuity of care.
 						</p>
-					</div>
+					</CaseStudyReveal>
 					<div className="grid gap-6 sm:grid-cols-2">
-						<div className="flex w-full flex-col gap-2">
-							<p className="font-secondary font-semibold text-foreground">ROLE</p>
+						<CaseStudyReveal className="flex w-full flex-col gap-2">
+							<p className="font-semibold text-foreground">ROLE</p>
 							<div>
 								<p className="font-medium text-muted-foreground tight">Product Designer</p>
 								<p className="font-medium text-muted-foreground tight">Product Manager</p>
 								<p className="font-medium text-muted-foreground tight">Product Engineer</p>
 							</div>
-						</div>
-						<div className="flex w-full flex-col gap-2">
-							<p className="font-secondary font-semibold text-foreground">DURATION</p>
+						</CaseStudyReveal>
+						<CaseStudyReveal siblingIndex={1} className="flex w-full flex-col gap-2">
+							<p className="font-semibold text-foreground">DURATION</p>
 							<p className="font-medium text-muted-foreground tight">Ongoing</p>
-						</div>
+						</CaseStudyReveal>
 					</div>
 				</div>
-				<div className="mt-22 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
+				<CaseStudyReveal className="mt-22 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
 					<p>
 						Picture this: a patient is rushed from a clinic in Surulere to a specialist hospital in
 						Victoria Island. She’s unconscious. Her family does not know her medication history. The
@@ -214,11 +214,13 @@ export default function MedibridgePage() {
 						decisions. Because somewhere right now, a doctor is treating a patient without the
 						information they need. That gap can be closed.
 					</p>
-				</div>
+				</CaseStudyReveal>
 			</section>
 			<section id="patient-onboarding" tabIndex={-1} className="outline-none">
-				<h2 className={cn(headingClass, "mb-3")}>Patient Onboarding</h2>
-				<p className={cn(bodyClass, "mb-6")}>
+				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
+					Patient Onboarding
+				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-6")}>
 					One of the first problems I tried to solve was reducing the amount of manual work involved
 					in adding patients into the system. Many hospitals already have patient information stored
 					as printed documents, scanned files, PDFs, or images. Re-entering this information
@@ -228,7 +230,7 @@ export default function MedibridgePage() {
 					extract patient’s personal information automatically. The flow supports different file
 					formats and guides staff through reviewing extracted information before saving it into the
 					patient profile.
-				</p>
+				</CaseStudyReveal>
 				<ZoomableImageGroup
 					images={[patientOnboardingFirst, ...patientOnboardingGridImages]}
 					width={3000}
@@ -236,7 +238,7 @@ export default function MedibridgePage() {
 					alt=""
 				/>
 
-				<div className="mt-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
+				<CaseStudyReveal className="mt-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
 					<p>
 						Patient onboarding is often the first interaction hospital staff have with a new record,
 						so the experience needed to feel simple and reliable. I limited the initial extraction
@@ -251,8 +253,11 @@ export default function MedibridgePage() {
 						including PDFs, scanned files, images, and Word documents, so it can fit into existing
 						workflows without requiring hospitals to change how their records are prepared.
 					</p>
-				</div>
-				<div className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">
+				</CaseStudyReveal>
+				<CaseStudyReveal
+					siblingIndex={1}
+					className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden"
+				>
 					<video
 						controls
 						muted
@@ -263,11 +268,16 @@ export default function MedibridgePage() {
 					>
 						<source src="/videos/patient-onboarding.mp4" type="video/mp4" />
 					</video>
-				</div>
+				</CaseStudyReveal>
 			</section>
 			<section id="patient-management" tabIndex={-1} className="mt-22 outline-none">
-				<h2 className={cn(headingClass, "mb-3")}>Patient Management</h2>
-				<div className="mt-3 text-muted-foreground font-medium text-pretty flex flex-col gap-2 mb-6">
+				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
+					Patient Management
+				</CaseStudyReveal>
+				<CaseStudyReveal
+					siblingIndex={1}
+					className="mt-3 text-muted-foreground font-medium text-pretty flex flex-col gap-2 mb-6"
+				>
 					<p>
 						After onboarding patients into the system, I designed the day-to-day experience of
 						managing patient records inside the hospital workflow. Medical information changes
@@ -294,14 +304,14 @@ export default function MedibridgePage() {
 						hospital workflows where information needs to be reviewed quickly, updated regularly,
 						and carried across different stages of patient care.
 					</p>
-				</div>
+				</CaseStudyReveal>
 				<ZoomableImageGroup
 					images={[patientManagementFirst, ...patientManagementGridImages]}
 					width={3000}
 					height={1800}
 					alt=""
 				/>
-				<div className="mt-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
+				<CaseStudyReveal className="mt-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
 					<p>
 						Once the information was divided into clinical sections, the next challenge was keeping
 						a growing patient record easy to navigate. Each area uses list and detail views,
@@ -316,8 +326,11 @@ export default function MedibridgePage() {
 						documents remain connected to the record. This creates a balance between quick access
 						and the supporting information behind each patient’s history.
 					</p>
-				</div>
-				<div className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">
+				</CaseStudyReveal>
+				<CaseStudyReveal
+					siblingIndex={1}
+					className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden"
+				>
 					<video
 						controls
 						muted
@@ -328,8 +341,8 @@ export default function MedibridgePage() {
 					>
 						<source src="/videos/patient-management-1.mp4" type="video/mp4" />
 					</video>
-				</div>
-				<div className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">
+				</CaseStudyReveal>
+				<CaseStudyReveal className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">
 					<video
 						controls
 						muted
@@ -340,12 +353,17 @@ export default function MedibridgePage() {
 					>
 						<source src="/videos/patient-management-2.mp4" type="video/mp4" />
 					</video>
-				</div>
+				</CaseStudyReveal>
 			</section>
 
 			<section id="patient-records-transfer" tabIndex={-1} className="mt-22 outline-none">
-				<h2 className={cn(headingClass, "mb-3")}>Patient Records Transfer</h2>
-				<div className="mt-3 mb-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
+				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
+					Patient Records Transfer
+				</CaseStudyReveal>
+				<CaseStudyReveal
+					siblingIndex={1}
+					className="mt-3 mb-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2"
+				>
 					<p>
 						Another area I focused on was improving how patient records are transferred between
 						hospitals. Transfers often rely on email, printed documents, messaging apps, or other
@@ -359,14 +377,14 @@ export default function MedibridgePage() {
 						made available to the receiving hospital through a secure, time-limited, read-only link
 						instead of sending raw files through disconnected channels.
 					</p>
-				</div>
+				</CaseStudyReveal>
 				<ZoomableImageGroup
 					images={[patientRecordsTransferFirst, ...patientRecordsTransferGridImages]}
 					width={3000}
 					height={1800}
 					alt=""
 				/>
-				<div className="text-muted-foreground font-medium text-pretty flex flex-col gap-2 mt-6">
+				<CaseStudyReveal className="text-muted-foreground font-medium text-pretty flex flex-col gap-2 mt-6">
 					<p>
 						The most important part of the transfer experience was keeping the patient involved. A
 						hospital cannot release the selected records immediately after creating a request. The
@@ -380,8 +398,11 @@ export default function MedibridgePage() {
 						read-only view limited to the approved records. Transfer statuses also help the
 						initiating hospital see whether a request is pending, approved, declined, or completed.
 					</p>
-				</div>
-				<div className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">
+				</CaseStudyReveal>
+				<CaseStudyReveal
+					siblingIndex={1}
+					className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden"
+				>
 					<video
 						controls
 						muted
@@ -392,8 +413,8 @@ export default function MedibridgePage() {
 					>
 						<source src="/videos/patient-records-transfer.mp4" type="video/mp4" />
 					</video>
-				</div>
-				<p className="my-16 md:my-22">
+				</CaseStudyReveal>
+				<CaseStudyReveal as="p" className="my-16 md:my-22">
 					This project is currently in active development. You can follow along here{" "}
 					<a
 						className="link rounded border border-transparent focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
@@ -404,16 +425,16 @@ export default function MedibridgePage() {
 						Medibridge
 					</a>
 					. More update will be made going forward
-				</p>
+				</CaseStudyReveal>
 			</section>
-			<Link href="/nomba" prefetch={true} className="case-study-nav-card">
+			<CaseStudyLink href="/nomba" className="case-study-nav-card">
 				<ArrowUpLeft className="size-6" />
 
 				<div className="flex flex-col items-end gap-3">
 					<p className="text-muted-foreground font-medium no-line-height">Previous</p>
 					<p className="text-foreground font-medium no-line-height">Nomba</p>
 				</div>
-			</Link>
+			</CaseStudyLink>
 			<Suspense>
 				<Progress />
 			</Suspense>

@@ -3,7 +3,7 @@ import { ThemeButton } from "../theme-button";
 
 export function Navbar() {
 	return (
-		<div className="mount-1 flex items-center justify-between">
+		<div data-enter="0" className="mount-1 flex items-center justify-between">
 			<div className="flex items-center gap-2.5">
 				<div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-surface-muted">
 					<LogoIcon />

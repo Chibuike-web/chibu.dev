@@ -8,17 +8,17 @@ import { ReactNode } from "react";
 export function Hero() {
 	return (
 		<div>
-			<div className="mount-2 tight flex flex-col gap-2 pt-8 pb-10 font-medium text-muted-foreground text-pretty">
-				<p>
+			<div className="tight flex flex-col gap-2 pt-8 pb-10 font-medium text-muted-foreground text-pretty">
+				<p data-enter="1">
 					I’m a <span className="text-foreground">design engineer</span>. I design and build digital
 					products with a strong focus on structure, usability, and craft.
 				</p>
-				<p>
+				<p data-enter="2">
 					I work across product thinking, interface design, and frontend engineering, with a focus
 					on complex workflows, data-heavy interfaces, and systems that need to feel simple without
 					losing depth.
 				</p>
-				<p>
+				<p data-enter="3">
 					Recently, I’ve been building{" "}
 					<Link
 						href="/medibridge"
@@ -30,12 +30,12 @@ export function Hero() {
 					, a platform for managing and transferring patient records between hospitals. I designed
 					the workflows, structured the system, and built the frontend from the ground up.
 				</p>
-				<p>
+				<p data-enter="4">
 					I’m currently looking for opportunities to work with thoughtful teams building ambitious
 					products.
 				</p>
 			</div>
-			<div className="mount-3 flex flex-wrap gap-x-3 gap-y-2">
+			<div data-enter="5" className="flex flex-wrap gap-x-3 gap-y-2">
 				<HeroButton link="mailto:chibuikemaduabuchi2023@gmail.com">
 					<EmailIcon className="shrink-0" /> <span className="font-semibold">Mail</span>
 				</HeroButton>

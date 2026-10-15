@@ -1,3 +1,4 @@
+import { CaseStudyLink, CaseStudyReveal } from "@/components/case-study-reveal";
 import first from "@/assets/nomba/first.webp";
 import second from "@/assets/nomba/second.webp";
 import third from "@/assets/nomba/third.webp";
@@ -15,7 +16,6 @@ import { Tag } from "@/components/tag";
 import { ZoomableImage } from "@/components/zoomable-image";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import ProgressBar from "@/components/progress-bar";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
@@ -63,12 +63,12 @@ const navItems = [
 
 export default function NombaPage() {
 	return (
-		<main className="page-shell">
-			<nav className="flex items-center justify-between">
+		<main className="page-shell case-study-page">
+			<CaseStudyReveal as="nav" className="flex items-center justify-between">
 				<BackToHome />
 				<ThemeButton />
-			</nav>
-			<header className="mount-2 my-16 md:my-22">
+			</CaseStudyReveal>
+			<CaseStudyReveal as="header" siblingIndex={1} className="my-16 md:my-22">
 				<div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
 					<div className="flex flex-col gap-3">
 						<h1 className="text-[1.125rem] font-semibold tight text-balance">Nomba</h1>
@@ -88,14 +88,14 @@ export default function NombaPage() {
 						))}
 					</div>
 				</div>
-			</header>
+			</CaseStudyReveal>
 			<section
 				id="overview"
 				tabIndex={-1}
-				className="mount-3 my-22 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-8 outline-none"
+				className="my-22 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-8 outline-none"
 			>
-				<div className="flex w-full flex-col gap-2">
-					<p className="font-secondary font-semibold text-foreground">PROBLEM STATEMENT</p>
+				<CaseStudyReveal siblingIndex={2} className="flex w-full flex-col gap-2">
+					<p className="font-semibold text-foreground">PROBLEM STATEMENT</p>
 					<p className={bodyClass}>
 						Demola, a frequent airtime sender, faces a stressful and time-consuming process of
 						sending airtime to each recipient individually. This repetitive task becomes especially
@@ -104,37 +104,37 @@ export default function NombaPage() {
 						simplifies the process by enabling him to send airtime to multiple recipients in a
 						single transaction.
 					</p>
-				</div>
-				<div className="flex w-full flex-col gap-2">
-					<p className="font-secondary font-semibold text-foreground">OBJECTIVE</p>
+				</CaseStudyReveal>
+				<CaseStudyReveal siblingIndex={3} className="flex w-full flex-col gap-2">
+					<p className="font-semibold text-foreground">OBJECTIVE</p>
 					<p className={bodyClass}>
 						Design a simple and efficient mobile feature that allows users to send airtime to
 						multiple recipients at once, streamlining the process and reducing the time and effort
 						required for a user who regularly sends airtime to a large number of people.
 					</p>
-				</div>
-				<div className="flex w-full flex-col gap-2">
-					<p className="font-secondary font-semibold text-foreground">SOLUTION OVERVIEW</p>
+				</CaseStudyReveal>
+				<CaseStudyReveal className="flex w-full flex-col gap-2">
+					<p className="font-semibold text-foreground">SOLUTION OVERVIEW</p>
 					<p className={bodyClass}>
 						To address Demola&apos;s pain points and create a more efficient way to send airtime to
 						multiple recipients, I designed a feature that enables users to send airtime to several
 						recipients in a single transaction. This feature is built around two primary solutions
 						for ease of use and flexibility.
 					</p>
-				</div>
+				</CaseStudyReveal>
 				<div className="grid gap-6 sm:grid-cols-2">
-					<div className="flex w-full flex-col gap-2">
-						<p className="font-secondary font-semibold text-foreground">ROLE</p>
+					<CaseStudyReveal className="flex w-full flex-col gap-2">
+						<p className="font-semibold text-foreground">ROLE</p>
 						<p className="font-medium text-muted-foreground tight">Product Designer</p>
-					</div>
-					<div className="flex w-full flex-col gap-2">
-						<p className="font-secondary font-semibold text-foreground">DURATION</p>
+					</CaseStudyReveal>
+					<CaseStudyReveal siblingIndex={1} className="flex w-full flex-col gap-2">
+						<p className="font-semibold text-foreground">DURATION</p>
 						<p className="font-medium text-muted-foreground tight">1 week</p>
-					</div>
+					</CaseStudyReveal>
 				</div>
 			</section>
 			<section id="selecting-recipients-from-contacts" tabIndex={-1} className="outline-none">
-				<div className="flex flex-col gap-3">
+				<CaseStudyReveal className="flex flex-col gap-3">
 					<h2 className={headingClass}>Selecting Recipients from Contacts</h2>
 					<p className={bodyClass}>
 						In this flow, users can select recipients directly from their saved contact list. By
@@ -143,8 +143,8 @@ export default function NombaPage() {
 						recipients with ease. The selected contacts are then displayed as chips on the next
 						screen, providing a clear visual summary for review.
 					</p>
-				</div>
-				<ul className={detailListClass}>
+				</CaseStudyReveal>
+				<CaseStudyReveal as="ul" siblingIndex={1} className={detailListClass}>
 					<li>
 						<span className="font-medium text-foreground">User Action:</span>{" "}
 						<span className={detailItemClass}>Select recipients from the contact list.</span>
@@ -156,12 +156,12 @@ export default function NombaPage() {
 							and proceed with entering airtime details.
 						</span>
 					</li>
-				</ul>
-				<p className={cn(bodyClass, "mb-6")}>
+				</CaseStudyReveal>
+				<CaseStudyReveal as="p" className={cn(bodyClass, "mb-6")}>
 					I used familiar interaction patterns to keep the process intuitive and quick. The
 					experience focused on speed and flexibility, with features like quick selection, search,
 					and bulk actions to make managing multiple recipients feel smooth and efficient.
-				</p>
+				</CaseStudyReveal>
 				<ZoomableImage
 					src={first}
 					width={3000}
@@ -170,7 +170,7 @@ export default function NombaPage() {
 				/>
 			</section>
 			<section id="manually-entering-phone-numbers" tabIndex={-1} className="mt-22 outline-none">
-				<div className="flex flex-col gap-3">
+				<CaseStudyReveal className="flex flex-col gap-3">
 					<h2 className={headingClass}>Manually Entering Phone Numbers</h2>
 					<p className={bodyClass}>
 						For users who prefer to enter numbers manually, this option allows them to input
@@ -178,8 +178,8 @@ export default function NombaPage() {
 						accommodate cases where recipients are not saved in the user&apos;s contact list,
 						offering greater flexibility and control over the input process.
 					</p>
-				</div>
-				<ul className={detailListClass}>
+				</CaseStudyReveal>
+				<CaseStudyReveal as="ul" siblingIndex={1} className={detailListClass}>
 					<li>
 						<span className="font-medium text-foreground">User Action:</span>{" "}
 						<span className={detailItemClass}>
@@ -193,12 +193,12 @@ export default function NombaPage() {
 							review and proceed with selecting a provider and entering the airtime amount.
 						</span>
 					</li>
-				</ul>
-				<p className={cn(bodyClass, "mb-6")}>
+				</CaseStudyReveal>
+				<CaseStudyReveal as="p" className={cn(bodyClass, "mb-6")}>
 					Entering several numbers at once can be tedious, so I designed the input to accept
 					comma-separated entries. This keeps the process quick and gives users a clear way to
 					review what they&apos;ve added before continuing.
-				</p>
+				</CaseStudyReveal>
 				<ZoomableImage
 					src={second}
 					width={3000}
@@ -207,12 +207,14 @@ export default function NombaPage() {
 				/>
 			</section>
 			<section id="recipient-management" tabIndex={-1} className="mt-22 outline-none">
-				<h2 className={cn(headingClass, "mb-3")}>Recipient Management</h2>
-				<p className={cn(bodyClass, "mb-6")}>
+				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
+					Recipient Management
+				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-6")}>
 					I designed the screen to give users a clear overview of their transfer before they
 					continue. Recipient tags make selected contacts easy to track, while separating provider,
 					deal, and amount selection keeps the experience simple and easy to scan.
-				</p>
+				</CaseStudyReveal>
 				<ZoomableImage
 					src={third}
 					width={3000}
@@ -221,14 +223,16 @@ export default function NombaPage() {
 				/>
 			</section>
 			<section id="payment-review" tabIndex={-1} className="mt-22 outline-none">
-				<h2 className={cn(headingClass, "mb-3")}>Payment Review</h2>
-				<p className={cn(bodyClass, "mb-6")}>
+				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
+					Payment Review
+				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-6")}>
 					Before payment, users need a chance to verify that everything is correct. I designed the
 					review screen to present all recipients, network providers, and airtime amounts in a
 					clear, scannable format, making it easy to spot mistakes and make changes if needed. The
 					payment sheet provides a final summary of the total amount, cashback reward, and payment
 					method, giving users confidence before they complete the transaction.
-				</p>
+				</CaseStudyReveal>
 				<ZoomableImage
 					src={fourth}
 					width={3000}
@@ -237,14 +241,16 @@ export default function NombaPage() {
 				/>
 			</section>
 			<section id="transaction-summary-details" tabIndex={-1} className="mt-22 outline-none">
-				<h2 className={cn(headingClass, "mb-3")}>Transaction Summary & Details</h2>
-				<p className={cn(bodyClass, "mb-6")}>
+				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
+					Transaction Summary & Details
+				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-6")}>
 					The flow makes it easy to review transaction results without feeling overwhelming. The
 					summary screen shows the status of all completed transactions in one place, while
 					individual detail screens provide more information such as the recipient, payment method,
 					transaction ID, and date. This helps users quickly confirm their transactions and dig
 					deeper only when they need to.
-				</p>
+				</CaseStudyReveal>
 				<ZoomableImage
 					src={fifth}
 					width={3000}
@@ -253,13 +259,15 @@ export default function NombaPage() {
 				/>
 			</section>
 			<section id="design-feedback-iterations" tabIndex={-1} className="mt-22 outline-none">
-				<h2 className={cn(headingClass, "mb-3")}>Design Feedback & Iterations</h2>
-				<p className={bodyClass}>
+				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
+					Design Feedback & Iterations
+				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={1} className={bodyClass}>
 					During design reviews, I received useful feedback that helped shape the interaction
 					patterns on the Send Airtime screen. Some key insights included:
-				</p>
+				</CaseStudyReveal>
 
-				<div className={feedbackItemClass}>
+				<CaseStudyReveal className={feedbackItemClass}>
 					<span className={feedbackNumberClass}>1</span>
 					<p className={bodyClass}>
 						The cancel (remove) button on each chip had a small tap target and was not visually
@@ -267,8 +275,8 @@ export default function NombaPage() {
 						reduced the emphasis on the highlighted chip and increased the risk of accidentally
 						removing the wrong recipient.
 					</p>
-				</div>
-				<div className={feedbackItemClass}>
+				</CaseStudyReveal>
+				<CaseStudyReveal siblingIndex={1} className={feedbackItemClass}>
 					<span className={feedbackNumberClass}>2</span>
 					<p className={cn(bodyClass, "mb-6")}>
 						Allowing users to manually select the mobile provider was flagged as unnecessary, since
@@ -276,7 +284,7 @@ export default function NombaPage() {
 						Leaving this step to the user introduced potential errors, such as selecting the wrong
 						provider for a number or contact.
 					</p>
-				</div>
+				</CaseStudyReveal>
 				<ZoomableImage
 					src={sixth}
 					width={3000}
@@ -284,8 +292,10 @@ export default function NombaPage() {
 					alt="Iteration showing chip removal states and provider handling improvements."
 				/>
 
-				<p className={cn(bodyClass, "mt-6")}>I made the following improvements:</p>
-				<div className={feedbackItemClass}>
+				<CaseStudyReveal as="p" className={cn(bodyClass, "mt-6")}>
+					I made the following improvements:
+				</CaseStudyReveal>
+				<CaseStudyReveal siblingIndex={1} className={feedbackItemClass}>
 					<span className={feedbackNumberClass}>1</span>
 					<p className={bodyClass}>
 						The cancel button was updated with a white highlight to make it more visible and
@@ -293,8 +303,8 @@ export default function NombaPage() {
 						non-selected chips. Now, only the highlighted chip displays the cancel button, ensuring
 						users can remove recipients intentionally.
 					</p>
-				</div>
-				<div className={feedbackItemClass}>
+				</CaseStudyReveal>
+				<CaseStudyReveal className={feedbackItemClass}>
 					<span className={feedbackNumberClass}>2</span>
 					<p className={cn(bodyClass, "mb-6")}>
 						Instead of allowing users to select a mobile provider manually, the system now detects
@@ -302,7 +312,7 @@ export default function NombaPage() {
 						on the chip next to the contact or number, eliminating user error and streamlining the
 						process.
 					</p>
-				</div>
+				</CaseStudyReveal>
 				<ZoomableImage
 					src={seventh}
 					width={3000}
@@ -310,13 +320,13 @@ export default function NombaPage() {
 					alt="Updated chip design showing clearer removal affordance and automatic provider labels."
 				/>
 
-				<p className={cn(bodyClass, "my-6")}>
+				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "my-6")}>
 					The designer also pointed out usability issues with the manual phone number entry flow. He
 					raised concerns about what would happen if a user entered a comma too early, added it
 					after an incomplete number, or forgot to include a comma altogether. Additionally, there
 					was no visual feedback to indicate whether a number had been successfully recognized and
 					recorded by the system.
-				</p>
+				</CaseStudyReveal>
 				<ZoomableImage
 					src={eighth}
 					width={3000}
@@ -324,10 +334,10 @@ export default function NombaPage() {
 					alt="Manual entry flow with validation and helper messaging concepts."
 				/>
 
-				<p className={cn(bodyClass, "mt-6")}>
+				<CaseStudyReveal as="p" className={cn(bodyClass, "mt-6")}>
 					I made a few key improvements based on this feedback:
-				</p>
-				<div className={feedbackItemClass}>
+				</CaseStudyReveal>
+				<CaseStudyReveal siblingIndex={1} className={feedbackItemClass}>
 					<span className={feedbackNumberClass}>1</span>
 					<p className={bodyClass}>
 						To support first-time users or those unsure about the format, I added a helper icon
@@ -335,37 +345,37 @@ export default function NombaPage() {
 						enter multiple numbers using commas, along with examples and tips for avoiding
 						formatting errors.
 					</p>
-				</div>
-				<div className={feedbackItemClass}>
+				</CaseStudyReveal>
+				<CaseStudyReveal className={feedbackItemClass}>
 					<span className={feedbackNumberClass}>2</span>
 					<p className={cn(bodyClass, "mb-6")}>
 						For edge cases such as entering a comma too early, forgetting it altogether, or
 						inputting incomplete numbers, I implemented validation rules. The system now flags any
 						number that is fewer than 11 digits, prompting users to complete or correct it.
 					</p>
-				</div>
+				</CaseStudyReveal>
 				<ZoomableImage
 					src={ninth}
 					width={3000}
 					height={1800}
 					alt="Validation states for incomplete or malformed phone number input."
 				/>
-				<div className={feedbackItemClass}>
+				<CaseStudyReveal siblingIndex={1} className={feedbackItemClass}>
 					<span className={feedbackNumberClass}>3</span>
 					<p className={bodyClass}>
 						If a user types more than 11 digits without a comma, the system displays a warning and
 						prompts them to insert the appropriate separator to avoid number merging or
 						misinterpretation.
 					</p>
-				</div>
-				<div className={feedbackItemClass}>
+				</CaseStudyReveal>
+				<CaseStudyReveal className={feedbackItemClass}>
 					<span className={feedbackNumberClass}>4</span>
 					<p className={cn(bodyClass, "mb-6")}>
 						Each valid phone number is automatically converted into a chip once it reaches 11 digits
 						and is followed by a comma. This gives users instant visual feedback that the number has
 						been successfully recognized and recorded.
 					</p>
-				</div>
+				</CaseStudyReveal>
 				<div className="flex flex-col gap-22">
 					<ZoomableImage
 						src={tenth}
@@ -387,13 +397,13 @@ export default function NombaPage() {
 					/>
 				</div>
 			</section>
-			<Link href="/medibridge" prefetch={true} className="case-study-nav-card">
+			<CaseStudyLink href="/medibridge" className="case-study-nav-card">
 				<div className="flex flex-col gap-3">
 					<p className="text-muted-foreground font-medium no-line-height">Next</p>
 					<p className="text-foreground font-medium no-line-height">Medibridge</p>
 				</div>
 				<ArrowUpRight className="size-6" />
-			</Link>
+			</CaseStudyLink>
 			<Suspense>
 				<Progress />
 			</Suspense>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layouts/footer";
+import { Experience } from "@/components/layouts/experience";
 import { Hero } from "@/components/layouts/hero";
 import { Navbar } from "@/components/layouts/navbar";
 import { Projects } from "@/components/layouts/projects";
@@ -24,9 +25,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
 	return (
-		<main className="page-shell">
+		<main className="page-shell home-page">
 			<Navbar />
 			<Hero />
+			<Experience />
 			<Projects />
 			<Footer />
 		</main>
