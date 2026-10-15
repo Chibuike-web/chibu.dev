@@ -219,7 +219,7 @@ export function ZoomableImageGroup({ images, width, height, alt }: Props) {
 
 							<button
 								type="button"
-								className="absolute right-4 top-4 z-10 flex size-10 items-center justify-center rounded-full border border-transparent text-foreground focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+								className="absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								onClick={closePreview}
 								aria-label="Close image preview"
 								data-preview-close
