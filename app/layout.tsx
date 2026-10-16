@@ -68,7 +68,6 @@ export default function RootLayout({
 						{"[data-case-reveal] { opacity: 1 !important; transform: none !important; }"}
 					</style>
 				</noscript>
-				<script src="https://inflight.co/widget.js" data-org="ddttolyv" async></script>
 			</head>
 			<body>
 				{children}
