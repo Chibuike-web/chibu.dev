@@ -26,7 +26,7 @@ try {
 `;
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://chibuike-maduabuchi.vercel.app"),
+	metadataBase: new URL("https://chibu.dev"),
 	title: {
 		default: "Chibuike Maduabuchi",
 		template: "%s - Chibuike Maduabuchi",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 		title: "Chibuike Maduabuchi - Design Engineer",
 		description:
 			"Product thinking, interface design, and frontend engineering for complex workflows and data-heavy interfaces.",
-		url: "https://chibuike-maduabuchi.vercel.app",
+		url: "/",
 		siteName: "Chibuike Maduabuchi",
 		images: [{ url: "/og-image.png", width: 1200, height: 630 }],
 		type: "website",

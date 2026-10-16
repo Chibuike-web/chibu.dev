@@ -7,6 +7,7 @@ import { Projects } from "@/components/layouts/projects";
 
 export const metadata: Metadata = {
 	title: "Chibuike Maduabuchi - Design Engineer",
+	alternates: { canonical: "/" },
 	description:
 		"Chibuike Maduabuchi is a design engineer who designs and builds digital products, with a focus on complex workflows, data-heavy interfaces, and healthcare software.",
 };

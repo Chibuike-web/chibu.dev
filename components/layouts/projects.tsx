@@ -8,7 +8,7 @@ const projects = [
 	{
 		href: "/medibridge",
 		name: "Medibridge",
-		description: "AI-powered healthcare management system",
+		description: "Healthcare management system",
 		image: medibridgeThumbnail,
 	},
 	{

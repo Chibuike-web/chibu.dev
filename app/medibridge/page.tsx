@@ -46,8 +46,9 @@ import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const metadata: Metadata = {
 	title: "Medibridge",
+	alternates: { canonical: "/medibridge" },
 	description:
-		"How I designed and built Medibridge, an AI-powered platform that turns paper, PDF, and image medical records into structured patient data and transfers them between hospitals with patient approval.",
+		"How I designed and built Medibridge, a healthcare platform that turns paper, PDF, and image medical records into structured patient data and transfers them between hospitals with patient approval.",
 	openGraph: {
 		url: "/medibridge",
 		siteName: "Chibuike Maduabuchi",
@@ -231,7 +232,7 @@ export default function MedibridgePage() {
 						<h1 className="text-[1.125rem] font-semibold tight text-balance">Medibridge</h1>
 						<div className="flex items-center gap-1.5">
 							<p className="text-[1rem] font-medium text-muted-foreground text-balance tight no-line-height">
-								AI-powered healthcare management system
+								Healthcare management system
 							</p>
 							<span className="size-0.5 rounded-full bg-muted-foreground flex shrink-0" />
 							<p className="text-[1rem] font-medium text-muted-foreground tight no-line-height">
@@ -285,11 +286,7 @@ export default function MedibridgePage() {
 					<div className="grid gap-6 sm:grid-cols-2">
 						<CaseStudyReveal className="flex w-full flex-col gap-2">
 							<p className="font-semibold text-foreground">ROLE</p>
-							<div>
-								<p className="font-medium text-muted-foreground tight">Product Designer</p>
-								<p className="font-medium text-muted-foreground tight">Product Manager</p>
-								<p className="font-medium text-muted-foreground tight">Product Engineer</p>
-							</div>
+							<p className="font-medium text-muted-foreground tight">Product Engineer</p>
 						</CaseStudyReveal>
 						<CaseStudyReveal siblingIndex={1} className="flex w-full flex-col gap-2">
 							<p className="font-semibold text-foreground">DURATION</p>

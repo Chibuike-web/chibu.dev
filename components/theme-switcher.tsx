@@ -40,6 +40,12 @@ export function ThemeSwitcher() {
 						type="radio"
 						name="theme"
 						value={value}
+						ref={(input) => {
+							if (input) {
+								const activeTheme = document.documentElement.dataset.theme ?? "system";
+								input.checked = activeTheme === value;
+							}
+						}}
 						onChange={() => setTheme(value)}
 						className="sr-only"
 					/>

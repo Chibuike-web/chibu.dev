@@ -24,6 +24,7 @@ import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const metadata: Metadata = {
 	title: "Nomba",
+	alternates: { canonical: "/nomba" },
 	description:
 		"Designing a bulk airtime transfer feature that lets people send airtime to multiple recipients in one transaction, refined through design review feedback.",
 	openGraph: {
