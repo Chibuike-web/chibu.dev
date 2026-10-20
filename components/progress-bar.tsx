@@ -16,8 +16,8 @@ function getExpandedSnapshot() {
 	return !document.cookie.split("; ").includes("isExpandedValue=false");
 }
 
-function getServerSnapshot() {
-	return true;
+function getServerSnapshot(): boolean | null {
+	return null;
 }
 
 function setSectionsExpanded(expanded: boolean) {
@@ -26,7 +26,11 @@ function setSectionsExpanded(expanded: boolean) {
 }
 
 export default function ProgressBar({ items }: { items: Record<string, string>[] }) {
-	const isExpanded = useSyncExternalStore(subscribe, getExpandedSnapshot, getServerSnapshot);
+	const isExpanded = useSyncExternalStore<boolean | null>(
+		subscribe,
+		getExpandedSnapshot,
+		getServerSnapshot,
+	);
 
 	const [activeSectionHeading, setActiveSectionHeading] = useState<string | undefined>(
 		items[0].label,
@@ -70,6 +74,8 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 		document.addEventListener("keydown", handleKeyDown);
 		return () => document.removeEventListener("keydown", handleKeyDown);
 	}, [isExpanded]);
+
+	if (isExpanded === null) return null;
 
 	return (
 		<nav
