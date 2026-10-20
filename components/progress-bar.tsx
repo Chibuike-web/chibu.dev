@@ -2,23 +2,36 @@
 
 import { cn } from "@/lib/utils";
 import { ChevronsUpDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import ProgressRing from "@/components/progress-ring";
 
-export default function ProgressBar({
-	items,
-	initialState,
-}: {
-	items: Record<string, string>[];
-	initialState?: string;
-}) {
-	const parsed = initialState !== "false";
+const expandedChangeEvent = "case-study-sections-change";
+
+function subscribe(onChange: () => void) {
+	window.addEventListener(expandedChangeEvent, onChange);
+	return () => window.removeEventListener(expandedChangeEvent, onChange);
+}
+
+function getExpandedSnapshot() {
+	return !document.cookie.split("; ").includes("isExpandedValue=false");
+}
+
+function getServerSnapshot() {
+	return true;
+}
+
+function setSectionsExpanded(expanded: boolean) {
+	document.cookie = `isExpandedValue=${expanded}; path=/; max-age=31536000; samesite=lax`;
+	window.dispatchEvent(new Event(expandedChangeEvent));
+}
+
+export default function ProgressBar({ items }: { items: Record<string, string>[] }) {
+	const isExpanded = useSyncExternalStore(subscribe, getExpandedSnapshot, getServerSnapshot);
 
 	const [activeSectionHeading, setActiveSectionHeading] = useState<string | undefined>(
 		items[0].label,
 	);
 	const [activeSection, setActiveSection] = useState(0);
-	const [isExpanded, setIsExpanded] = useState(parsed);
 	const toggleRef = useRef<HTMLButtonElement>(null);
 
 	useEffect(() => {
@@ -50,8 +63,7 @@ export default function ProgressBar({
 		if (!isExpanded) return;
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key === "Escape" && isExpanded) {
-				setIsExpanded(false);
-				document.cookie = "isExpandedValue=false; path=/; max-age=31536000; samesite=lax";
+				setSectionsExpanded(false);
 				toggleRef.current?.focus();
 			}
 		};
@@ -68,13 +80,7 @@ export default function ProgressBar({
 				className="sticky top-0 z-10 flex w-full cursor-pointer items-center justify-between border border-transparent bg-[#464648] px-5 py-3 text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 				aria-expanded={isExpanded}
 				ref={toggleRef}
-				onClick={() => {
-					setIsExpanded((prev) => {
-						const next = !prev;
-						document.cookie = `isExpandedValue=${next}; path=/; max-age=31536000; samesite=lax`;
-						return next;
-					});
-				}}
+				onClick={() => setSectionsExpanded(!isExpanded)}
 			>
 				<span className="flex items-center gap-2.5">
 					<ProgressRing />

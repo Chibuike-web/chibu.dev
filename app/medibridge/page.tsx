@@ -5,7 +5,6 @@ import { BackToHome } from "@/components/layouts/back-to-home";
 import { ZoomableImageGroup } from "@/components/zoomable-image-group";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
-import { cookies } from "next/headers";
 import patientOnboardingFirst from "@/assets/medibridge/patient-onboarding-first.webp";
 import patientOnboardingSecond from "@/assets/medibridge/patient-onboarding-second.webp";
 import patientOnboardingThird from "@/assets/medibridge/patient-onboarding-third.webp";
@@ -41,7 +40,6 @@ import patientRecordsTransferTenth from "@/assets/medibridge/patient-records-tra
 import patientRecordsTransferEleventh from "@/assets/medibridge/patient-records-transfer-eleventh.webp";
 
 import ProgressBar from "@/components/progress-bar";
-import { Suspense } from "react";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const metadata: Metadata = {
@@ -537,9 +535,7 @@ export default function MedibridgePage() {
 				</div>
 				<ArrowUpRight className="size-6" />
 			</CaseStudyLink>
-			<Suspense>
-				<Progress />
-			</Suspense>
+			<ProgressBar items={navItems} />
 		</main>
 	);
 }
@@ -561,9 +557,3 @@ const tags = [
 		bgColor: "var(--green-muted)",
 	},
 ];
-
-async function Progress() {
-	const cookieStore = await cookies();
-	const stored = cookieStore.get("isExpandedValue")?.value;
-	return <ProgressBar items={navItems} initialState={stored} />;
-}

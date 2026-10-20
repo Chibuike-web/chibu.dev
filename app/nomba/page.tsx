@@ -18,8 +18,6 @@ import { ZoomableImage } from "@/components/zoomable-image";
 import { cn } from "@/lib/utils";
 import { ArrowUpLeft } from "lucide-react";
 import ProgressBar from "@/components/progress-bar";
-import { cookies } from "next/headers";
-import { Suspense } from "react";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const metadata: Metadata = {
@@ -421,9 +419,7 @@ export default function NombaPage() {
 					<p className="text-foreground font-medium no-line-height">Medibridge</p>
 				</div>
 			</CaseStudyLink>
-			<Suspense>
-				<Progress />
-			</Suspense>
+			<ProgressBar items={navItems} />
 		</main>
 	);
 }
@@ -440,9 +436,3 @@ const tags = [
 		bgColor: "var(--amber-muted)",
 	},
 ];
-
-async function Progress() {
-	const cookieStore = await cookies();
-	const stored = cookieStore.get("isExpandedValue")?.value;
-	return <ProgressBar items={navItems} initialState={stored} />;
-}
