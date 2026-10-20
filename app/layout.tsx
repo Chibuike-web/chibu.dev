@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const sans = Inter({
@@ -83,6 +84,7 @@ export default function RootLayout({
 					<div className="bottom-blur-layer bottom-blur-layer-6" />
 					<div className="bottom-blur-fade" />
 				</div>
+				<Analytics />
 			</body>
 		</html>
 	);
