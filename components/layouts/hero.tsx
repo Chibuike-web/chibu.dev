@@ -1,7 +1,5 @@
-import { EmailIcon } from "@/icons/email-icon";
-import { GithubIcon } from "@/icons/github-icon";
-import { LinkedinIcon } from "@/icons/linkedin-icon";
-import { ResumeIcon } from "@/icons/resume-icon";
+import { CopyEmailButton } from "@/components/copy-email-button";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -31,24 +29,16 @@ export function Hero() {
 					the workflows, structured the system, and built the frontend from the ground up.
 				</p>
 				<p data-enter="4">
-					I’m currently looking for opportunities to work with teams building healthcare and applied
-					AI products.
+					I’m currently looking for opportunities to work with teams building applied AI products
+					and systems.
 				</p>
 			</div>
 			<div data-enter="5" className="flex flex-wrap gap-x-3 gap-y-2">
-				<HeroButton link="mailto:chibuikemaduabuchi2023@gmail.com">
-					<EmailIcon className="shrink-0" /> <span className="font-semibold">Mail</span>
-				</HeroButton>
-				<HeroButton link="https://github.com/Chibuike-web">
-					<GithubIcon className="shrink-0" /> <span className="font-semibold">GitHub</span>
-				</HeroButton>
-				<HeroButton link="https://www.linkedin.com/in/chibuike-maduabuchi/">
-					<LinkedinIcon className="shrink-0" />
-					<span className="font-semibold">LinkedIn</span>
-				</HeroButton>
+				<CopyEmailButton />
+				<HeroButton link="https://github.com/Chibuike-web">GitHub</HeroButton>
+				<HeroButton link="https://www.linkedin.com/in/chibuike-maduabuchi/">LinkedIn</HeroButton>
 				<HeroButton link="https://drive.google.com/file/d/1lB6mPhuiRfdUAimr9VTGugW6r2dQsEvZ/view?usp=sharing">
-					<ResumeIcon className="size-4 shrink-0" />
-					<span className="font-semibold ">Resume</span>
+					Resume
 				</HeroButton>
 			</div>
 		</div>
@@ -57,13 +47,11 @@ export function Hero() {
 
 function HeroButton({ link, children }: { link: string; children: ReactNode }) {
 	return (
-		<a
-			href={link}
-			target="_blank"
-			rel="noopener noreferrer"
-			className="flex min-h-10 items-center gap-2 rounded-full border border-transparent bg-surface-muted px-4 py-1.5 text-foreground transition-[background-color,scale] duration-150 ease-out hover:bg-surface-hover active:scale-96 focus-visible:border-muted-foreground focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
-		>
+		<a href={link} target="_blank" rel="noopener noreferrer" className="social-pill reveal-link">
 			{children}
+			<span className="reveal-link-icon" aria-hidden="true">
+				<ArrowUpRight />
+			</span>
 		</a>
 	);
 }

@@ -1,27 +1,29 @@
+import { ArrowUpRight } from "lucide-react";
+
 const experience = [
 	{
-		start: "Aug 2026",
+		start: "2026",
 		end: "Present",
 		title: "Design Engineer at Roboto Studio",
 		href: "https://robotostudio.com",
 		description:
-			"Design and build production web experiences with React, Next.js, and TypeScript. Translate Figma designs into reusable interfaces, develop Sanity content models and Studio customisations, and refine motion, accessibility, and performance.",
+			"Currently building web experiences with React, Next.js, TypeScript, and Sanity. Translating Figma designs into reusable interfaces with a focus on accessibility, motion, and performance.",
 	},
 	{
-		start: "Dec 2024",
-		end: "Aug 2026",
+		start: "2024",
+		end: "2026",
 		title: "Design Engineer / Product Engineer — Self-employed",
 		href: null,
 		description:
-			"Designed and built applications end to end, including Medibridge’s AI-assisted onboarding, structured patient records, and hospital-to-hospital transfers. Created reusable components, forms, dashboards, and validation flows.",
+			"Designed and built web applications end to end, including Medibridge’s patient onboarding, records management, and hospital transfers. Created reusable components, forms, dashboards, and validation flows.",
 	},
 	{
-		start: "Jan 2024",
-		end: "May 2025",
+		start: "2024",
+		end: "2025",
 		title: "Product Designer at Kulipal Technologies Limited",
 		href: null,
 		description:
-			"Designed mobile and web experiences across food, events, housing, and branch management. Conducted user research and usability testing, created Figma wireframes and prototypes, and led the Branch Management feature. Collaborated with frontend developers on responsive, accessible interfaces, web pages, and email notifications.",
+			"Designed mobile and web experiences across food, events, housing, and branch management. Led user research and the Branch Management feature, partnering with developers on accessible, responsive interfaces.",
 	},
 ] as const;
 
@@ -29,12 +31,12 @@ export function Experience() {
 	return (
 		<section data-enter="6" className="pt-16" aria-labelledby="experience-heading">
 			<h2 id="experience-heading" className="tight text-[1rem] font-medium text-foreground">
-				Experience
+				Work Experience
 			</h2>
 			<div className="mt-6 grid gap-8">
 				{experience.map((role) => (
-					<div key={role.title} className="grid gap-3 sm:grid-cols-[140px_1fr] sm:gap-5">
-						<p className="whitespace-nowrap text-xs leading-5 text-muted-foreground">
+					<div key={role.title} className="grid gap-3 sm:grid-cols-[120px_1fr] sm:gap-4">
+						<p className="whitespace-nowrap text-sm font-normal text-muted-foreground">
 							{role.start} — {role.end}
 						</p>
 						<div>
@@ -44,9 +46,10 @@ export function Experience() {
 										href={role.href}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="rounded focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+										className="inline-flex items-center gap-1 rounded underline decoration-transparent underline-offset-3 transition-[text-decoration-color] duration-150 hover:decoration-current focus-visible:decoration-current focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring motion-reduce:transition-none"
 									>
 										{role.title}
+										<ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
 									</a>
 								) : (
 									role.title

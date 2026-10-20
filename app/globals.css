@@ -188,6 +188,118 @@ body {
 	line-height: 1.4;
 }
 
+.reveal-link {
+	display: inline-flex;
+	align-items: center;
+}
+
+.social-pill {
+	min-height: 2.5rem;
+	border: 1px solid transparent;
+	border-radius: 9999px;
+	background: var(--surface-muted);
+	padding: 0.375rem 1rem;
+	color: var(--foreground);
+	font-weight: 600;
+	cursor: pointer;
+	transition:
+		background-color 150ms ease,
+		transform 150ms ease;
+}
+
+.social-pill:focus-visible {
+	border-color: var(--muted-foreground);
+	outline: none;
+	box-shadow: 0 0 0 3px var(--ring);
+}
+
+.social-pill:active {
+	transform: scale(0.97);
+}
+
+.reveal-link-icon {
+	display: inline-flex;
+	width: 0;
+	flex-shrink: 0;
+	margin-inline-start: 0;
+	overflow: hidden;
+	opacity: 0;
+	transition:
+		width 200ms ease,
+		margin-inline-start 200ms ease,
+		opacity 150ms ease;
+}
+
+.reveal-link-icon svg {
+	width: 1em;
+	height: 1em;
+	flex-shrink: 0;
+}
+
+.reveal-link:focus-visible .reveal-link-icon,
+.reveal-link[data-copied="true"] .reveal-link-icon {
+	width: 1em;
+	margin-inline-start: 0.25rem;
+	opacity: 1;
+}
+
+.reveal-link:focus-visible .reveal-link-icon {
+	transition: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.reveal-link:hover .reveal-link-icon {
+		width: 1em;
+		margin-inline-start: 0.25rem;
+		opacity: 1;
+	}
+
+	.social-pill:hover {
+		background: var(--surface-hover);
+	}
+}
+
+.copy-email-tooltip {
+	position: absolute;
+	bottom: calc(100% + 0.5rem);
+	left: 50%;
+	z-index: 40;
+	border-radius: 0.5rem;
+	background: var(--foreground);
+	padding: 0.375rem 0.625rem;
+	color: var(--background);
+	font-size: 0.75rem;
+	font-weight: 500;
+	white-space: nowrap;
+	pointer-events: none;
+	visibility: hidden;
+	opacity: 0;
+	transform: translate(-50%, 4px) scale(0.96);
+	transform-origin: bottom center;
+	transition:
+		opacity 150ms ease,
+		transform 150ms cubic-bezier(0.19, 1, 0.22, 1),
+		visibility 150ms;
+}
+
+.copy-email-tooltip[data-visible="true"] {
+	visibility: visible;
+	opacity: 1;
+	transform: translate(-50%, 0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.social-pill,
+	.reveal-link-icon,
+	.copy-email-tooltip {
+		transition: none;
+	}
+
+	.social-pill:active {
+		transform: none;
+	}
+}
+
 .project-thumbnail-overlay {
 	background: var(--project-thumbnail-overlay);
 }
