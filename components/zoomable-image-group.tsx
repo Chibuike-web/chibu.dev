@@ -63,14 +63,26 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 
 	return (
 		<>
-			<motion.button
+			<motion.a
 				{...caseStudyRevealProps(reducedMotion)}
-				type="button"
+				href={images[0].src.src}
 				aria-label={`Open image preview: ${images[0].alt}, 1 of ${images.length}`}
 				layoutId={reducedMotion ? undefined : `zoom-group-${images[0].src.src}`}
-				onClick={() => openPreview(0)}
+				onClick={(event) => {
+					if (
+						event.button !== 0 ||
+						event.metaKey ||
+						event.ctrlKey ||
+						event.shiftKey ||
+						event.altKey
+					) {
+						return;
+					}
+					event.preventDefault();
+					openPreview(0);
+				}}
 				className={cn(
-					"w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring",
+					"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring",
 					isPreviewOpen && openedFromIndex === 0 && "pointer-events-none opacity-0",
 				)}
 				transition={{ type: "spring", duration: 0.2, bounce: 0 }}
@@ -84,22 +96,34 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 					placeholder="blur"
 					className="h-auto w-full"
 				/>
-			</motion.button>
+			</motion.a>
 
 			<div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
 				{images.slice(1).map((image, index) => {
 					const imageIndex = index + 1;
 
 					return (
-						<motion.button
+						<motion.a
 							{...caseStudyRevealProps(reducedMotion, index % 2)}
 							key={image.src.src}
-							type="button"
+							href={image.src.src}
 							aria-label={`Open image preview: ${image.alt}, ${imageIndex + 1} of ${images.length}`}
 							layoutId={reducedMotion ? undefined : `zoom-group-${image.src.src}`}
-							onClick={() => openPreview(imageIndex)}
+							onClick={(event) => {
+								if (
+									event.button !== 0 ||
+									event.metaKey ||
+									event.ctrlKey ||
+									event.shiftKey ||
+									event.altKey
+								) {
+									return;
+								}
+								event.preventDefault();
+								openPreview(imageIndex);
+							}}
 							className={cn(
-								"w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring md:rounded-lg",
+								"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring md:rounded-lg",
 								isPreviewOpen && openedFromIndex === imageIndex && "pointer-events-none opacity-0",
 							)}
 							transition={{ type: "spring", duration: 0.2, bounce: 0 }}
@@ -113,7 +137,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 								placeholder="blur"
 								className="h-auto w-full"
 							/>
-						</motion.button>
+						</motion.a>
 					);
 				})}
 			</div>

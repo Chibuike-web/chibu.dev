@@ -18,6 +18,7 @@ export function Footer() {
 		>
 			<p className="w-full md:max-w-[12.5rem]">Built by Chibuike ©2026</p>
 			<button
+				data-js-only
 				type="button"
 				aria-label={copied ? "Email copied" : "Copy email address"}
 				className="group relative flex max-w-full cursor-pointer items-center break-all rounded border border-transparent text-left text-pretty focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring sm:break-normal"
@@ -43,7 +44,10 @@ export function Footer() {
 					/>
 				</span>
 			</button>
-			<div>
+			<noscript>
+				<span className="select-all break-all">chibuikemaduabuchi2023@gmail.com</span>
+			</noscript>
+			<div data-js-only>
 				<span>{time}</span>
 			</div>
 		</div>

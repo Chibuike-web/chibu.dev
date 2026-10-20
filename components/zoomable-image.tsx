@@ -32,14 +32,26 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 	return (
 		<>
 			{/* Thumbnail state */}
-			<motion.button
+			<motion.a
 				{...caseStudyRevealProps(reducedMotion)}
-				type="button"
+				href={src.src}
 				aria-label={`Open image preview: ${alt}`}
 				layoutId={reducedMotion ? undefined : layoutId}
-				onClick={handleOpen}
+				onClick={(event) => {
+					if (
+						event.button !== 0 ||
+						event.metaKey ||
+						event.ctrlKey ||
+						event.shiftKey ||
+						event.altKey
+					) {
+						return;
+					}
+					event.preventDefault();
+					handleOpen();
+				}}
 				className={cn(
-					"w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring",
+					"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring",
 					isZoomed && "pointer-events-none opacity-0",
 					className,
 				)}
@@ -54,7 +66,7 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 					placeholder="blur"
 					className="h-auto w-full"
 				/>
-			</motion.button>
+			</motion.a>
 
 			<AnimatePresence>
 				{isZoomed && (

@@ -15,6 +15,8 @@ My personal portfolio as a design engineer, featuring my experience and case stu
 
 Pages are prerendered at build time. Theme preferences, the clock, image previews, and the case-study sections menu run in the browser. The sections menu reads its saved preference after hydration so it appears in the correct state.
 
+With JavaScript disabled, the site keeps readable content, CSS theme switching, a selectable email address, expandable section navigation, full-size image links, and native video controls.
+
 ## Run locally
 
 Install [Bun](https://bun.sh), then clone the repository:

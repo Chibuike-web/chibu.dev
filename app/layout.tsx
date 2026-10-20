@@ -66,7 +66,13 @@ export default function RootLayout({
 				<script type="text/javascript" dangerouslySetInnerHTML={{ __html: themeInitScript }} />
 				<noscript>
 					<style>
-						{"[data-case-reveal] { opacity: 1 !important; transform: none !important; }"}
+						{`[data-case-reveal], .home-page [data-enter] {
+							opacity: 1 !important;
+							transform: none !important;
+							filter: none !important;
+							animation: none !important;
+						}
+						[data-js-only] { display: none !important; }`}
 					</style>
 				</noscript>
 			</head>

@@ -17,7 +17,7 @@ import { Tag } from "@/components/tag";
 import { ZoomableImage } from "@/components/zoomable-image";
 import { cn } from "@/lib/utils";
 import { ArrowUpLeft } from "lucide-react";
-import ProgressBar from "@/components/progress-bar";
+import { CaseStudyNavigation } from "@/components/case-study-navigation";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const metadata: Metadata = {
@@ -419,7 +419,7 @@ export default function NombaPage() {
 					<p className="text-foreground font-medium no-line-height">Medibridge</p>
 				</div>
 			</CaseStudyLink>
-			<ProgressBar items={navItems} />
+			<CaseStudyNavigation items={navItems} />
 		</main>
 	);
 }

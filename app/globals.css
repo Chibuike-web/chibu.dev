@@ -75,6 +75,7 @@
 		--green-muted: oklch(76% 0.13 154 / 24%);
 	}
 }
+:root:not([data-theme]):has(input[name="theme"][value="light"]:checked),
 .light {
 	--background: oklch(100% 0 0);
 	--foreground: oklch(37.2% 0 0);
@@ -108,6 +109,7 @@
 	--green-muted: oklch(55% 0.14 145 / 30%);
 	color-scheme: light;
 }
+:root:not([data-theme]):has(input[name="theme"][value="dark"]:checked),
 .dark {
 	--background: oklch(22% 0 0);
 	--foreground: oklch(92% 0 0);
@@ -142,14 +144,17 @@
 	color-scheme: dark;
 }
 
+:root:not([data-theme]) [data-theme-option]:has(input:checked),
 :root[data-theme="system"] [data-theme-option="system"],
 :root[data-theme="light"] [data-theme-option="light"],
 :root[data-theme="dark"] [data-theme-option="dark"] {
 	color: var(--foreground);
 }
+:root:not([data-theme]):has(input[name="theme"][value="light"]:checked) [data-theme-indicator],
 :root[data-theme="light"] [data-theme-indicator] {
 	translate: 100% 0;
 }
+:root:not([data-theme]):has(input[name="theme"][value="dark"]:checked) [data-theme-indicator],
 :root[data-theme="dark"] [data-theme-indicator] {
 	translate: 200% 0;
 }
@@ -300,6 +305,23 @@ body {
 	}
 }
 
+.native-email summary::-webkit-details-marker,
+.native-case-study-nav summary::-webkit-details-marker {
+	display: none;
+}
+
+.native-email-panel {
+	position: absolute;
+	bottom: calc(100% + 0.5rem);
+	left: 0;
+	z-index: 40;
+	width: min(22rem, calc(100vw - 2rem));
+	border: 1px solid var(--border);
+	border-radius: 0.75rem;
+	background: var(--background);
+	padding: 0.75rem;
+}
+
 .project-thumbnail-overlay {
 	background: var(--project-thumbnail-overlay);
 }
@@ -311,49 +333,57 @@ body {
 }
 
 .bottom-blur-layer-1 {
-	-webkit-backdrop-filter: blur(0.03125rem);
-	backdrop-filter: blur(0.03125rem);
-	-webkit-mask-image: linear-gradient(to top, transparent 67%, black 84%, transparent 100%);
-	mask-image: linear-gradient(to top, transparent 67%, black 84%, transparent 100%);
+	-webkit-backdrop-filter: blur(0.015625rem);
+	backdrop-filter: blur(0.015625rem);
+	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 35%);
+	mask-image: linear-gradient(to bottom, transparent 0%, black 35%);
 }
 
 .bottom-blur-layer-2 {
-	-webkit-backdrop-filter: blur(0.0625rem);
-	backdrop-filter: blur(0.0625rem);
-	-webkit-mask-image: linear-gradient(to top, transparent 50%, black 67%, transparent 84%);
-	mask-image: linear-gradient(to top, transparent 50%, black 67%, transparent 84%);
+	-webkit-backdrop-filter: blur(0.03125rem);
+	backdrop-filter: blur(0.03125rem);
+	-webkit-mask-image: linear-gradient(to bottom, transparent 14%, black 45%);
+	mask-image: linear-gradient(to bottom, transparent 14%, black 45%);
 }
 
 .bottom-blur-layer-3 {
-	-webkit-backdrop-filter: blur(0.125rem);
-	backdrop-filter: blur(0.125rem);
-	-webkit-mask-image: linear-gradient(to top, transparent 34%, black 50%, transparent 67%);
-	mask-image: linear-gradient(to top, transparent 34%, black 50%, transparent 67%);
+	-webkit-backdrop-filter: blur(0.0625rem);
+	backdrop-filter: blur(0.0625rem);
+	-webkit-mask-image: linear-gradient(to bottom, transparent 28%, black 58%);
+	mask-image: linear-gradient(to bottom, transparent 28%, black 58%);
 }
 
 .bottom-blur-layer-4 {
-	-webkit-backdrop-filter: blur(0.25rem);
-	backdrop-filter: blur(0.25rem);
-	-webkit-mask-image: linear-gradient(to top, transparent 17%, black 34%, transparent 50%);
-	mask-image: linear-gradient(to top, transparent 17%, black 34%, transparent 50%);
+	-webkit-backdrop-filter: blur(0.125rem);
+	backdrop-filter: blur(0.125rem);
+	-webkit-mask-image: linear-gradient(to bottom, transparent 42%, black 72%);
+	mask-image: linear-gradient(to bottom, transparent 42%, black 72%);
 }
 
 .bottom-blur-layer-5 {
-	-webkit-backdrop-filter: blur(0.5rem);
-	backdrop-filter: blur(0.5rem);
-	-webkit-mask-image: linear-gradient(to top, transparent 0%, black 17%, transparent 34%);
-	mask-image: linear-gradient(to top, transparent 0%, black 17%, transparent 34%);
+	-webkit-backdrop-filter: blur(0.25rem);
+	backdrop-filter: blur(0.25rem);
+	-webkit-mask-image: linear-gradient(to bottom, transparent 56%, black 86%);
+	mask-image: linear-gradient(to bottom, transparent 56%, black 86%);
 }
 
 .bottom-blur-layer-6 {
-	-webkit-backdrop-filter: blur(1rem);
-	backdrop-filter: blur(1rem);
-	-webkit-mask-image: linear-gradient(to top, transparent 0%, black 0%, transparent 17%);
-	mask-image: linear-gradient(to top, transparent 0%, black 0%, transparent 17%);
+	-webkit-backdrop-filter: blur(0.5rem);
+	backdrop-filter: blur(0.5rem);
+	-webkit-mask-image: linear-gradient(to bottom, transparent 70%, black 100%);
+	mask-image: linear-gradient(to bottom, transparent 70%, black 100%);
 }
 
 .bottom-blur-fade {
-	background: linear-gradient(to bottom, transparent, var(--background));
+	background: linear-gradient(
+		to bottom,
+		transparent 0%,
+		transparent 20%,
+		color-mix(in srgb, var(--background) 10%, transparent) 40%,
+		color-mix(in srgb, var(--background) 35%, transparent) 65%,
+		color-mix(in srgb, var(--background) 65%, transparent) 85%,
+		var(--background) 100%
+	);
 }
 
 @utility page-shell {

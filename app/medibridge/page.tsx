@@ -39,7 +39,7 @@ import patientRecordsTransferNinth from "@/assets/medibridge/patient-records-tra
 import patientRecordsTransferTenth from "@/assets/medibridge/patient-records-transfer-tenth.webp";
 import patientRecordsTransferEleventh from "@/assets/medibridge/patient-records-transfer-eleventh.webp";
 
-import ProgressBar from "@/components/progress-bar";
+import { CaseStudyNavigation } from "@/components/case-study-navigation";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const metadata: Metadata = {
@@ -535,7 +535,7 @@ export default function MedibridgePage() {
 				</div>
 				<ArrowUpRight className="size-6" />
 			</CaseStudyLink>
-			<ProgressBar items={navItems} />
+			<CaseStudyNavigation items={navItems} />
 		</main>
 	);
 }
