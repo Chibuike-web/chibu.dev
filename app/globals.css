@@ -241,6 +241,10 @@ body {
 	flex-shrink: 0;
 }
 
+.copy-email-check {
+	display: none;
+}
+
 .reveal-link:focus-visible .reveal-link-icon {
 	width: 1em;
 	margin-inline-start: 0.25rem;
@@ -252,10 +256,19 @@ body {
 }
 
 @media (hover: hover) and (pointer: fine) {
-	.reveal-link:hover .reveal-link-icon {
+	.reveal-link:hover .reveal-link-icon,
+	.reveal-link[data-copied="true"] .reveal-link-icon {
 		width: 1em;
 		margin-inline-start: 0.25rem;
 		opacity: 1;
+	}
+
+	.reveal-link[data-copied="true"] .copy-email-copy {
+		display: none;
+	}
+
+	.copy-email-check {
+		display: block;
 	}
 
 	.social-pill:hover {
