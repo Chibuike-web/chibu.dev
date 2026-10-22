@@ -39,27 +39,39 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 	const toggleRef = useRef<HTMLButtonElement>(null);
 
 	useEffect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						const sectionIndex = items.findIndex((section) => section.id === entry.target.id);
-						setActiveSection(sectionIndex);
-						setActiveSectionHeading(items[sectionIndex].label);
-					}
-				});
-			},
-			{ threshold: 0.1 },
-		);
-		items.forEach((item) => {
-			const section = document.getElementById(item.id);
-			if (section) {
-				observer.observe(section);
+		let observer: IntersectionObserver | undefined;
+
+		const observeSections = () => {
+			observer?.disconnect();
+			observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							const sectionIndex = items.findIndex((section) => section.id === entry.target.id);
+							setActiveSection(sectionIndex);
+							setActiveSectionHeading(items[sectionIndex].label);
+						}
+					});
+				},
+				{
+					rootMargin: `0px 0px -${document.documentElement.clientHeight * 0.8}px 0px`,
+					threshold: 0,
+				},
+			);
+			for (const item of items) {
+				const section = document.getElementById(item.id);
+				if (section) {
+					observer.observe(section);
+				}
 			}
-		});
+		};
+
+		observeSections();
+		window.addEventListener("resize", observeSections);
 
 		return () => {
-			observer.disconnect();
+			observer?.disconnect();
+			window.removeEventListener("resize", observeSections);
 		};
 	}, [items]);
 
@@ -120,6 +132,8 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 										aria-current={isActive ? "location" : undefined}
 										className="flex h-11 w-full cursor-pointer items-center rounded-full border border-transparent px-3 text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 										onClick={() => {
+											setActiveSection(index);
+											setActiveSectionHeading(item.label);
 											const section = document.getElementById(item.id);
 											section?.scrollIntoView();
 											section?.focus({ preventScroll: true });
