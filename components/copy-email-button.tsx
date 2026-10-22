@@ -1,7 +1,7 @@
 "use client";
 
 import { useCopyEmail } from "@/hooks/use-copy-email";
-import { Copy } from "lucide-react";
+import { Check, Copy } from "lucide-react";
 
 export function CopyEmailButton() {
 	const { copied, copyEmail } = useCopyEmail();
@@ -12,12 +12,14 @@ export function CopyEmailButton() {
 				<button
 					type="button"
 					className="social-pill reveal-link"
-					aria-label="Copy email address"
+					aria-label={copied ? "Email copied" : "Copy email address"}
+					data-copied={copied || undefined}
 					onClick={copyEmail}
 				>
 					Mail
 					<span className="reveal-link-icon" aria-hidden="true">
-						<Copy />
+						<Copy className="copy-email-copy" />
+						{copied && <Check className="copy-email-check" />}
 					</span>
 				</button>
 				<span className="copy-email-tooltip" data-visible={copied} aria-hidden="true">
