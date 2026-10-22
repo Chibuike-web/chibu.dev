@@ -8,10 +8,10 @@ export function CaseStudyNavigation({ items }: { items: { id: string; label: str
 			<noscript>
 				<nav
 					aria-label="Case study sections"
-					className="native-case-study-nav fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-[21.875rem] -translate-x-1/2 rounded-3xl bg-[#464648] text-white"
+					className="native-case-study-nav fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-[21.875rem] -translate-x-1/2 rounded-3xl bg-background text-foreground shadow-lg ring-1 ring-border"
 				>
 					<details>
-						<summary className="flex min-h-11 cursor-pointer list-none items-center justify-between rounded-3xl border border-transparent px-5 py-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+						<summary className="flex min-h-11 cursor-pointer list-none items-center justify-between rounded-3xl border border-transparent px-5 py-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-muted-foreground">
 							Sections
 							<ChevronsUpDown className="size-4.5" aria-hidden="true" />
 						</summary>
@@ -20,7 +20,7 @@ export function CaseStudyNavigation({ items }: { items: { id: string; label: str
 								<li key={item.id}>
 									<a
 										href={`#${item.id}`}
-										className="flex min-h-11 items-center rounded-full px-3 text-sm hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+										className="flex min-h-11 items-center rounded-full px-3 text-sm hover:bg-surface-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-muted-foreground"
 									>
 										{item.label}
 									</a>
