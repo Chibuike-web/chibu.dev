@@ -241,8 +241,7 @@ body {
 	flex-shrink: 0;
 }
 
-.reveal-link:focus-visible .reveal-link-icon,
-.reveal-link[data-copied="true"] .reveal-link-icon {
+.reveal-link:focus-visible .reveal-link-icon {
 	width: 1em;
 	margin-inline-start: 0.25rem;
 	opacity: 1;

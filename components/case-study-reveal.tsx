@@ -6,22 +6,22 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 const viewport = { once: true, amount: "some" } as const;
-const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export function caseStudyRevealProps(reducedMotion: boolean | null, siblingIndex = 0) {
 	return {
 		"data-case-reveal": "",
 		initial: {
 			opacity: 0,
-			transform: reducedMotion ? "none" : "translateY(10px)",
+			transform: reducedMotion ? "none" : "translateY(6px)",
 		},
 		whileInView: {
 			opacity: 1,
 			transform: reducedMotion ? "none" : "translateY(0px)",
 			transition: {
-				duration: reducedMotion ? 0.12 : 0.6,
+				duration: reducedMotion ? 0.12 : 0.45,
 				ease,
-				delay: reducedMotion ? 0 : siblingIndex * 0.12,
+				delay: reducedMotion ? 0 : siblingIndex * 0.07,
 			},
 			transitionEnd: { transform: "none" },
 		},
