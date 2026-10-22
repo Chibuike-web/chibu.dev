@@ -80,10 +80,10 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 	return (
 		<nav
 			aria-label="Case study sections"
-			className="progress-mount fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-[21.875rem] -translate-x-1/2 overflow-hidden rounded-3xl bg-[#464648] text-white"
+			className="progress-mount fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-[21.875rem] -translate-x-1/2 overflow-hidden rounded-3xl bg-background text-foreground shadow-lg ring-1 ring-border"
 		>
 			<button
-				className="sticky top-0 z-10 flex w-full cursor-pointer items-center justify-between border border-transparent bg-[#464648] px-5 py-3 text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+				className="sticky top-0 z-10 flex w-full cursor-pointer items-center justify-between border border-transparent bg-background px-5 py-3 text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 				aria-expanded={isExpanded}
 				ref={toggleRef}
 				onClick={() => setSectionsExpanded(!isExpanded)}
@@ -112,8 +112,8 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 								<li
 									key={item.id}
 									className={cn(
-										"w-full rounded-full text-sm hover:bg-white/10",
-										isActive && "bg-white/15",
+										"w-full rounded-full text-sm hover:bg-surface-hover",
+										isActive && "bg-surface-muted",
 									)}
 								>
 									<button
