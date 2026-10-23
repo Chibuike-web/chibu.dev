@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const sans = Inter({
+const sans = localFont({
+	src: "../assets/fonts/inter/InterVariable.woff2",
 	variable: "--font-sans",
-	subsets: ["latin"],
+	weight: "100 900",
+	style: "normal",
+	display: "swap",
 });
 
 const themeInitScript = String.raw`

@@ -18,8 +18,10 @@ export function CopyEmailButton() {
 				>
 					Mail
 					<span className="reveal-link-icon" aria-hidden="true">
-						<Copy className="copy-email-copy" />
-						{copied && <Check className="copy-email-check" />}
+						<span className="relative inline-block size-[1em]">
+							<Copy className="copy-email-copy" />
+							<Check className="copy-email-check" />
+						</span>
 					</span>
 				</button>
 				<span className="copy-email-tooltip" data-visible={copied} aria-hidden="true">

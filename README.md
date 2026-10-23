@@ -8,6 +8,7 @@ My personal portfolio as a design engineer, featuring my experience and case stu
 
 - Next.js 16 and React 19
 - TypeScript and Tailwind CSS 4
+- Inter 4.1, self-hosted from the [creator's official distribution](https://rsms.me/inter/), with its license in `assets/fonts/inter/`
 - Motion for interactions and scroll reveals
 - Vercel hosting and Web Analytics
 - Bun for package management and scripts
