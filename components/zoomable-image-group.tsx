@@ -27,7 +27,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 	const previewImage = previewIndex !== null ? images[previewIndex] : null;
 
 	const zoomLayoutId =
-		!reducedMotion && isPreviewOpen && openedFromIndex !== null
+		!reducedMotion && direction === null && openedFromIndex !== null
 			? `zoom-group-${images[openedFromIndex].src.src}`
 			: undefined;
 
@@ -82,7 +82,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 					openPreview(0);
 				}}
 				className={cn(
-					"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring",
+					"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring",
 					isPreviewOpen && openedFromIndex === 0 && "pointer-events-none opacity-0",
 				)}
 				transition={{ type: "spring", duration: 0.2, bounce: 0 }}
@@ -123,7 +123,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 								openPreview(imageIndex);
 							}}
 							className={cn(
-								"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring md:rounded-lg",
+								"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring md:rounded-lg",
 								isPreviewOpen && openedFromIndex === imageIndex && "pointer-events-none opacity-0",
 							)}
 							transition={{ type: "spring", duration: 0.2, bounce: 0 }}
@@ -186,7 +186,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 						>
 							<motion.div
 								layoutId={zoomLayoutId}
-								className="w-full select-none overflow-hidden rounded-xl bg-surface-muted ring ring-surface-hover lg:max-w-[75vw] 2xl:max-w-[75rem]"
+								className="w-full select-none overflow-hidden rounded-xl bg-surface-muted lg:max-w-[75vw] 2xl:max-w-[75rem]"
 								key={previewIndex}
 								initial={
 									reducedMotion
@@ -196,13 +196,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 											}
 								}
 								animate={reducedMotion ? { opacity: 1 } : { transform: "translateX(0px)" }}
-								exit={
-									reducedMotion
-										? { opacity: 0 }
-										: {
-												transform: `translateX(${direction === 1 ? -SLIDE_DISTANCE : SLIDE_DISTANCE}px)`,
-											}
-								}
+								exit={zoomLayoutId ? undefined : { opacity: 0 }}
 								transition={
 									reducedMotion ? { duration: 0.12 } : { type: "spring", duration: 0.2, bounce: 0 }
 								}

@@ -95,10 +95,11 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 						>
 							<motion.div
 								layoutId={reducedMotion ? undefined : layoutId}
+								layoutCrossfade={false}
 								initial={reducedMotion ? { opacity: 0 } : false}
 								animate={{ opacity: 1 }}
 								exit={reducedMotion ? { opacity: 0 } : undefined}
-								className="w-full select-none overflow-hidden rounded-xl bg-surface-muted ring ring-surface-hover lg:max-w-[75vw] 2xl:max-w-[75rem]"
+								className="w-full select-none overflow-hidden rounded-xl ring ring-surface-hover [background:linear-gradient(var(--surface-muted),var(--surface-muted)),var(--background)] lg:max-w-[75vw] 2xl:max-w-[75rem]"
 								transition={
 									reducedMotion ? { duration: 0.12 } : { type: "spring", duration: 0.2, bounce: 0 }
 								}
@@ -109,7 +110,6 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 									width={width}
 									height={height}
 									loading="lazy"
-									placeholder="blur"
 									className="h-auto w-full"
 								/>
 							</motion.div>
