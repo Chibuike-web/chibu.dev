@@ -4,7 +4,7 @@ import Image, { type StaticImageData } from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { caseStudyRevealProps } from "@/components/case-study-reveal";
 import { ImagePreviewDialog } from "@/components/image-preview-dialog";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -21,6 +21,8 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 	const [openedFromIndex, setOpenedFromIndex] = useState<number | null>(null);
 	const [previewIndex, setPreviewIndex] = useState<number | null>(null);
 	const [direction, setDirection] = useState<number | null>(null);
+	const previousButtonRef = useRef<HTMLButtonElement>(null);
+	const nextButtonRef = useRef<HTMLButtonElement>(null);
 
 	const isPreviewOpen = openedFromIndex !== null;
 
@@ -49,6 +51,8 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 		if (previewIndex !== null && previewIndex > 0) {
 			setDirection(-1);
 			setPreviewIndex(previewIndex - 1);
+			// Keep focus inside the dialog when this button becomes disabled.
+			if (previewIndex - 1 === 0) nextButtonRef.current?.focus();
 		}
 	};
 
@@ -58,6 +62,8 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 		if (previewIndex !== null && previewIndex < images.length - 1) {
 			setDirection(1);
 			setPreviewIndex(previewIndex + 1);
+			// Keep focus inside the dialog when this button becomes disabled.
+			if (previewIndex + 1 === images.length - 1) previousButtonRef.current?.focus();
 		}
 	};
 
@@ -184,55 +190,65 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 1 }}
 						>
-							<motion.div
-								layoutId={zoomLayoutId}
-								className="w-full select-none overflow-hidden rounded-xl bg-surface-muted lg:max-w-[75vw] 2xl:max-w-[75rem]"
-								key={previewIndex}
-								initial={
-									reducedMotion
-										? { opacity: 0 }
-										: {
-												transform: `translateX(${direction === null ? 0 : direction === 1 ? SLIDE_DISTANCE : -SLIDE_DISTANCE}px)`,
-											}
-								}
-								animate={reducedMotion ? { opacity: 1 } : { transform: "translateX(0px)" }}
-								exit={zoomLayoutId ? undefined : { opacity: 0 }}
-								transition={
-									reducedMotion ? { duration: 0.12 } : { type: "spring", duration: 0.2, bounce: 0 }
-								}
+							<div
+								className="pointer-events-none flex w-full flex-col items-center gap-6 max-md:max-w-[calc((100dvh-9rem)*var(--image-ratio))] lg:max-w-[75vw] 2xl:max-w-[75rem]"
+								style={{ "--image-ratio": width / height } as React.CSSProperties}
 							>
-								<Image
-									src={previewImage.src}
-									alt={previewImage.alt}
-									width={width}
-									height={height}
-									loading="lazy"
-									placeholder="blur"
-									className="h-auto w-full"
-								/>
-							</motion.div>
-
-							{previewIndex !== null && previewIndex > 0 && (
-								<button
-									type="button"
-									onClick={showPreviousImage}
-									aria-label="Previous image"
-									className="absolute left-4 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-colors duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+								<motion.div
+									layoutId={zoomLayoutId}
+									className="pointer-events-auto w-full select-none overflow-hidden rounded-xl bg-surface-muted"
+									key={previewIndex}
+									initial={
+										reducedMotion
+											? { opacity: 0 }
+											: {
+													transform: `translateX(${direction === null ? 0 : direction === 1 ? SLIDE_DISTANCE : -SLIDE_DISTANCE}px)`,
+												}
+									}
+									animate={reducedMotion ? { opacity: 1 } : { transform: "translateX(0px)" }}
+									exit={zoomLayoutId ? undefined : { opacity: 0 }}
+									transition={
+										reducedMotion
+											? { duration: 0.12 }
+											: { type: "spring", duration: 0.2, bounce: 0 }
+									}
 								>
-									<ArrowLeft className="size-5" aria-hidden />
-								</button>
-							)}
+									<Image
+										src={previewImage.src}
+										alt={previewImage.alt}
+										width={width}
+										height={height}
+										loading="lazy"
+										placeholder="blur"
+										className="h-auto w-full"
+									/>
+								</motion.div>
 
-							{previewIndex !== null && previewIndex < images.length - 1 && (
-								<button
-									type="button"
-									onClick={showNextImage}
-									aria-label="Next image"
-									className="absolute right-4 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-colors duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
-								>
-									<ArrowRight className="size-5" aria-hidden />
-								</button>
-							)}
+								{images.length > 1 && (
+									<div className="flex gap-4 md:contents">
+										<button
+											ref={previousButtonRef}
+											type="button"
+											onClick={showPreviousImage}
+											disabled={previewIndex === 0}
+											aria-label="Previous image"
+											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color,opacity] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40 disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:left-4"
+										>
+											<ArrowLeft className="size-5" aria-hidden />
+										</button>
+										<button
+											ref={nextButtonRef}
+											type="button"
+											onClick={showNextImage}
+											disabled={previewIndex === images.length - 1}
+											aria-label="Next image"
+											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color,opacity] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40 disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:right-4"
+										>
+											<ArrowRight className="size-5" aria-hidden />
+										</button>
+									</div>
+								)}
+							</div>
 
 							<button
 								type="button"
