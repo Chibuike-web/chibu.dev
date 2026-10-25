@@ -16,6 +16,15 @@ type Props = {
 
 const SLIDE_DISTANCE = 1000;
 
+// Controls fade with the backdrop so they don't linger while the image
+// springs back to its thumbnail (the dialog unmounts only after that finishes).
+const controlFade = {
+	initial: { opacity: 0 },
+	animate: { opacity: 1 },
+	exit: { opacity: 0 },
+	transition: { duration: 0.2 },
+};
+
 export function ZoomableImageGroup({ images, width, height }: Props) {
 	const reducedMotion = useReducedMotion();
 	const [openedFromIndex, setOpenedFromIndex] = useState<number | null>(null);
@@ -213,28 +222,31 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 							</motion.div>
 
 							{previewIndex !== null && previewIndex > 0 && (
-								<button
+								<motion.button
+								{...controlFade}
 									type="button"
 									onClick={showPreviousImage}
 									aria-label="Previous image"
 									className="absolute left-4 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-colors duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								>
 									<ArrowLeft className="size-5" aria-hidden />
-								</button>
+								</motion.button>
 							)}
 
 							{previewIndex !== null && previewIndex < images.length - 1 && (
-								<button
+								<motion.button
+								{...controlFade}
 									type="button"
 									onClick={showNextImage}
 									aria-label="Next image"
 									className="absolute right-4 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-colors duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								>
 									<ArrowRight className="size-5" aria-hidden />
-								</button>
+								</motion.button>
 							)}
 
-							<button
+							<motion.button
+								{...controlFade}
 								type="button"
 								className="absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								onClick={closePreview}
@@ -242,7 +254,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 								data-preview-close
 							>
 								<X className="size-5" aria-hidden />
-							</button>
+							</motion.button>
 						</motion.div>
 					</ImagePreviewDialog>
 				)}
