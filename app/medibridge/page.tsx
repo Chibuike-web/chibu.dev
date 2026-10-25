@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { CaseStudyLink, CaseStudyReveal } from "@/components/case-study-reveal";
-import { Tag } from "@/components/tag";
 import { BackToHome } from "@/components/layouts/back-to-home";
 import { ZoomableImageGroup } from "@/components/zoomable-image-group";
 import { cn } from "@/lib/utils";
@@ -57,7 +56,7 @@ export const metadata: Metadata = {
 	},
 };
 
-const headingClass = "text-[1.125rem] font-medium tight text-balance";
+const headingClass = "font-medium tight text-balance";
 const bodyClass = "font-medium tight text-muted-foreground text-pretty";
 const patientOnboardingImages = [
 	{
@@ -224,146 +223,50 @@ export default function MedibridgePage() {
 				<BackToHome />
 				<ThemeSwitcher />
 			</CaseStudyReveal>
-			<CaseStudyReveal as="header" siblingIndex={1} className="my-16 md:my-22">
-				<div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-					<div className="flex flex-col gap-3">
-						<h1 className="text-[1.125rem] font-semibold tight text-balance">Medibridge</h1>
-						<div className="flex items-center gap-1.5">
-							<p className="text-[1rem] font-medium text-muted-foreground text-balance tight no-line-height">
-								Healthcare management system
-							</p>
-							<span className="size-0.5 rounded-full bg-muted-foreground flex shrink-0" />
-							<p className="text-[1rem] font-medium text-muted-foreground tight no-line-height">
-								2025
-							</p>
-						</div>
-					</div>
-					<div className="flex flex-wrap gap-2">
-						{tags.map((tag) => (
-							<Tag key={tag.label} label={tag.label} color={tag.color} bgColor={tag.bgColor} />
-						))}
-					</div>
-				</div>
+			<CaseStudyReveal
+				as="header"
+				siblingIndex={1}
+				className="mt-16 mb-8 md:mt-22 flex flex-col gap-3"
+			>
+				<h1 className="text-[1.125rem] font-semibold tight text-balance">Medibridge</h1>
+				<p className="text-[1rem] font-medium text-muted-foreground text-balance tight no-line-height">
+					Healthcare management system
+				</p>
 			</CaseStudyReveal>
-			<section id="overview" tabIndex={-1} className="my-22 outline-none">
-				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-8">
-					<CaseStudyReveal siblingIndex={2} className="flex w-full flex-col gap-2">
-						<p className="font-semibold text-foreground">PROBLEM STATEMENT</p>
-						<p className="font-medium text-muted-foreground tight text-pretty">
-							Medical records are still commonly stored as paper files, scanned documents, PDFs, or
-							images. This makes it difficult for hospitals and clinics to quickly access, organize,
-							and transfer accurate patient information, especially during inter-facility transfers.
-							Healthcare staff often spend time manually reviewing documents, extracting
-							information, and handling fragmented records across different systems. The lack of
-							structured and interoperable medical data slows down workflows and affects continuity
-							of care.
-						</p>
-					</CaseStudyReveal>
-					<CaseStudyReveal siblingIndex={3} className="flex w-full flex-col gap-2">
-						<p className="font-semibold text-foreground">OBJECTIVE</p>
-						<p className="font-medium text-muted-foreground tight text-pretty">
-							Design a platform that helps hospitals and clinics digitize medical records, extract
-							structured patient information from unstructured files, and streamline patient record
-							transfers between healthcare facilities. The goal is to reduce administrative
-							workload, improve accessibility of patient records, and create a faster and more
-							reliable transfer process with review and patient approval workflows.
-						</p>
-					</CaseStudyReveal>
-					<CaseStudyReveal className="flex w-full flex-col gap-2">
-						<p className="font-semibold text-foreground">SOLUTION OVERVIEW</p>
-						<p className="font-medium text-muted-foreground tight text-pretty">
-							Medibridge is an AI-powered healthcare platform designed to convert physical and
-							unstructured medical records into structured digital patient data. The platform allows
-							healthcare staff to upload scanned documents, PDFs, and images, automatically extract
-							patient information using AI, review the extracted data, and manage patient records
-							transfers between hospitals through a centralized workflow. The system also includes
-							transfer approval flows, record sharing, and structured patient profiles to improve
-							record management and continuity of care.
-						</p>
-					</CaseStudyReveal>
-					<div className="grid gap-6 sm:grid-cols-2">
-						<CaseStudyReveal className="flex w-full flex-col gap-2">
-							<p className="font-semibold text-foreground">ROLE</p>
-							<p className="font-medium text-muted-foreground tight">Product Engineer</p>
-						</CaseStudyReveal>
-						<CaseStudyReveal siblingIndex={1} className="flex w-full flex-col gap-2">
-							<p className="font-semibold text-foreground">DURATION</p>
-							<p className="font-medium text-muted-foreground tight">Ongoing</p>
-						</CaseStudyReveal>
-					</div>
-				</div>
-				<CaseStudyReveal className="mt-22 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
-					<p>
-						Picture this: a patient is rushed from a clinic in Surulere to a specialist hospital in
-						Victoria Island. She’s unconscious. Her family does not know her medication history. The
-						only record that travels with her is a folded piece of paper, handwritten and partially
-						smudged, tucked inside a Ghana-must-go bag. The receiving doctor has maybe ten minutes
-						to make decisions that matter. She’s starting with almost nothing. This is not
-						hypothetical. This happens every day.
+			<section id="overview" tabIndex={-1} className="mb-22 flex flex-col gap-6 outline-none">
+				<CaseStudyReveal as="p" siblingIndex={2} className="font-medium tight text-pretty">
+					Medibridge is a patient records platform for hospitals. It turns the paper, scanned, and
+					photographed records hospitals already keep into structured patient profiles, gives staff
+					one place to manage diagnoses, medications, allergies, labs, vitals, and encounters, and
+					moves records between hospitals once the patient approves.
+				</CaseStudyReveal>
+				<CaseStudyReveal siblingIndex={3} className="flex flex-col gap-3">
+					<h2 className={headingClass}>Why I built it</h2>
+					<p className={bodyClass}>
+						Picture this: a patient is rushed unconscious from a clinic in Surulere to a specialist
+						hospital in Victoria Island. The only record that travels with her is a smudged,
+						handwritten note in a Ghana-must-go bag. The receiving doctor has maybe ten minutes to
+						decide. This happens every day.
 					</p>
-					<p>
-						I started paying closer attention to how patient records move between hospitals. Files
-						stacked in cardboard boxes. Discharge summaries photographed on someone’s Tecno phone
-						and sent over WhatsApp. Lab results saved as scanned images that doctors have to zoom
-						into just to read clearly.
+					<p className={bodyClass}>
+						Platforms like Epic and Oracle Health assume big IT budgets and fully digital workflows,
+						which many Nigerian hospitals don’t have. So I asked: what if we could transform the
+						patient records hospitals already have, the PDFs, scans, and WhatsApp photos, into
+						something the next doctor can search, review, and trust?
 					</p>
-					<p>
-						I looked at platforms like Epic Systems and Oracle Health. They are powerful systems,
-						but they were built for hospitals with strong IT infrastructure, large budgets, and
-						fully digital workflows already in place. That is not the reality for many hospitals in
-						Nigeria. Even then, a lot of medical data still has to be typed in manually. The
-						challenge is not just storing records. It is the amount of human effort needed to
-						organize them in the first place.
-					</p>
-					<p>
-						That is where Medibridge begins. With a simple question: what if we worked with the
-						records hospitals already have? The PDFs. The scanned handwritten notes. The
-						photographed lab results. The discharge summaries written in different formats across
-						different clinics. What if AI could read those records, understand them, and turn them
-						into something doctors can quickly search, review, and transfer? Medibridge is designed
-						to fit into the way hospitals already work instead of asking them to start over. The
-						goal is simple: help the next doctor see the full picture before making critical
-						decisions. Because somewhere right now, a doctor is treating a patient without the
-						information they need. That gap can be closed.
-					</p>
+				</CaseStudyReveal>
+				<CaseStudyReveal className="flex flex-col gap-3">
+					<h2 className={headingClass}>My role</h2>
+					<p className={bodyClass}>Product Engineer. I design and build Medibridge end to end.</p>
 				</CaseStudyReveal>
 			</section>
 			<section id="patient-onboarding" tabIndex={-1} className="outline-none">
 				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
 					Patient Onboarding
 				</CaseStudyReveal>
-				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-6")}>
-					One of the first problems I tried to solve was reducing the amount of manual work involved
-					in adding patients into the system. Many hospitals already have patient information stored
-					as printed documents, scanned files, PDFs, or images. Re-entering this information
-					manually can be repetitive and time-consuming, especially when handling large numbers of
-					records. I wanted the onboarding process to feel faster and more structured, so I built an
-					AI-assisted flow that allows healthcare staff to upload existing medical documents and
-					extract patient’s personal information automatically. The flow supports different file
-					formats and guides staff through reviewing extracted information before saving it into the
-					patient profile.
-				</CaseStudyReveal>
-				<ZoomableImageGroup images={patientOnboardingImages} width={3000} height={1800} />
-
-				<CaseStudyReveal className="mt-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
-					<p>
-						Patient onboarding is often the first interaction hospital staff have with a new record,
-						so the experience needed to feel simple and reliable. I limited the initial extraction
-						to essential information such as the patient’s name, age, gender, contact details, and
-						identifiers. Keeping the scope focused makes the results easier to review and reduces
-						the risk of incorrect information entering the patient’s history.
-					</p>
-					<p>
-						AI-extracted information is never saved automatically. Every field remains editable,
-						allowing staff to correct errors and complete missing details before confirming the
-						patient. The upload flow also supports the document formats hospitals already use,
-						including PDFs, scanned files, images, and Word documents, so it can fit into existing
-						workflows without requiring hospitals to change how their records are prepared.
-					</p>
-				</CaseStudyReveal>
 				<CaseStudyReveal
 					siblingIndex={1}
-					className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden"
+					className="w-full rounded-2xl flex mb-6 bg-black overflow-hidden"
 				>
 					<video
 						controls
@@ -377,6 +280,14 @@ export default function MedibridgePage() {
 						<source src="/videos/patient-onboarding.mp4" type="video/mp4" />
 					</video>
 				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-6")}>
+					Re-typing patient details from printed files, scans, and PDFs is slow, so the upload reads
+					the text for staff. Digital PDFs and Word files are read directly, and scanned pages and
+					photos go through OCR. A language model then sorts that text into the patient’s personal,
+					contact, emergency, and physical details. Nothing is saved automatically. Staff review and
+					edit every field before confirming the patient.
+				</CaseStudyReveal>
+				<ZoomableImageGroup images={patientOnboardingImages} width={3000} height={1800} />
 			</section>
 			<section id="patient-management" tabIndex={-1} className="mt-22 outline-none">
 				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
@@ -384,55 +295,7 @@ export default function MedibridgePage() {
 				</CaseStudyReveal>
 				<CaseStudyReveal
 					siblingIndex={1}
-					className="mt-3 text-muted-foreground font-medium text-pretty flex flex-col gap-2 mb-6"
-				>
-					<p>
-						After onboarding patients into the system, I designed the day-to-day experience of
-						managing patient records inside the hospital workflow. Medical information changes
-						frequently during treatment, so the interface needed to support quick updates while
-						keeping records easy to review during consultations, admissions, transfers, and
-						follow-up care.
-					</p>
-					<p>
-						Healthcare staff can manage patient information directly from a centralized patient
-						profile with dedicated sections for medications, allergies, diagnoses, procedures,
-						immunizations, laboratory results, and medical history. Grouping information into
-						sections helps staff quickly locate relevant details, review patient history, and update
-						records without moving through multiple pages or relying heavily on uploaded documents.
-					</p>
-					<p>
-						I also designed the system to support ongoing updates as patient care continues. New
-						medications can be added, diagnoses reviewed, allergies updated, and laboratory results
-						recorded directly within the patient profile. Uploaded files and attachments remain
-						available when needed, while extracted and manually entered information becomes easier
-						to maintain as part of the patient record over time.
-					</p>
-					<p>
-						The goal was to create a record management experience that feels practical during real
-						hospital workflows where information needs to be reviewed quickly, updated regularly,
-						and carried across different stages of patient care.
-					</p>
-				</CaseStudyReveal>
-				<ZoomableImageGroup images={patientManagementImages} width={3000} height={1800} />
-				<CaseStudyReveal className="mt-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2">
-					<p>
-						Once the information was divided into clinical sections, the next challenge was keeping
-						a growing patient record easy to navigate. Each area uses list and detail views,
-						allowing staff to scan existing records before opening a specific entry for more
-						information. Several record types also include history views, making it easier to
-						understand how individual details have changed over time.
-					</p>
-					<p>
-						Source documents and attachments remain available when additional context is needed, but
-						staff do not have to search through every file during routine care. Confirmed patient
-						information is presented in a form that is easier to review, while the original
-						documents remain connected to the record. This creates a balance between quick access
-						and the supporting information behind each patient’s history.
-					</p>
-				</CaseStudyReveal>
-				<CaseStudyReveal
-					siblingIndex={1}
-					className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden"
+					className="w-full rounded-2xl flex mb-3 bg-black overflow-hidden"
 				>
 					<video
 						controls
@@ -446,7 +309,10 @@ export default function MedibridgePage() {
 						<source src="/videos/patient-management-1.mp4" type="video/mp4" />
 					</video>
 				</CaseStudyReveal>
-				<CaseStudyReveal className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden">
+				<CaseStudyReveal
+					siblingIndex={2}
+					className="w-full rounded-2xl flex mb-6 bg-black overflow-hidden"
+				>
 					<video
 						controls
 						muted
@@ -459,6 +325,13 @@ export default function MedibridgePage() {
 						<source src="/videos/patient-management-2.mp4" type="video/mp4" />
 					</video>
 				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-6")}>
+					Each patient profile groups medications, allergies, diagnoses, procedures, immunizations,
+					lab results, and history into their own sections. List and detail views keep a growing
+					record easy to scan, history views show how details change, and the original documents
+					stay attached for context.
+				</CaseStudyReveal>
+				<ZoomableImageGroup images={patientManagementImages} width={3000} height={1800} />
 			</section>
 
 			<section id="patient-records-transfer" tabIndex={-1} className="mt-22 outline-none">
@@ -467,41 +340,7 @@ export default function MedibridgePage() {
 				</CaseStudyReveal>
 				<CaseStudyReveal
 					siblingIndex={1}
-					className="mt-3 mb-6 text-muted-foreground font-medium text-pretty flex flex-col gap-2"
-				>
-					<p>
-						Another area I focused on was improving how patient records are transferred between
-						hospitals. Transfers often rely on email, printed documents, messaging apps, or other
-						disconnected channels, making records difficult to track, review, and verify. Medibridge
-						brings this process into a structured workflow that begins from an existing patient
-						profile.
-					</p>
-					<p>
-						Healthcare staff can prepare a transfer using verified records and provide any necessary
-						context before sending it for patient approval. Once approved, the selected records are
-						made available to the receiving hospital through a secure, time-limited, read-only link
-						instead of sending raw files through disconnected channels.
-					</p>
-				</CaseStudyReveal>
-				<ZoomableImageGroup images={patientRecordsTransferImages} width={3000} height={1800} />
-				<CaseStudyReveal className="text-muted-foreground font-medium text-pretty flex flex-col gap-2 mt-6">
-					<p>
-						The most important part of the transfer experience was keeping the patient involved. A
-						hospital cannot release the selected records immediately after creating a request. The
-						patient first receives an email containing a secure approval link, where they can review
-						the receiving hospital, the requested records, and the transfer details before approving
-						or declining.
-					</p>
-					<p>
-						Approval does not give the receiving hospital permanent access to the patient’s full
-						history. The recipient must verify a short-lived code before opening an expiring,
-						read-only view limited to the approved records. Transfer statuses also help the
-						initiating hospital see whether a request is pending, approved, declined, or completed.
-					</p>
-				</CaseStudyReveal>
-				<CaseStudyReveal
-					siblingIndex={1}
-					className="w-full rounded-2xl flex mt-6 bg-black overflow-hidden"
+					className="w-full rounded-2xl flex mb-6 bg-black overflow-hidden"
 				>
 					<video
 						controls
@@ -515,6 +354,14 @@ export default function MedibridgePage() {
 						<source src="/videos/patient-records-transfer.mp4" type="video/mp4" />
 					</video>
 				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-6")}>
+					Transfers usually happen over email, printouts, and messaging apps, which are hard to
+					track or verify. In Medibridge, staff build a transfer from verified records, and the
+					patient approves it by email before anything is shared. The receiving hospital verifies a
+					short-lived code to open an expiring, read-only view, and statuses show whether each
+					request is pending, approved, declined, or completed.
+				</CaseStudyReveal>
+				<ZoomableImageGroup images={patientRecordsTransferImages} width={3000} height={1800} />
 				<CaseStudyReveal as="p" className="my-16 md:my-22">
 					Medibridge is in active development. Follow along in the{" "}
 					<a
@@ -528,10 +375,10 @@ export default function MedibridgePage() {
 					.
 				</CaseStudyReveal>
 			</section>
-			<CaseStudyLink href="/nomba" className="case-study-nav-card">
+			<CaseStudyLink href="/bulk-airtime" className="case-study-nav-card">
 				<div className="flex flex-col gap-3">
 					<p className="text-muted-foreground font-medium no-line-height">Next</p>
-					<p className="text-foreground font-medium no-line-height">Nomba</p>
+					<p className="text-foreground font-medium no-line-height">Bulk Airtime</p>
 				</div>
 				<ArrowUpRight className="size-6" />
 			</CaseStudyLink>
@@ -539,21 +386,3 @@ export default function MedibridgePage() {
 		</main>
 	);
 }
-
-const tags = [
-	{
-		label: "Design",
-		color: "var(--blue)",
-		bgColor: "var(--blue-muted)",
-	},
-	{
-		label: "Dev",
-		color: "var(--red)",
-		bgColor: "var(--red-muted)",
-	},
-	{
-		label: "Web App",
-		color: "var(--green)",
-		bgColor: "var(--green-muted)",
-	},
-];

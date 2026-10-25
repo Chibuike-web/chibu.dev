@@ -1,6 +1,6 @@
 # chibu.dev
 
-My personal portfolio as a design engineer, featuring my experience and case studies for Medibridge and Nomba.
+My personal portfolio as a design engineer, featuring my experience and case studies for Medibridge and Bulk Airtime.
 
 **Live website:** [chibu.dev](https://chibu.dev)
 

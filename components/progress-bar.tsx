@@ -13,7 +13,7 @@ function subscribe(onChange: () => void) {
 }
 
 function getExpandedSnapshot() {
-	return !document.cookie.split("; ").includes("isExpandedValue=false");
+	return document.cookie.split("; ").includes("isExpandedValue=true");
 }
 
 function getServerSnapshot(): boolean | null {
@@ -92,20 +92,20 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 	return (
 		<nav
 			aria-label="Case study sections"
-			className="progress-mount fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-[21.875rem] -translate-x-1/2 overflow-hidden rounded-3xl bg-background text-foreground shadow-lg ring-1 ring-border dark:bg-[#464648] dark:text-white dark:shadow-none dark:ring-0"
+			className="progress-mount fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-85 -translate-x-1/2 overflow-hidden rounded-3xl bg-background text-foreground shadow-lg ring-1 ring-border dark:bg-[#464648] dark:text-white dark:shadow-none dark:ring-0"
 		>
 			<button
-				className="sticky top-0 z-10 flex w-full cursor-pointer items-center justify-between border border-transparent bg-background px-5 dark:bg-[#464648] py-3 text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+				className="sticky top-0 z-10 flex w-full cursor-pointer items-center justify-between gap-3 border border-transparent h-10 bg-background px-5 dark:bg-[#464648] text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 				aria-expanded={isExpanded}
 				ref={toggleRef}
 				onClick={() => setSectionsExpanded(!isExpanded)}
 			>
-				<span className="flex items-center gap-2.5">
+				<span className="flex min-w-0 items-center gap-2.5">
 					<ProgressRing />
 					<span className="sr-only">Sections, current: </span>
-					<span>{activeSectionHeading}</span>
+					<span className="truncate">{activeSectionHeading}</span>
 				</span>
-				<ChevronsUpDown className="size-4.5" />
+				<ChevronsUpDown className="size-4 shrink-0" />
 			</button>
 			<div
 				inert={!isExpanded}
@@ -130,7 +130,7 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 								>
 									<button
 										aria-current={isActive ? "location" : undefined}
-										className="flex h-11 w-full cursor-pointer items-center rounded-full border border-transparent px-3 text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+										className="flex h-9 w-full cursor-pointer items-center rounded-full border border-transparent px-3 text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 										onClick={() => {
 											setActiveSection(index);
 											setActiveSectionHeading(item.label);

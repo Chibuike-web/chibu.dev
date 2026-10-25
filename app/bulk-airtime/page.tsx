@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
 import { CaseStudyLink, CaseStudyReveal } from "@/components/case-study-reveal";
-import first from "@/assets/nomba/first.webp";
-import second from "@/assets/nomba/second.webp";
-import third from "@/assets/nomba/third.webp";
-import fourth from "@/assets/nomba/fourth.webp";
-import fifth from "@/assets/nomba/fifth.webp";
-import sixth from "@/assets/nomba/sixth.webp";
-import seventh from "@/assets/nomba/seventh.webp";
-import eighth from "@/assets/nomba/eighth.webp";
-import ninth from "@/assets/nomba/ninth.webp";
-import tenth from "@/assets/nomba/tenth.webp";
-import eleventh from "@/assets/nomba/eleventh.webp";
-import twelfth from "@/assets/nomba/twelfth.webp";
+import first from "@/assets/bulk-airtime/first.webp";
+import second from "@/assets/bulk-airtime/second.webp";
+import third from "@/assets/bulk-airtime/third.webp";
+import fourth from "@/assets/bulk-airtime/fourth.webp";
+import fifth from "@/assets/bulk-airtime/fifth.webp";
+import sixth from "@/assets/bulk-airtime/sixth.webp";
+import seventh from "@/assets/bulk-airtime/seventh.webp";
+import eighth from "@/assets/bulk-airtime/eighth.webp";
+import ninth from "@/assets/bulk-airtime/ninth.webp";
+import tenth from "@/assets/bulk-airtime/tenth.webp";
+import eleventh from "@/assets/bulk-airtime/eleventh.webp";
+import twelfth from "@/assets/bulk-airtime/twelfth.webp";
 import { BackToHome } from "@/components/layouts/back-to-home";
-import { Tag } from "@/components/tag";
 import { ZoomableImage } from "@/components/zoomable-image";
 import { cn } from "@/lib/utils";
 import { ArrowUpLeft } from "lucide-react";
@@ -21,12 +20,12 @@ import { CaseStudyNavigation } from "@/components/case-study-navigation";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const metadata: Metadata = {
-	title: "Nomba",
-	alternates: { canonical: "/nomba" },
+	title: "Bulk Airtime",
+	alternates: { canonical: "/bulk-airtime" },
 	description:
 		"Designing a bulk airtime transfer feature that lets people send airtime to multiple recipients in one transaction, refined through design review feedback.",
 	openGraph: {
-		url: "/nomba",
+		url: "/bulk-airtime",
 		siteName: "Chibuike Maduabuchi",
 		type: "article",
 	},
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
 	},
 };
 
-const headingClass = "text-[1.125rem] font-medium tight text-balance";
+const headingClass = "font-medium tight text-balance";
 const bodyClass = "font-medium tight text-muted-foreground text-pretty";
 const detailListClass = "my-6 rounded-xl bg-surface-muted p-4";
 const detailItemClass = "font-medium tight text-muted-foreground";
@@ -75,77 +74,42 @@ const navItems = [
 	},
 ];
 
-export default function NombaPage() {
+export default function BulkAirtimePage() {
 	return (
 		<main className="page-shell case-study-page">
 			<CaseStudyReveal as="nav" className="flex items-center justify-between">
 				<BackToHome />
 				<ThemeSwitcher />
 			</CaseStudyReveal>
-			<CaseStudyReveal as="header" siblingIndex={1} className="my-16 md:my-22">
-				<div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-					<div className="flex flex-col gap-3">
-						<h1 className="text-[1.125rem] font-semibold tight text-balance">Nomba</h1>
-						<div className="flex items-center gap-1.5">
-							<p className="text-[1rem] font-medium text-muted-foreground tight no-line-height">
-								Bulk Airtime Transfer
-							</p>
-							<span className="size-0.5 rounded-full bg-muted-foreground flex shrink-0" />
-							<p className="text-[1rem] font-medium text-muted-foreground tight no-line-height">
-								2024
-							</p>
-						</div>
-					</div>
-					<div className="flex flex-wrap gap-2">
-						{tags.map((tag) => (
-							<Tag key={tag.label} label={tag.label} color={tag.color} bgColor={tag.bgColor} />
-						))}
-					</div>
-				</div>
-			</CaseStudyReveal>
-			<section
-				id="overview"
-				tabIndex={-1}
-				className="my-22 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-8 outline-none"
+			<CaseStudyReveal
+				as="header"
+				siblingIndex={1}
+				className="mt-16 mb-8 md:mt-22 flex flex-col gap-3"
 			>
-				<CaseStudyReveal siblingIndex={2} className="flex w-full flex-col gap-2">
-					<p className="font-semibold text-foreground">PROBLEM STATEMENT</p>
+				<h1 className="text-[1.125rem] font-semibold tight text-balance">Bulk Airtime</h1>
+				<p className="text-[1rem] font-medium text-muted-foreground tight no-line-height">
+					Mobile payments concept
+				</p>
+			</CaseStudyReveal>
+			<section id="overview" tabIndex={-1} className="mb-22 flex flex-col gap-6 outline-none">
+				<CaseStudyReveal as="p" siblingIndex={2} className="font-medium tight text-pretty">
+					A concept for sending airtime to several people in one transaction, picked from contacts
+					or typed in as a list of numbers.
+				</CaseStudyReveal>
+				<CaseStudyReveal siblingIndex={3} className="flex flex-col gap-3">
+					<h2 className={headingClass}>The problem</h2>
 					<p className={bodyClass}>
-						Demola, a frequent airtime sender, faces a stressful and time-consuming process of
-						sending airtime to each recipient individually. This repetitive task becomes especially
-						inefficient during special occasions like birthdays, when he needs to send airtime to a
-						long list of friends and family. To address this pain point, I designed a feature that
-						simplifies the process by enabling him to send airtime to multiple recipients in a
-						single transaction.
+						Sending airtime to a group, like friends and family on a birthday, means one transaction
+						per person. Every send repeats the same steps, so a simple gift turns into a chore.
 					</p>
 				</CaseStudyReveal>
-				<CaseStudyReveal siblingIndex={3} className="flex w-full flex-col gap-2">
-					<p className="font-semibold text-foreground">OBJECTIVE</p>
+				<CaseStudyReveal className="flex flex-col gap-3">
+					<h2 className={headingClass}>My role</h2>
 					<p className={bodyClass}>
-						Design a simple and efficient mobile feature that allows users to send airtime to
-						multiple recipients at once, streamlining the process and reducing the time and effort
-						required for a user who regularly sends airtime to a large number of people.
+						Product Designer. I designed the feature in one week and refined it through design
+						review feedback.
 					</p>
 				</CaseStudyReveal>
-				<CaseStudyReveal className="flex w-full flex-col gap-2">
-					<p className="font-semibold text-foreground">SOLUTION OVERVIEW</p>
-					<p className={bodyClass}>
-						To address Demola&apos;s pain points and create a more efficient way to send airtime to
-						multiple recipients, I designed a feature that enables users to send airtime to several
-						recipients in a single transaction. This feature is built around two primary solutions
-						for ease of use and flexibility.
-					</p>
-				</CaseStudyReveal>
-				<div className="grid gap-6 sm:grid-cols-2">
-					<CaseStudyReveal className="flex w-full flex-col gap-2">
-						<p className="font-semibold text-foreground">ROLE</p>
-						<p className="font-medium text-muted-foreground tight">Product Designer</p>
-					</CaseStudyReveal>
-					<CaseStudyReveal siblingIndex={1} className="flex w-full flex-col gap-2">
-						<p className="font-semibold text-foreground">DURATION</p>
-						<p className="font-medium text-muted-foreground tight">1 week</p>
-					</CaseStudyReveal>
-				</div>
 			</section>
 			<section id="selecting-recipients-from-contacts" tabIndex={-1} className="outline-none">
 				<CaseStudyReveal className="flex flex-col gap-3">
@@ -423,16 +387,3 @@ export default function NombaPage() {
 		</main>
 	);
 }
-
-const tags = [
-	{
-		label: "Design",
-		color: "var(--blue)",
-		bgColor: "var(--blue-muted)",
-	},
-	{
-		label: "Mobile App",
-		color: "var(--amber)",
-		bgColor: "var(--amber-muted)",
-	},
-];

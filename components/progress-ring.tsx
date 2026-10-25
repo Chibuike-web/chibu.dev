@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
 
 export default function ProgressRing({
-	size = 18,
+	size = 16,
 	strokeWidth = 2,
 	className,
 }: {

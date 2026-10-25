@@ -64,7 +64,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className={`${sans.variable} antialiased`} suppressHydrationWarning>
+		<html
+			lang="en"
+			className={`${sans.variable} antialiased`}
+			data-scroll-behavior="smooth"
+			suppressHydrationWarning
+		>
 			<head>
 				<script type="text/javascript" dangerouslySetInnerHTML={{ __html: themeInitScript }} />
 				<noscript>

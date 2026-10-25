@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import medibridgeThumbnail from "../../assets/thumbnails/light/medibridge-project-thumbnail.png";
-import nombaThumbnail from "../../assets/thumbnails/light/nomba-project-thumbnail.png";
+import bulkAirtimeThumbnail from "../../assets/thumbnails/light/bulk-airtime-project-thumbnail.png";
 import styles from "./projects.module.css";
 
 const projects = [
@@ -12,10 +12,10 @@ const projects = [
 		image: medibridgeThumbnail,
 	},
 	{
-		href: "/nomba",
-		name: "Nomba",
-		description: "Bulk Airtime Transfer",
-		image: nombaThumbnail,
+		href: "/bulk-airtime",
+		name: "Bulk Airtime",
+		description: "Mobile payments concept",
+		image: bulkAirtimeThumbnail,
 	},
 ] as const;
 
@@ -32,7 +32,6 @@ export function Projects() {
 							src={project.image}
 							alt={`${project.name} project preview`}
 							className={styles.galleryImage}
-							sizes="(max-width: 639px) calc(100vw - 32px), 344px"
 						/>
 						<p className={styles.galleryName}>{project.name}</p>
 						<p className={styles.projectDescription}>{project.description}</p>

@@ -193,13 +193,19 @@ body {
 	line-height: 1.4;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+	:root {
+		scroll-behavior: smooth;
+	}
+}
+
 .reveal-link {
 	display: inline-flex;
 	align-items: center;
 }
 
 .social-pill {
-	min-height: 2.5rem;
+	min-height: 2.25rem;
 	border: 1px solid transparent;
 	border-radius: 9999px;
 	background: var(--surface-muted);
@@ -422,7 +428,7 @@ body {
 }
 
 @utility page-shell {
-	@apply mx-auto w-full max-w-[48.875rem] px-4 lg:px-0 pt-22 pb-30;
+	@apply mx-auto w-full max-w-160 px-4 lg:px-0 pt-22 pb-30;
 }
 
 @utility case-study-nav-card {
@@ -513,10 +519,6 @@ body {
 		opacity: 1;
 		transform: none;
 	}
-}
-
-.home-page {
-	max-width: 45rem;
 }
 
 .home-page :is(a, button):focus-visible {
