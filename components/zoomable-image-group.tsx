@@ -30,7 +30,8 @@ function controlMotion(reducedMotion: boolean | null, opacity = 1) {
 		// Leave faster than the backdrop (0.2s) so the controls are gone
 		// before the page shows through, instead of ghosting over it.
 		exit: { ...hidden, transition: { duration: 0.1 } },
-		transition: { duration: 0.2 },
+		// Enter after the image and backdrop have started settling.
+		transition: { duration: 0.2, delay: reducedMotion ? 0 : 0.1 },
 	};
 }
 
