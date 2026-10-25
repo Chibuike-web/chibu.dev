@@ -16,6 +16,15 @@ type Props = {
 
 const SLIDE_DISTANCE = 1000;
 
+// Controls fade with the backdrop so they don't linger while the image
+// springs back to its thumbnail (the dialog unmounts only after that finishes).
+const controlFade = {
+	initial: { opacity: 0 },
+	animate: { opacity: 1 },
+	exit: { opacity: 0 },
+	transition: { duration: 0.2 },
+};
+
 export function ZoomableImageGroup({ images, width, height }: Props) {
 	const reducedMotion = useReducedMotion();
 	const [openedFromIndex, setOpenedFromIndex] = useState<number | null>(null);
@@ -226,31 +235,36 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 
 								{images.length > 1 && (
 									<div className="flex gap-4 md:contents">
-										<button
+										<motion.button
+											{...controlFade}
+											animate={{ opacity: previewIndex === 0 ? 0.4 : 1 }}
 											ref={previousButtonRef}
 											type="button"
 											onClick={showPreviousImage}
 											disabled={previewIndex === 0}
 											aria-label="Previous image"
-											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color,opacity] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40 disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:left-4"
+											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:left-4"
 										>
 											<ArrowLeft className="size-5" aria-hidden />
-										</button>
-										<button
+										</motion.button>
+										<motion.button
+											{...controlFade}
+											animate={{ opacity: previewIndex === images.length - 1 ? 0.4 : 1 }}
 											ref={nextButtonRef}
 											type="button"
 											onClick={showNextImage}
 											disabled={previewIndex === images.length - 1}
 											aria-label="Next image"
-											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color,opacity] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40 disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:right-4"
+											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:right-4"
 										>
 											<ArrowRight className="size-5" aria-hidden />
-										</button>
+										</motion.button>
 									</div>
 								)}
 							</div>
 
-							<button
+							<motion.button
+								{...controlFade}
 								type="button"
 								className="absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								onClick={closePreview}
@@ -258,7 +272,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 								data-preview-close
 							>
 								<X className="size-5" aria-hidden />
-							</button>
+							</motion.button>
 						</motion.div>
 					</ImagePreviewDialog>
 				)}
