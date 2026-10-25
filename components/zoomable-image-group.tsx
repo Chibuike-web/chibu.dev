@@ -16,18 +16,20 @@ type Props = {
 
 const SLIDE_DISTANCE = 1000;
 
-// Controls fade, shrink and blur with the backdrop so they don't linger while
-// the image springs back to its thumbnail (the dialog unmounts only after that
-// finishes). Reduced motion gets a plain fade.
+// Controls fade, shrink and blur so they don't linger while the image springs
+// back to its thumbnail (the dialog unmounts only after that finishes).
+// Reduced motion gets a plain fade.
 function controlMotion(reducedMotion: boolean | null, opacity = 1) {
 	const hidden = reducedMotion
 		? { opacity: 0 }
-		: { opacity: 0, scale: 0.9, filter: "blur(4px)" };
+		: { opacity: 0, scale: 0.9, filter: "blur(2px)" };
 
 	return {
 		initial: hidden,
 		animate: reducedMotion ? { opacity } : { opacity, scale: 1, filter: "blur(0px)" },
-		exit: hidden,
+		// Leave faster than the backdrop (0.2s) so the controls are gone
+		// before the page shows through, instead of ghosting over it.
+		exit: { ...hidden, transition: { duration: 0.1 } },
 		transition: { duration: 0.2 },
 	};
 }
