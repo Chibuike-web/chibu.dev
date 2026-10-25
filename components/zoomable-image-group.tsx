@@ -232,7 +232,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 											onClick={showPreviousImage}
 											disabled={previewIndex === 0}
 											aria-label="Previous image"
-											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color,opacity] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40 disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:disabled:invisible md:left-4"
+											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color,opacity] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40 disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:left-4"
 										>
 											<ArrowLeft className="size-5" aria-hidden />
 										</button>
@@ -242,7 +242,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 											onClick={showNextImage}
 											disabled={previewIndex === images.length - 1}
 											aria-label="Next image"
-											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color,opacity] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40 disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:disabled:invisible md:right-4"
+											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color,opacity] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40 disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:right-4"
 										>
 											<ArrowRight className="size-5" aria-hidden />
 										</button>
