@@ -8,14 +8,21 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Controls fade with the backdrop so they don't linger while the image
-// springs back to its thumbnail (the dialog unmounts only after that finishes).
-const controlFade = {
-	initial: { opacity: 0 },
-	animate: { opacity: 1 },
-	exit: { opacity: 0 },
-	transition: { duration: 0.2 },
-};
+// Controls fade, shrink and blur with the backdrop so they don't linger while
+// the image springs back to its thumbnail (the dialog unmounts only after that
+// finishes). Reduced motion gets a plain fade.
+function controlMotion(reducedMotion: boolean | null, opacity = 1) {
+	const hidden = reducedMotion
+		? { opacity: 0 }
+		: { opacity: 0, scale: 0.9, filter: "blur(4px)" };
+
+	return {
+		initial: hidden,
+		animate: reducedMotion ? { opacity } : { opacity, scale: 1, filter: "blur(0px)" },
+		exit: hidden,
+		transition: { duration: 0.2 },
+	};
+}
 
 type ZoomableImageProps = {
 	src: StaticImageData;
@@ -124,7 +131,7 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 							</motion.div>
 
 							<motion.button
-								{...controlFade}
+								{...controlMotion(reducedMotion)}
 								type="button"
 								className="absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								onClick={handleClose}
