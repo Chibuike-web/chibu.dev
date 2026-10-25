@@ -8,6 +8,15 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// Controls fade with the backdrop so they don't linger while the image
+// springs back to its thumbnail (the dialog unmounts only after that finishes).
+const controlFade = {
+	initial: { opacity: 0 },
+	animate: { opacity: 1 },
+	exit: { opacity: 0 },
+	transition: { duration: 0.2 },
+};
+
 type ZoomableImageProps = {
 	src: StaticImageData;
 	alt: string;
@@ -114,7 +123,8 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 								/>
 							</motion.div>
 
-							<button
+							<motion.button
+								{...controlFade}
 								type="button"
 								className="absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								onClick={handleClose}
@@ -123,7 +133,7 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 							>
 								<X aria-hidden="true" className="size-5" />
 								<span className="sr-only">Close preview</span>
-							</button>
+							</motion.button>
 						</motion.div>
 					</ImagePreviewDialog>
 				)}
