@@ -199,6 +199,10 @@ body {
 	}
 }
 
+section[id] {
+	scroll-margin-top: 3rem;
+}
+
 .reveal-link {
 	display: inline-flex;
 	align-items: center;
