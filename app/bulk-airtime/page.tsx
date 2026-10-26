@@ -17,7 +17,6 @@ import { ZoomableImage } from "@/components/zoomable-image";
 import { cn } from "@/lib/utils";
 import { ArrowUpLeft } from "lucide-react";
 import { CaseStudyNavigation } from "@/components/case-study-navigation";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const metadata: Metadata = {
 	title: "Bulk Airtime",
@@ -79,7 +78,6 @@ export default function BulkAirtimePage() {
 		<main className="page-shell case-study-page">
 			<CaseStudyReveal as="nav" className="flex items-center justify-between">
 				<BackToHome />
-				<ThemeSwitcher />
 			</CaseStudyReveal>
 			<CaseStudyReveal
 				as="header"

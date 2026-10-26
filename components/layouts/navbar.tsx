@@ -1,7 +1,12 @@
+"use client";
+
+import { useRealTime } from "@/hooks/use-real-time";
 import { LogoIcon } from "@/icons/logo-icon";
-import { ThemeSwitcher } from "../theme-switcher";
+import { Clock } from "lucide-react";
 
 export function Navbar() {
+	const time = useRealTime();
+
 	return (
 		<div data-enter="0" className="mount-1 flex items-center justify-between">
 			<div className="flex items-center gap-2.5">
@@ -13,7 +18,13 @@ export function Navbar() {
 					<p className="no-line-height tight text-muted-foreground">Design Engineer</p>
 				</div>
 			</div>
-			<ThemeSwitcher />
+			<div
+				data-js-only
+				className="flex min-h-9 items-center gap-1.5 rounded-full bg-surface-muted py-1.5 pr-4 pl-3 font-semibold tabular-nums"
+			>
+				<Clock className="size-4" aria-hidden />
+				{time}
+			</div>
 		</div>
 	);
 }

@@ -28,13 +28,13 @@ export function ThemeSwitcher() {
 			<span
 				aria-hidden="true"
 				data-theme-indicator
-				className="absolute top-0.5 left-0.5 size-8 rounded-full bg-background transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+				className="absolute top-0.5 left-0.5 size-6 rounded-full bg-background transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
 			/>
 			{themes.map(({ value, Icon }) => (
 				<label
 					key={value}
 					data-theme-option={value}
-					className="relative flex size-8 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 ease-out hover:text-foreground has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-muted-foreground"
+					className="relative flex size-6 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 ease-out hover:text-foreground has-focus-visible:outline-2 has-focus-visible:outline-offset-1 has-focus-visible:outline-muted-foreground"
 				>
 					<input
 						type="radio"
@@ -50,7 +50,7 @@ export function ThemeSwitcher() {
 						onChange={() => setTheme(value)}
 						className="sr-only"
 					/>
-					<Icon className="size-4" aria-hidden />
+					<Icon className="size-3.5" aria-hidden />
 					<span className="sr-only">{value}</span>
 				</label>
 			))}

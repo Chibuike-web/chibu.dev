@@ -1,13 +1,12 @@
 "use client";
 
 import { useCopyEmail } from "@/hooks/use-copy-email";
-import { useRealTime } from "@/hooks/use-real-time";
 import { cn } from "@/lib/utils";
 import { Check, CopyIcon } from "lucide-react";
+import { ThemeSwitcher } from "../theme-switcher";
 
 export function Footer() {
 	const { copyEmail, copied } = useCopyEmail();
-	const time = useRealTime();
 	const iconClass =
 		"absolute top-1/2 left-full ml-1 size-3.5 -translate-y-1/2 transition-[opacity,filter,scale,translate] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]";
 
@@ -47,9 +46,7 @@ export function Footer() {
 			<noscript>
 				<span className="select-all break-all">chibuikemaduabuchi2023@gmail.com</span>
 			</noscript>
-			<div data-js-only>
-				<span>{time}</span>
-			</div>
+			<ThemeSwitcher />
 		</div>
 	);
 }

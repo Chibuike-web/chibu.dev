@@ -40,7 +40,6 @@ import patientRecordsTransferTenth from "@/assets/medibridge/patient-records-tra
 import patientRecordsTransferEleventh from "@/assets/medibridge/patient-records-transfer-eleventh.webp";
 
 import { CaseStudyNavigation } from "@/components/case-study-navigation";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const metadata: Metadata = {
 	title: "Medibridge",
@@ -222,7 +221,6 @@ export default function MedibridgePage() {
 		<main className="page-shell case-study-page">
 			<CaseStudyReveal as="nav" className="flex items-center justify-between">
 				<BackToHome />
-				<ThemeSwitcher />
 			</CaseStudyReveal>
 			<CaseStudyReveal
 				as="header"
