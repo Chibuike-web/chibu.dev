@@ -132,8 +132,6 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 										aria-current={isActive ? "location" : undefined}
 										className="flex h-9 w-full cursor-pointer items-center rounded-full border border-transparent px-3 text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 										onClick={() => {
-											setActiveSection(index);
-											setActiveSectionHeading(item.label);
 											const section = document.getElementById(item.id);
 											section?.scrollIntoView();
 											section?.focus({ preventScroll: true });

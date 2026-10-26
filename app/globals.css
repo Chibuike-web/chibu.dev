@@ -203,6 +203,11 @@ section[id] {
 	scroll-margin-top: 3rem;
 }
 
+/* The header sits only 2rem above Overview, so a 3rem margin would show its last line. */
+#overview {
+	scroll-margin-top: 1.5rem;
+}
+
 .reveal-link {
 	display: inline-flex;
 	align-items: center;
