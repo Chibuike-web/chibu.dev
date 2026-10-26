@@ -1,7 +1,7 @@
 "use client";
 
 import { Monitor, Moon, Sun } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const themes = [
 	{ value: "system", label: "System", Icon: Monitor },
@@ -35,12 +35,15 @@ export function ThemeSwitcher() {
 				{themes.map(({ value, label, Icon }) => (
 					<Tooltip key={value}>
 						<TooltipTrigger
-							render={
+							render={(props) => (
 								<label
+									{...props}
 									data-theme-option={value}
 									className="relative flex size-6 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 ease-out hover:text-foreground has-focus-visible:outline-2 has-focus-visible:outline-offset-1 has-focus-visible:outline-muted-foreground"
-								/>
-							}
+								>
+									{props.children}
+								</label>
+							)}
 						>
 							<input
 								type="radio"
@@ -57,7 +60,7 @@ export function ThemeSwitcher() {
 								className="sr-only"
 							/>
 							<Icon className="size-3.5" aria-hidden />
-							<span className="sr-only">{value}</span>
+							<span className="sr-only">{label}</span>
 						</TooltipTrigger>
 						<TooltipContent sideOffset={13} className="max-md:hidden">
 							{label}

@@ -1,19 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 export function useMediaQuery(query: string) {
-	const [matches, setMatches] = useState(() =>
-		typeof window === "undefined" ? false : window.matchMedia(query).matches,
+	return useSyncExternalStore(
+		(onChange) => {
+			const media = window.matchMedia(query);
+			media.addEventListener("change", onChange);
+			return () => media.removeEventListener("change", onChange);
+		},
+		() => window.matchMedia(query).matches,
+		() => false,
 	);
-
-	useEffect(() => {
-		const media = window.matchMedia(query);
-		const listener = () => setMatches(media.matches);
-		media.addEventListener("change", listener);
-
-		return () => media.removeEventListener("change", listener);
-	}, [query]);
-
-	return matches;
 }
