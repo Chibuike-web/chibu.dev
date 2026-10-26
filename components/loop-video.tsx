@@ -11,8 +11,6 @@ type LoopVideoProps = {
 	height: number;
 };
 
-// Plays like a GIF while on screen: muted, looping, no browser controls.
-// Starts paused when reduced motion is on, and stays paused once the viewer pauses it.
 export function LoopVideo({ src, poster, label, width, height }: LoopVideoProps) {
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const pausedByViewer = useRef(false);
@@ -28,7 +26,6 @@ export function LoopVideo({ src, poster, label, width, height }: LoopVideoProps)
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (entry.isIntersecting && !pausedByViewer.current) {
-					// Browsers can refuse to autoplay (e.g. battery saver), so leave it paused if they do.
 					video.play().catch(() => {});
 				} else if (!entry.isIntersecting) {
 					video.pause();

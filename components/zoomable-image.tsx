@@ -8,9 +8,6 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Controls fade, shrink and blur so they don't linger while the image springs
-// back to its thumbnail (the dialog unmounts only after that finishes).
-// Reduced motion gets a plain fade.
 function controlMotion(reducedMotion: boolean | null, opacity = 1) {
 	const hidden = reducedMotion
 		? { opacity: 0 }
@@ -19,10 +16,7 @@ function controlMotion(reducedMotion: boolean | null, opacity = 1) {
 	return {
 		initial: hidden,
 		animate: reducedMotion ? { opacity } : { opacity, scale: 1, filter: "blur(0px)" },
-		// Leave faster than the backdrop (0.2s) so the controls are gone
-		// before the page shows through, instead of ghosting over it.
 		exit: { ...hidden, transition: { duration: 0.1 } },
-		// Enter after the image and backdrop have started settling.
 		transition: { duration: 0.2, delay: reducedMotion ? 0 : 0.1 },
 	};
 }
@@ -50,7 +44,6 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 
 	return (
 		<>
-			{/* Thumbnail state */}
 			<motion.a
 				{...caseStudyRevealProps(reducedMotion)}
 				href={src.src}
@@ -90,7 +83,6 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 			<AnimatePresence>
 				{isZoomed && (
 					<ImagePreviewDialog onClose={handleClose}>
-						{/* Backdrop */}
 						<motion.div
 							className="fixed inset-0 z-[999] bg-background/90 backdrop-blur-md"
 							initial={{ opacity: 0 }}
@@ -100,7 +92,6 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 							aria-hidden="true"
 						/>
 
-						{/* Expanded state */}
 						<motion.div
 							className="fixed inset-0 z-[9999] flex cursor-zoom-out items-center justify-center px-4 lg:px-0"
 							onMouseDown={(event) => {
