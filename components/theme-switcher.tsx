@@ -1,11 +1,12 @@
 "use client";
 
 import { Monitor, Moon, Sun } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip";
 
 const themes = [
-	{ value: "system", Icon: Monitor },
-	{ value: "light", Icon: Sun },
-	{ value: "dark", Icon: Moon },
+	{ value: "system", label: "System", Icon: Monitor },
+	{ value: "light", label: "Light", Icon: Sun },
+	{ value: "dark", label: "Dark", Icon: Moon },
 ] as const;
 
 const setTheme = (theme: (typeof themes)[number]["value"]) => {
@@ -30,30 +31,50 @@ export function ThemeSwitcher() {
 				data-theme-indicator
 				className="absolute top-0.5 left-0.5 size-6 rounded-full bg-background transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
 			/>
-			{themes.map(({ value, Icon }) => (
-				<label
-					key={value}
-					data-theme-option={value}
-					className="relative flex size-6 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 ease-out hover:text-foreground has-focus-visible:outline-2 has-focus-visible:outline-offset-1 has-focus-visible:outline-muted-foreground"
-				>
-					<input
-						type="radio"
-						name="theme"
-						value={value}
-						defaultChecked={value === "system"}
-						ref={(input) => {
-							if (input) {
-								const activeTheme = document.documentElement.dataset.theme ?? "system";
-								input.checked = activeTheme === value;
+			<TooltipProvider>
+				{themes.map(({ value, label, Icon }) => (
+					<Tooltip key={value}>
+						<TooltipTrigger
+							render={
+								<label
+									data-theme-option={value}
+									className="relative flex size-6 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 ease-out hover:text-foreground has-focus-visible:outline-2 has-focus-visible:outline-offset-1 has-focus-visible:outline-muted-foreground"
+								/>
 							}
-						}}
-						onChange={() => setTheme(value)}
-						className="sr-only"
-					/>
-					<Icon className="size-3.5" aria-hidden />
-					<span className="sr-only">{value}</span>
-				</label>
-			))}
+						>
+							<input
+								type="radio"
+								name="theme"
+								value={value}
+								defaultChecked={value === "system"}
+								ref={(input) => {
+									if (input) {
+										const activeTheme = document.documentElement.dataset.theme ?? "system";
+										input.checked = activeTheme === value;
+									}
+								}}
+								onChange={() => setTheme(value)}
+								className="sr-only"
+							/>
+							<Icon className="size-3.5" aria-hidden />
+							<span className="sr-only">{value}</span>
+						</TooltipTrigger>
+						<TooltipContent sideOffset={13} className="max-md:hidden">
+							{label}
+							{value === "system" && (
+								<>
+									<span className="ml-1 opacity-60 [@media(prefers-color-scheme:dark)]:hidden">
+										· Light
+									</span>
+									<span className="ml-1 hidden opacity-60 [@media(prefers-color-scheme:dark)]:inline">
+										· Dark
+									</span>
+								</>
+							)}
+						</TooltipContent>
+					</Tooltip>
+				))}
+			</TooltipProvider>
 		</fieldset>
 	);
 }

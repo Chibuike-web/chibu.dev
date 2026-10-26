@@ -2,6 +2,7 @@
 
 import { useRealTime } from "@/hooks/use-real-time";
 import { LogoIcon } from "@/icons/logo-icon";
+import { cn } from "@/lib/utils";
 import { Clock } from "lucide-react";
 
 export function Navbar() {
@@ -20,10 +21,13 @@ export function Navbar() {
 			</div>
 			<div
 				data-js-only
-				className="flex min-h-9 items-center gap-1.5 rounded-full bg-surface-muted py-1.5 pr-4 pl-3 font-semibold tabular-nums"
+				className={cn(
+					"flex min-h-9 items-center gap-1.5 rounded-full bg-surface-muted py-1.5 pr-4 pl-3 font-semibold tabular-nums",
+					!time && "invisible",
+				)}
 			>
 				<Clock className="size-4" aria-hidden />
-				{time}
+				{time || "00:00AM"}
 			</div>
 		</div>
 	);
