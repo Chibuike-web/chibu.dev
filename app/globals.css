@@ -203,7 +203,6 @@ section[id] {
 	scroll-margin-top: 3rem;
 }
 
-/* The header sits only 2rem above Overview, so a 3rem margin would show its last line. */
 #overview {
 	scroll-margin-top: 1.5rem;
 }
@@ -453,16 +452,14 @@ section[id] {
 }
 
 @utility no-scrollbar {
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 
-	/* Hide scrollbar for Chrome, Safari and Opera */
 	&::-webkit-scrollbar {
 		display: none;
 	}
 }
 
-/* Base Scrollbar */
 ::-webkit-scrollbar {
 	width: 0.5rem;
 	height: 0.5rem;
