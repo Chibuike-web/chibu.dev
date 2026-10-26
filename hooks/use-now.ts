@@ -3,10 +3,9 @@
 import { useEffect, useState } from "react";
 
 export function useNow() {
-	const [now, setNow] = useState<Date | null>(null);
+	const [now, setNow] = useState(() => new Date());
 
 	useEffect(() => {
-		setNow(new Date());
 		const timer = window.setInterval(() => setNow(new Date()), 1000);
 		return () => window.clearInterval(timer);
 	}, []);

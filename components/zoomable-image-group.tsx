@@ -3,8 +3,7 @@
 import Image, { type StaticImageData } from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { caseStudyRevealProps } from "@/components/case-study-reveal";
-import { ImagePreviewDialog } from "@/components/image-preview-dialog";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,9 +16,7 @@ type Props = {
 const SLIDE_DISTANCE = 1000;
 
 function controlMotion(reducedMotion: boolean | null, opacity = 1) {
-	const hidden = reducedMotion
-		? { opacity: 0 }
-		: { opacity: 0, scale: 0.9, filter: "blur(2px)" };
+	const hidden = reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9, filter: "blur(2px)" };
 
 	return {
 		initial: hidden,
@@ -50,12 +47,16 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 		setDirection(null);
 		setOpenedFromIndex(index);
 		setPreviewIndex(index);
+		document.documentElement.style.overflow = "hidden";
+		document.body.style.overflow = "hidden";
 	};
 
 	const closePreview = () => {
 		setOpenedFromIndex(null);
 		setPreviewIndex(null);
 		setDirection(null);
+		document.documentElement.style.overflow = "";
+		document.body.style.overflow = "";
 	};
 
 	const showPreviousImage = (e: React.MouseEvent) => {
@@ -77,6 +78,38 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 			if (previewIndex + 1 === images.length - 1) previousButtonRef.current?.focus();
 		}
 	};
+
+	useEffect(() => {
+		if (!isPreviewOpen) return;
+
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === "ArrowLeft") {
+				setDirection(-1);
+				setPreviewIndex((currentIndex) =>
+					currentIndex !== null && currentIndex > 0 ? currentIndex - 1 : currentIndex,
+				);
+			}
+
+			if (e.key === "ArrowRight") {
+				setDirection(1);
+				setPreviewIndex((currentIndex) =>
+					currentIndex !== null && currentIndex < images.length - 1
+						? currentIndex + 1
+						: currentIndex,
+				);
+			}
+
+			if (e.key === "Escape") {
+				closePreview();
+			}
+		};
+
+		window.addEventListener("keydown", handleKeyDown);
+
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown);
+		};
+	}, [isPreviewOpen, images.length]);
 
 	return (
 		<>
@@ -161,25 +194,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 
 			<AnimatePresence>
 				{isPreviewOpen && previewImage && (
-					<ImagePreviewDialog
-						onClose={closePreview}
-						onKeyDown={(event) => {
-							if (event.key === "ArrowLeft" && previewIndex !== null && previewIndex > 0) {
-								event.preventDefault();
-								setDirection(-1);
-								setPreviewIndex(previewIndex - 1);
-							}
-							if (
-								event.key === "ArrowRight" &&
-								previewIndex !== null &&
-								previewIndex < images.length - 1
-							) {
-								event.preventDefault();
-								setDirection(1);
-								setPreviewIndex(previewIndex + 1);
-							}
-						}}
-					>
+					<>
 						<motion.div
 							className="fixed inset-0 z-[999] bg-background/90 backdrop-blur-md"
 							aria-hidden="true"
@@ -191,6 +206,9 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 						/>
 
 						<motion.div
+							role="dialog"
+							aria-modal="true"
+							aria-label="Image preview"
 							className="fixed inset-0 z-[9999] flex cursor-zoom-out items-center justify-center px-4 lg:px-0"
 							onMouseDown={(event) => {
 								if (event.target === event.currentTarget) {
@@ -249,7 +267,10 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 											<ArrowLeft className="size-5" aria-hidden />
 										</motion.button>
 										<motion.button
-											{...controlMotion(reducedMotion, previewIndex === images.length - 1 ? 0.4 : 1)}
+											{...controlMotion(
+												reducedMotion,
+												previewIndex === images.length - 1 ? 0.4 : 1,
+											)}
 											ref={nextButtonRef}
 											type="button"
 											onClick={showNextImage}
@@ -269,12 +290,11 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 								className="absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
 								onClick={closePreview}
 								aria-label="Close image preview"
-								data-preview-close
 							>
 								<X className="size-5" aria-hidden />
 							</motion.button>
 						</motion.div>
-					</ImagePreviewDialog>
+					</>
 				)}
 			</AnimatePresence>
 		</>
