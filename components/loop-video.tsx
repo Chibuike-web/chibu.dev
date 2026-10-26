@@ -61,7 +61,7 @@ export function LoopVideo({ src, poster, label, width, height }: LoopVideoProps)
 				muted
 				loop
 				playsInline
-				preload="metadata"
+				preload="none"
 				width={width}
 				height={height}
 				poster={poster}
