@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowUpRight, X } from "lucide-react";
 import { BackToHome } from "@/components/layouts/back-to-home";
 import { MissingPath } from "@/components/missing-path";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const metadata: Metadata = {
 	title: "Page not found",
@@ -20,7 +19,6 @@ export default function NotFound() {
 		<main className="page-shell case-study-page">
 			<nav className="flex items-center justify-between">
 				<BackToHome />
-				<ThemeSwitcher />
 			</nav>
 			<section className="mt-16 flex flex-col gap-6 md:mt-22">
 				<p className="font-medium tight text-muted-foreground">404</p>
