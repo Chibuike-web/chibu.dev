@@ -1,7 +1,7 @@
 "use client";
 
 import { Pause, Play } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 
 type LoopVideoProps = {
 	src: string;
@@ -16,6 +16,17 @@ export function LoopVideo({ src, poster, label, width, height }: LoopVideoProps)
 	const pausedByViewer = useRef(false);
 	const [isPlaying, setIsPlaying] = useState(false);
 
+	const handleVisibilityChange = useEffectEvent((isVisible: boolean) => {
+		const video = videoRef.current;
+		if (!video) return;
+		if (!isVisible) {
+			video.pause();
+			return;
+		}
+		if (pausedByViewer.current) return;
+		video.play().catch(() => {});
+	});
+
 	useEffect(() => {
 		const video = videoRef.current;
 		if (!video) return;
@@ -24,13 +35,7 @@ export function LoopVideo({ src, poster, label, width, height }: LoopVideoProps)
 		if (reducedMotion) pausedByViewer.current = true;
 
 		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting && !pausedByViewer.current) {
-					video.play().catch(() => {});
-				} else if (!entry.isIntersecting) {
-					video.pause();
-				}
-			},
+			([entry]) => handleVisibilityChange(entry.isIntersecting),
 			{ threshold: 0.5 },
 		);
 		observer.observe(video);
