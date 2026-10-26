@@ -84,7 +84,7 @@ export default function BulkAirtimePage() {
 			<CaseStudyReveal
 				as="header"
 				siblingIndex={1}
-				className="mt-16 mb-8 md:mt-22 flex flex-col gap-3"
+				className="mt-16 mb-12 md:mt-22 flex flex-col gap-3"
 			>
 				<h1 className="text-[1.125rem] font-semibold tight text-balance">Bulk Airtime</h1>
 				<p className="text-[1rem] font-medium text-muted-foreground tight no-line-height">
