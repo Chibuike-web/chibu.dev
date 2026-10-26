@@ -16,9 +16,6 @@ type Props = {
 
 const SLIDE_DISTANCE = 1000;
 
-// Controls fade, shrink and blur so they don't linger while the image springs
-// back to its thumbnail (the dialog unmounts only after that finishes).
-// Reduced motion gets a plain fade.
 function controlMotion(reducedMotion: boolean | null, opacity = 1) {
 	const hidden = reducedMotion
 		? { opacity: 0 }
@@ -27,10 +24,7 @@ function controlMotion(reducedMotion: boolean | null, opacity = 1) {
 	return {
 		initial: hidden,
 		animate: reducedMotion ? { opacity } : { opacity, scale: 1, filter: "blur(0px)" },
-		// Leave faster than the backdrop (0.2s) so the controls are gone
-		// before the page shows through, instead of ghosting over it.
 		exit: { ...hidden, transition: { duration: 0.1 } },
-		// Enter after the image and backdrop have started settling.
 		transition: { duration: 0.2, delay: reducedMotion ? 0 : 0.1 },
 	};
 }
@@ -70,7 +64,6 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 		if (previewIndex !== null && previewIndex > 0) {
 			setDirection(-1);
 			setPreviewIndex(previewIndex - 1);
-			// Keep focus inside the dialog when this button becomes disabled.
 			if (previewIndex - 1 === 0) nextButtonRef.current?.focus();
 		}
 	};
@@ -81,7 +74,6 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 		if (previewIndex !== null && previewIndex < images.length - 1) {
 			setDirection(1);
 			setPreviewIndex(previewIndex + 1);
-			// Keep focus inside the dialog when this button becomes disabled.
 			if (previewIndex + 1 === images.length - 1) previousButtonRef.current?.focus();
 		}
 	};

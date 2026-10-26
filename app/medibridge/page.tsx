@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CaseStudyLink, CaseStudyReveal } from "@/components/case-study-reveal";
 import { BackToHome } from "@/components/layouts/back-to-home";
+import { LoopVideo } from "@/components/loop-video";
 import { ZoomableImageGroup } from "@/components/zoomable-image-group";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
@@ -268,17 +269,13 @@ export default function MedibridgePage() {
 					siblingIndex={1}
 					className="w-full rounded-2xl flex mb-6 bg-black overflow-hidden"
 				>
-					<video
-						controls
-						muted
-						preload="metadata"
+					<LoopVideo
+						src="/videos/patient-onboarding.mp4"
+						poster="/videos/patient-onboarding.webp"
 						width={800}
 						height={450}
-						poster="/videos/patient-onboarding.webp"
-						aria-label="Silent screen recording of the patient onboarding flow, showing a document being uploaded and the extracted fields being reviewed and corrected before the patient is confirmed."
-					>
-						<source src="/videos/patient-onboarding.mp4" type="video/mp4" />
-					</video>
+						label="Silent screen recording of the patient onboarding flow, showing a document being uploaded and the extracted fields being reviewed and corrected before the patient is confirmed."
+					/>
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-6")}>
 					Re-typing patient details from printed files, scans, and PDFs is slow, so the upload reads
@@ -297,33 +294,25 @@ export default function MedibridgePage() {
 					siblingIndex={1}
 					className="w-full rounded-2xl flex mb-3 bg-black overflow-hidden"
 				>
-					<video
-						controls
-						muted
-						preload="metadata"
+					<LoopVideo
+						src="/videos/patient-management-1.mp4"
+						poster="/videos/patient-management-1.webp"
 						width={800}
 						height={450}
-						poster="/videos/patient-management-1.webp"
-						aria-label="Silent screen recording of patient management, showing clinical sections in list and detail views as a record is browsed."
-					>
-						<source src="/videos/patient-management-1.mp4" type="video/mp4" />
-					</video>
+						label="Silent screen recording of patient management, showing clinical sections in list and detail views as a record is browsed."
+					/>
 				</CaseStudyReveal>
 				<CaseStudyReveal
 					siblingIndex={2}
 					className="w-full rounded-2xl flex mb-6 bg-black overflow-hidden"
 				>
-					<video
-						controls
-						muted
-						preload="metadata"
+					<LoopVideo
+						src="/videos/patient-management-2.mp4"
+						poster="/videos/patient-management-2.webp"
 						width={800}
 						height={450}
-						poster="/videos/patient-management-2.webp"
-						aria-label="Silent screen recording of patient management, showing history views and the source documents that remain attached to a record."
-					>
-						<source src="/videos/patient-management-2.mp4" type="video/mp4" />
-					</video>
+						label="Silent screen recording of patient management, showing history views and the source documents that remain attached to a record."
+					/>
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-6")}>
 					Each patient profile groups medications, allergies, diagnoses, procedures, immunizations,
@@ -342,17 +331,13 @@ export default function MedibridgePage() {
 					siblingIndex={1}
 					className="w-full rounded-2xl flex mb-6 bg-black overflow-hidden"
 				>
-					<video
-						controls
-						muted
-						preload="metadata"
+					<LoopVideo
+						src="/videos/patient-records-transfer.mp4"
+						poster="/videos/patient-records-transfer.webp"
 						width={800}
 						height={450}
-						poster="/videos/patient-records-transfer.webp"
-						aria-label="Silent screen recording of the records transfer flow, showing a request being created, the patient approving it by email, and the recipient verifying a code to open a read-only view."
-					>
-						<source src="/videos/patient-records-transfer.mp4" type="video/mp4" />
-					</video>
+						label="Silent screen recording of the records transfer flow, showing a request being created, the patient approving it by email, and the recipient verifying a code to open a read-only view."
+					/>
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-6")}>
 					Transfers usually happen over email, printouts, and messaging apps, which are hard to
