@@ -216,7 +216,7 @@ function DayTrack({
 				<span
 					aria-hidden="true"
 					className={cn(
-						"absolute inset-y-1 left-1 w-[calc(50%-4px)] rounded-[10px] bg-background shadow-[0_0_3px_#0000001a] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none md:inset-y-[3px] md:left-[3px] md:w-[calc(50%-3px)] md:rounded-[9px] dark:shadow-[0_0_3px_#00000080]",
+						"absolute inset-y-1 left-1 w-[calc(50%-4px)] rounded-[10px] bg-background transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none md:inset-y-[3px] md:left-[3px] md:w-[calc(50%-3px)] md:rounded-[9px]",
 						showMine && "translate-x-full",
 					)}
 				/>
