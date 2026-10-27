@@ -24,6 +24,9 @@ export function CopyEmailButton() {
 						</span>
 					</span>
 				</button>
+				<span className="copy-email-tooltip" data-visible={copied} aria-hidden="true">
+					Copied
+				</span>
 				<output className="sr-only">{copied ? "Email copied to clipboard" : ""}</output>
 			</span>
 			<noscript>
