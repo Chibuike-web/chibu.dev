@@ -26,17 +26,13 @@ export function Projects() {
 			</h2>
 			<div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
 				{projects.map((project) => (
-					<Link
-						key={project.href}
-						href={project.href}
-						className="group block min-w-0 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-6 focus-visible:outline-foreground"
-					>
+					<Link key={project.href} href={project.href} className="group block min-w-0 rounded-xl">
 						<Image
 							src={project.image}
 							alt={`${project.name} project preview`}
 							className="block h-auto w-full rounded-xl shadow-(--project-image-shadow)"
 						/>
-						<p className="mt-4 text-[1rem] font-medium text-foreground underline-offset-3 group-hover:underline">
+						<p className="mt-4 text-[1rem] font-medium text-foreground decoration-accent underline-offset-3 group-hover:underline">
 							{project.name}
 						</p>
 						<p className="mt-1 text-[0.875rem] text-pretty text-muted-foreground">

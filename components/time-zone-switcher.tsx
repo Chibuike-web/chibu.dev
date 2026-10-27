@@ -1,11 +1,11 @@
 "use client";
 
-import { ChevronDown, Clock, X } from "lucide-react";
+import { ChevronDown, Clock } from "lucide-react";
 import { Suspense, use, useState } from "react";
 import { browser } from "react-dom";
 import {
 	Drawer,
-	DrawerClose,
+	DrawerCloseButton,
 	DrawerContent,
 	DrawerDescription,
 	DrawerTitle,
@@ -19,12 +19,12 @@ import { cn } from "@/lib/utils";
 const myZone = { timeZone: "Africa/Lagos", city: "Enugu" };
 
 const pillClass =
-	"group flex h-9 items-center gap-[5px] rounded-full bg-surface-muted pr-3 pl-2.5 text-[13px] font-semibold tabular-nums transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-muted-foreground data-popup-open:bg-surface-hover sm:gap-1.5 sm:pr-4 sm:pl-3 sm:text-sm [@media(hover:hover)]:hover:bg-surface-hover";
+	"group -mr-3 flex h-9 items-center gap-[5px] rounded-full pr-3 pl-2.5 text-[13px] font-semibold tabular-nums transition-colors duration-150 ease-out data-popup-open:bg-surface-hover sm:-mr-4 sm:gap-1.5 sm:pr-4 sm:pl-3 sm:text-sm [@media(hover:hover)]:hover:bg-surface-hover";
 
 function Pill({ time }: { time: string }) {
 	return (
 		<>
-			<Clock className="size-[15px] sm:size-4" aria-hidden />
+			<Clock className="size-[15px] text-accent sm:size-4" aria-hidden />
 			{time}
 			<span className="sr-only">, change time zone</span>
 			<ChevronDown
@@ -118,7 +118,7 @@ function ZoneClock() {
 				</PopoverTrigger>
 				<PopoverContent
 					align="end"
-					className={cn("flex w-75 flex-col gap-3.5", !gapMinutes && "w-85")}
+					className={cn("flex flex-col gap-3.5", gapMinutes ? "w-75" : "w-85")}
 				>
 					<div className="flex items-center justify-between text-xs">
 						<span className="font-medium text-muted-foreground">Today, {shown.date}</span>
@@ -143,14 +143,7 @@ function ZoneClock() {
 							Today, {shown.date} · {gap}
 						</DrawerDescription>
 					</div>
-					<DrawerClose
-						aria-label="Close"
-						className="-m-1.5 flex size-11 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-muted-foreground"
-					>
-						<span className="flex size-8 items-center justify-center rounded-full bg-surface-muted">
-							<X className="size-4 text-muted-foreground" aria-hidden />
-						</span>
-					</DrawerClose>
+					<DrawerCloseButton />
 				</div>
 				{track}
 			</DrawerContent>
@@ -201,11 +194,11 @@ function DayTrack({
 						You
 					</span>
 					<span
-						className="absolute top-[19px] size-3.5 -translate-x-1/2 rounded-full border-[2.5px] border-foreground bg-background"
+						className="absolute top-[19px] size-3.5 -translate-x-1/2 rounded-full border-[2.5px] border-accent bg-background"
 						style={{ left: `${you}%` }}
 					/>
 					<span
-						className="absolute top-[19px] size-3.5 -translate-x-1/2 rounded-full border-[2.5px] border-foreground bg-background"
+						className="absolute top-[19px] size-3.5 -translate-x-1/2 rounded-full border-[2.5px] border-accent bg-background"
 						style={{ left: `${me}%` }}
 					/>
 					<span
@@ -243,7 +236,7 @@ function DayTrack({
 					].map(({ title, zone, mineOption }) => (
 						<label
 							key={title}
-							className="relative flex h-14 cursor-pointer flex-col justify-center gap-[3px] rounded-[10px] px-3 has-focus-visible:outline-2 has-focus-visible:outline-muted-foreground sm:h-auto sm:rounded-[9px] sm:px-2.5 sm:py-[7px]"
+							className="relative flex h-14 cursor-pointer flex-col justify-center gap-[3px] rounded-[10px] px-3 sm:h-auto sm:rounded-[9px] sm:px-2.5 sm:py-[7px]"
 						>
 							<input
 								type="radio"
@@ -255,7 +248,7 @@ function DayTrack({
 							<span
 								className={cn(
 									"text-sm font-semibold tracking-[-0.14px] transition-colors sm:text-[13px]",
-									showMine === mineOption ? "text-foreground" : "text-muted-foreground",
+									showMine === mineOption ? "text-accent" : "text-muted-foreground",
 								)}
 							>
 								{title}

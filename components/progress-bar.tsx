@@ -95,7 +95,7 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 			className="progress-mount fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-85 -translate-x-1/2 overflow-hidden rounded-3xl bg-background text-foreground shadow-lg ring-1 ring-border dark:bg-[#464648] dark:text-white dark:shadow-none dark:ring-0"
 		>
 			<button
-				className="sticky top-0 z-10 flex w-full cursor-pointer items-center justify-between gap-3 border border-transparent h-10 bg-background px-5 dark:bg-[#464648] text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+				className="sticky top-0 z-10 flex w-full cursor-pointer items-center justify-between gap-3 border border-transparent h-10 bg-background px-5 dark:bg-[#464648] text-left"
 				aria-expanded={isExpanded}
 				ref={toggleRef}
 				onClick={() => setSectionsExpanded(!isExpanded)}
@@ -130,7 +130,7 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 								>
 									<button
 										aria-current={isActive ? "location" : undefined}
-										className="flex h-9 w-full cursor-pointer items-center rounded-full border border-transparent px-3 text-left focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+										className="flex h-9 w-full cursor-pointer items-center rounded-full border border-transparent px-3 text-left"
 										onClick={() => {
 											const section = document.getElementById(item.id);
 											section?.scrollIntoView();

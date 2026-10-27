@@ -76,7 +76,7 @@ export function LoopVideo({ src, poster, label, width, height }: LoopVideoProps)
 				type="button"
 				onClick={togglePlayback}
 				aria-label={isPlaying ? "Pause video" : "Play video"}
-				className="absolute right-3 bottom-3 flex size-9 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+				className="absolute right-3 bottom-3 flex size-9 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648]"
 			>
 				{isPlaying ? (
 					<Pause className="size-4" fill="currentColor" aria-hidden />

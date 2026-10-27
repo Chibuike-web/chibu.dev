@@ -1,12 +1,25 @@
 "use client";
 
 import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
+import { X } from "lucide-react";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
 export const Drawer = BaseDrawer.Root;
 export const DrawerTrigger = BaseDrawer.Trigger;
-export const DrawerClose = BaseDrawer.Close;
+
+export function DrawerCloseButton() {
+	return (
+		<BaseDrawer.Close
+			aria-label="Close"
+			className="-m-1.5 flex size-11 items-center justify-center rounded-full"
+		>
+			<span className="flex size-8 items-center justify-center rounded-full bg-surface-muted">
+				<X className="size-4 text-muted-foreground" aria-hidden />
+			</span>
+		</BaseDrawer.Close>
+	);
+}
 
 export function DrawerContent({
 	className,

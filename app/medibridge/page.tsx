@@ -348,7 +348,7 @@ export default function MedibridgePage() {
 				<CaseStudyReveal as="p" className="my-16 md:my-22">
 					Medibridge is in active development. Follow along in the{" "}
 					<a
-						className="link rounded border border-transparent focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+						className="link rounded border border-transparent"
 						href="https://github.com/Chibuike-web/medibridge"
 						target="_blank"
 						rel="noopener noreferrer"

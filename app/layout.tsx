@@ -25,6 +25,8 @@ try {
 
 	root.dataset.theme = window.localStorage.getItem("theme") ?? "system";
 	applyTheme();
+	const accent = window.localStorage.getItem("accent");
+	if (accent) root.dataset.accent = accent;
 	media.addEventListener("change", applyTheme);
 } catch (_) {}
 `;

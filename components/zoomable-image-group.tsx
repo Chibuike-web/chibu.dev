@@ -3,7 +3,7 @@
 import Image, { type StaticImageData } from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { caseStudyRevealProps } from "@/components/case-study-reveal";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -79,37 +79,35 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 		}
 	};
 
+	const handleKeyDown = useEffectEvent((e: KeyboardEvent) => {
+		if (e.key === "ArrowLeft") {
+			setDirection(-1);
+			setPreviewIndex((currentIndex) =>
+				currentIndex !== null && currentIndex > 0 ? currentIndex - 1 : currentIndex,
+			);
+		}
+
+		if (e.key === "ArrowRight") {
+			setDirection(1);
+			setPreviewIndex((currentIndex) =>
+				currentIndex !== null && currentIndex < images.length - 1 ? currentIndex + 1 : currentIndex,
+			);
+		}
+
+		if (e.key === "Escape") {
+			closePreview();
+		}
+	});
+
 	useEffect(() => {
 		if (!isPreviewOpen) return;
-
-		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === "ArrowLeft") {
-				setDirection(-1);
-				setPreviewIndex((currentIndex) =>
-					currentIndex !== null && currentIndex > 0 ? currentIndex - 1 : currentIndex,
-				);
-			}
-
-			if (e.key === "ArrowRight") {
-				setDirection(1);
-				setPreviewIndex((currentIndex) =>
-					currentIndex !== null && currentIndex < images.length - 1
-						? currentIndex + 1
-						: currentIndex,
-				);
-			}
-
-			if (e.key === "Escape") {
-				closePreview();
-			}
-		};
 
 		window.addEventListener("keydown", handleKeyDown);
 
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown);
 		};
-	}, [isPreviewOpen, images.length]);
+	}, [isPreviewOpen]);
 
 	return (
 		<>
@@ -132,7 +130,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 					openPreview(0);
 				}}
 				className={cn(
-					"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring",
+					"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted",
 					isPreviewOpen && openedFromIndex === 0 && "pointer-events-none opacity-0",
 				)}
 				transition={{ type: "spring", duration: 0.2, bounce: 0 }}
@@ -173,7 +171,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 								openPreview(imageIndex);
 							}}
 							className={cn(
-								"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring md:rounded-lg",
+								"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted md:rounded-lg",
 								isPreviewOpen && openedFromIndex === imageIndex && "pointer-events-none opacity-0",
 							)}
 							transition={{ type: "spring", duration: 0.2, bounce: 0 }}
@@ -262,7 +260,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 											onClick={showPreviousImage}
 											disabled={previewIndex === 0}
 											aria-label="Previous image"
-											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:left-4"
+											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] disabled:cursor-default disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:left-4"
 										>
 											<ArrowLeft className="size-5" aria-hidden />
 										</motion.button>
@@ -276,7 +274,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 											onClick={showNextImage}
 											disabled={previewIndex === images.length - 1}
 											aria-label="Next image"
-											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring disabled:cursor-default disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:right-4"
+											className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] disabled:cursor-default disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:right-4"
 										>
 											<ArrowRight className="size-5" aria-hidden />
 										</motion.button>
@@ -287,7 +285,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 							<motion.button
 								{...controlMotion(reducedMotion)}
 								type="button"
-								className="absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+								className="absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground"
 								onClick={closePreview}
 								aria-label="Close image preview"
 							>
