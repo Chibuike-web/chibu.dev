@@ -46,7 +46,7 @@ export function Experience() {
 										href={role.href}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="inline-flex items-center gap-1 rounded underline decoration-transparent underline-offset-3 transition-[text-decoration-color] duration-150 hover:decoration-current focus-visible:decoration-current focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring motion-reduce:transition-none"
+										className="inline-flex items-center gap-1 rounded underline decoration-transparent underline-offset-3 transition-[text-decoration-color] duration-150 hover:decoration-accent focus-visible:decoration-accent motion-reduce:transition-none"
 									>
 										{role.title}
 										<ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />

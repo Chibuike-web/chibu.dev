@@ -39,7 +39,7 @@ export function ThemeSwitcher() {
 								<label
 									{...props}
 									data-theme-option={value}
-									className="relative flex size-6 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 ease-out hover:text-foreground has-focus-visible:outline-2 has-focus-visible:outline-offset-1 has-focus-visible:outline-muted-foreground"
+									className="relative flex size-6 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 ease-out hover:text-foreground"
 								>
 									{props.children}
 								</label>

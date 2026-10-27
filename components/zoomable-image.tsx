@@ -3,7 +3,7 @@
 import Image, { type StaticImageData } from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { caseStudyRevealProps } from "@/components/case-study-reveal";
-import { useEffect, useState } from "react";
+import { useEffect, useEffectEvent, useState } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -43,12 +43,12 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 		document.body.style.overflow = "";
 	};
 
+	const handleKeyDown = useEffectEvent((e: KeyboardEvent) => {
+		if (e.key === "Escape") handleClose();
+	});
+
 	useEffect(() => {
 		if (!isZoomed) return;
-
-		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === "Escape") handleClose();
-		};
 
 		window.addEventListener("keydown", handleKeyDown);
 
@@ -78,7 +78,7 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 					handleOpen();
 				}}
 				className={cn(
-					"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring",
+					"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover",
 					isZoomed && "pointer-events-none opacity-0",
 					className,
 				)}
@@ -145,7 +145,7 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 							<motion.button
 								{...controlMotion(reducedMotion)}
 								type="button"
-								className="absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+								className="absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground"
 								onClick={handleClose}
 								aria-label="Close image preview"
 							>

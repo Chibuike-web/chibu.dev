@@ -21,7 +21,7 @@ export function Hero() {
 					<Link
 						href="/medibridge"
 						prefetch={true}
-						className="link rounded border border-transparent focus-visible:border-muted-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring"
+						className="link rounded border border-transparent"
 					>
 						Medibridge
 					</Link>
