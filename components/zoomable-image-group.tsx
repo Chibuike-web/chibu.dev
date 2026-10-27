@@ -1,9 +1,9 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import { motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { caseStudyRevealProps } from "@/components/case-study-reveal";
-import { Dialog, DialogClose, DialogContent } from "@/components/ui/dialog";
+import { Dialog, type DialogActions, DialogClose, DialogContent } from "@/components/ui/dialog";
 import { useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -35,6 +35,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 	const previousButtonRef = useRef<HTMLButtonElement>(null);
 	const nextButtonRef = useRef<HTMLButtonElement>(null);
 	const openerRef = useRef<HTMLAnchorElement>(null);
+	const dialogActionsRef = useRef<DialogActions>(null);
 
 	const isPreviewOpen = openedFromIndex !== null;
 
@@ -157,86 +158,91 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 
 			<Dialog
 				open={isPreviewOpen}
-				onOpenChange={(open) => {
-					if (!open) closePreview();
+				onOpenChange={(open, eventDetails) => {
+					if (open) return;
+					eventDetails.preventUnmountOnClose();
+					closePreview();
 				}}
+				actionsRef={dialogActionsRef}
 			>
-				{previewImage && (
-					<DialogContent
-						aria-label="Image preview"
-						finalFocus={openerRef}
-						onKeyDown={(event) => {
-							if (event.key === "ArrowLeft") showPreviousImage();
-							if (event.key === "ArrowRight") showNextImage();
-						}}
-						viewportClassName="cursor-zoom-out"
-						className="pointer-events-none flex w-full flex-col items-center gap-6 max-md:max-w-[calc((100dvh-9rem)*var(--image-ratio))] lg:max-w-[75vw] 2xl:max-w-[75rem]"
-						style={{ "--image-ratio": width / height } as React.CSSProperties}
-					>
-						<motion.div
-							layoutId={zoomLayoutId}
-							className="pointer-events-auto w-full select-none overflow-hidden rounded-xl bg-surface-muted"
-							key={previewIndex}
-							initial={
-								reducedMotion
-									? { opacity: 0 }
-									: {
-											transform: `translateX(${direction === null ? 0 : direction === 1 ? SLIDE_DISTANCE : -SLIDE_DISTANCE}px)`,
-										}
-							}
-							animate={reducedMotion ? { opacity: 1 } : { transform: "translateX(0px)" }}
-							exit={zoomLayoutId ? undefined : { opacity: 0 }}
-							transition={
-								reducedMotion ? { duration: 0.12 } : { type: "spring", duration: 0.2, bounce: 0 }
-							}
+				<AnimatePresence onExitComplete={() => dialogActionsRef.current?.unmount()}>
+					{isPreviewOpen && previewImage && (
+						<DialogContent
+							aria-label="Image preview"
+							finalFocus={openerRef}
+							onKeyDown={(event) => {
+								if (event.key === "ArrowLeft") showPreviousImage();
+								if (event.key === "ArrowRight") showNextImage();
+							}}
+							viewportClassName="cursor-zoom-out"
+							className="pointer-events-none flex w-full flex-col items-center gap-6 max-md:max-w-[calc((100dvh-9rem)*var(--image-ratio))] lg:max-w-[75vw] 2xl:max-w-[75rem]"
+							style={{ "--image-ratio": width / height } as React.CSSProperties}
 						>
-							<Image
-								src={previewImage.src}
-								alt={previewImage.alt}
-								width={width}
-								height={height}
-								loading="lazy"
-								placeholder="blur"
-								className="h-auto w-full"
-							/>
-						</motion.div>
+							<motion.div
+								layoutId={zoomLayoutId}
+								className="pointer-events-auto w-full select-none overflow-hidden rounded-xl bg-surface-muted"
+								key={previewIndex}
+								initial={
+									reducedMotion
+										? { opacity: 0 }
+										: {
+												transform: `translateX(${direction === null ? 0 : direction === 1 ? SLIDE_DISTANCE : -SLIDE_DISTANCE}px)`,
+											}
+								}
+								animate={reducedMotion ? { opacity: 1 } : { transform: "translateX(0px)" }}
+								exit={zoomLayoutId ? undefined : { opacity: 0 }}
+								transition={
+									reducedMotion ? { duration: 0.12 } : { type: "spring", duration: 0.2, bounce: 0 }
+								}
+							>
+								<Image
+									src={previewImage.src}
+									alt={previewImage.alt}
+									width={width}
+									height={height}
+									loading="lazy"
+									placeholder="blur"
+									className="h-auto w-full"
+								/>
+							</motion.div>
 
-						{images.length > 1 && (
-							<div className="flex gap-4 md:contents">
-								<motion.button
-									{...controlMotion(reducedMotion, previewIndex === 0 ? 0.4 : 1)}
-									ref={previousButtonRef}
-									type="button"
-									onClick={showPreviousImage}
-									disabled={previewIndex === 0}
-									aria-label="Previous image"
-									className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] disabled:cursor-default disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:left-4"
-								>
-									<ArrowLeft className="size-5" aria-hidden />
-								</motion.button>
-								<motion.button
-									{...controlMotion(reducedMotion, previewIndex === images.length - 1 ? 0.4 : 1)}
-									ref={nextButtonRef}
-									type="button"
-									onClick={showNextImage}
-									disabled={previewIndex === images.length - 1}
-									aria-label="Next image"
-									className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] disabled:cursor-default disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:right-4"
-								>
-									<ArrowRight className="size-5" aria-hidden />
-								</motion.button>
-							</div>
-						)}
+							{images.length > 1 && (
+								<div className="flex gap-4 md:contents">
+									<motion.button
+										{...controlMotion(reducedMotion, previewIndex === 0 ? 0.4 : 1)}
+										ref={previousButtonRef}
+										type="button"
+										onClick={showPreviousImage}
+										disabled={previewIndex === 0}
+										aria-label="Previous image"
+										className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] disabled:cursor-default disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:left-4"
+									>
+										<ArrowLeft className="size-5" aria-hidden />
+									</motion.button>
+									<motion.button
+										{...controlMotion(reducedMotion, previewIndex === images.length - 1 ? 0.4 : 1)}
+										ref={nextButtonRef}
+										type="button"
+										onClick={showNextImage}
+										disabled={previewIndex === images.length - 1}
+										aria-label="Next image"
+										className="pointer-events-auto flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] disabled:cursor-default disabled:hover:bg-[#464648]/80 md:absolute md:top-1/2 md:z-10 md:-translate-y-1/2 md:right-4"
+									>
+										<ArrowRight className="size-5" aria-hidden />
+									</motion.button>
+								</div>
+							)}
 
-						<DialogClose
-							render={<motion.button {...controlMotion(reducedMotion)} />}
-							className="pointer-events-auto absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground"
-							aria-label="Close image preview"
-						>
-							<X className="size-5" aria-hidden />
-						</DialogClose>
-					</DialogContent>
-				)}
+							<DialogClose
+								render={<motion.button {...controlMotion(reducedMotion)} />}
+								className="pointer-events-auto absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground"
+								aria-label="Close image preview"
+							>
+								<X className="size-5" aria-hidden />
+							</DialogClose>
+						</DialogContent>
+					)}
+				</AnimatePresence>
 			</Dialog>
 		</>
 	);
