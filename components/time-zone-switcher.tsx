@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 const myZone = { timeZone: "Africa/Lagos", city: "Enugu" };
 
 const pillClass =
-	"group -mr-3 flex h-9 items-center gap-[5px] rounded-full pr-3 pl-2.5 text-[13px] font-semibold tabular-nums transition-colors duration-150 ease-out data-popup-open:bg-surface-hover sm:-mr-4 sm:gap-1.5 sm:pr-4 sm:pl-3 sm:text-sm [@media(hover:hover)]:hover:bg-surface-hover";
+	"group flex h-9 items-center gap-[5px] rounded-full pr-3 pl-2.5 text-[13px] font-semibold tabular-nums transition-colors duration-150 ease-out data-popup-open:bg-surface-hover sm:gap-1.5 sm:pr-4 sm:pl-3 sm:text-sm [@media(hover:hover)]:hover:bg-surface-hover";
 
 function Pill({ time }: { time: string }) {
 	return (
