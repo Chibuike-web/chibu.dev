@@ -3,7 +3,8 @@
 import Image, { type StaticImageData } from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { caseStudyRevealProps } from "@/components/case-study-reveal";
-import { useEffect, useEffectEvent, useState } from "react";
+import { Dialog, type DialogActions, DialogClose, DialogContent } from "@/components/ui/dialog";
+import { useRef, useState } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,37 +30,14 @@ type ZoomableImageProps = {
 export function ZoomableImage({ src, alt, width, height, className }: ZoomableImageProps) {
 	const reducedMotion = useReducedMotion();
 	const [isZoomed, setIsZoomed] = useState(false);
+	const thumbnailRef = useRef<HTMLAnchorElement>(null);
+	const dialogActionsRef = useRef<DialogActions>(null);
 	const layoutId = `zoom-image-${src.src}`;
-
-	const handleOpen = () => {
-		setIsZoomed(true);
-		document.documentElement.style.overflow = "hidden";
-		document.body.style.overflow = "hidden";
-	};
-
-	const handleClose = () => {
-		setIsZoomed(false);
-		document.documentElement.style.overflow = "";
-		document.body.style.overflow = "";
-	};
-
-	const handleKeyDown = useEffectEvent((e: KeyboardEvent) => {
-		if (e.key === "Escape") handleClose();
-	});
-
-	useEffect(() => {
-		if (!isZoomed) return;
-
-		window.addEventListener("keydown", handleKeyDown);
-
-		return () => {
-			window.removeEventListener("keydown", handleKeyDown);
-		};
-	}, [isZoomed]);
 
 	return (
 		<>
 			<motion.a
+				ref={thumbnailRef}
 				{...caseStudyRevealProps(reducedMotion)}
 				href={src.src}
 				aria-label={`Open image preview: ${alt}`}
@@ -75,7 +53,7 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 						return;
 					}
 					event.preventDefault();
-					handleOpen();
+					setIsZoomed(true);
 				}}
 				className={cn(
 					"block w-full cursor-zoom-in overflow-hidden rounded-xl border border-transparent bg-surface-muted ring ring-surface-hover",
@@ -95,31 +73,21 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 				/>
 			</motion.a>
 
-			<AnimatePresence>
-				{isZoomed && (
-					<>
-						<motion.div
-							className="fixed inset-0 z-[999] bg-background/90 backdrop-blur-md"
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							exit={{ opacity: 0 }}
-							transition={{ duration: 0.2 }}
-							aria-hidden="true"
-						/>
-
-						<motion.div
-							role="dialog"
-							aria-modal="true"
+			<Dialog
+				open={isZoomed}
+				onOpenChange={(open, eventDetails) => {
+					if (!open) eventDetails.preventUnmountOnClose();
+					setIsZoomed(open);
+				}}
+				actionsRef={dialogActionsRef}
+			>
+				<AnimatePresence onExitComplete={() => dialogActionsRef.current?.unmount()}>
+					{isZoomed && (
+						<DialogContent
 							aria-label="Image preview"
-							className="fixed inset-0 z-[9999] flex cursor-zoom-out items-center justify-center px-4 lg:px-0"
-							onMouseDown={(event) => {
-								if (event.target === event.currentTarget) {
-									handleClose();
-								}
-							}}
-							initial={{ opacity: 1 }}
-							animate={{ opacity: 1 }}
-							exit={{ opacity: 1 }}
+							finalFocus={thumbnailRef}
+							viewportClassName="cursor-zoom-out"
+							className="w-full lg:max-w-[75vw] 2xl:max-w-[75rem]"
 						>
 							<motion.div
 								layoutId={reducedMotion ? undefined : layoutId}
@@ -127,7 +95,7 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 								initial={reducedMotion ? { opacity: 0 } : false}
 								animate={{ opacity: 1 }}
 								exit={reducedMotion ? { opacity: 0 } : undefined}
-								className="w-full select-none overflow-hidden rounded-xl ring ring-surface-hover [background:linear-gradient(var(--surface-muted),var(--surface-muted)),var(--background)] lg:max-w-[75vw] 2xl:max-w-[75rem]"
+								className="w-full select-none overflow-hidden rounded-xl ring ring-surface-hover [background:linear-gradient(var(--surface-muted),var(--surface-muted)),var(--background)]"
 								transition={
 									reducedMotion ? { duration: 0.12 } : { type: "spring", duration: 0.2, bounce: 0 }
 								}
@@ -142,20 +110,17 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 								/>
 							</motion.div>
 
-							<motion.button
-								{...controlMotion(reducedMotion)}
-								type="button"
+							<DialogClose
+								render={<motion.button {...controlMotion(reducedMotion)} />}
 								className="absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground"
-								onClick={handleClose}
 								aria-label="Close image preview"
 							>
 								<X aria-hidden="true" className="size-5" />
-								<span className="sr-only">Close preview</span>
-							</motion.button>
-						</motion.div>
-					</>
-				)}
-			</AnimatePresence>
+							</DialogClose>
+						</DialogContent>
+					)}
+				</AnimatePresence>
+			</Dialog>
 		</>
 	);
 }
