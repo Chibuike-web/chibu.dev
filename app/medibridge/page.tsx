@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CaseStudyLink, CaseStudyReveal } from "@/components/case-study-reveal";
 import { BackToHome } from "@/components/layouts/back-to-home";
 import { LoopVideo } from "@/components/loop-video";
-import { ZoomableImageGroup } from "@/components/zoomable-image-group";
+import { ZoomableImage } from "@/components/zoomable-image";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import onboardingReview from "@/assets/medibridge/onboarding-review.webp";
@@ -28,24 +28,6 @@ export const metadata: Metadata = {
 
 const headingClass = "font-medium tight text-balance";
 const bodyClass = "font-medium tight text-muted-foreground text-pretty";
-const patientOnboardingImages = [
-	{
-		src: onboardingReview,
-		alt: "Review Patient Information screen with editable extracted fields for one patient and the other uploaded documents waiting for review",
-	},
-];
-const patientManagementImages = [
-	{
-		src: diagnosisActivity,
-		alt: "Diagnosis details drawer with its activity log showing the severity stage changed from Stage 2 to Stage 1 and the updated clinical note",
-	},
-];
-const patientRecordsTransferImages = [
-	{
-		src: transferApproval,
-		alt: "Patient approval page listing the requesting hospital, the receiving hospital, the reason, when access ends, and every record that will be shared",
-	},
-];
 
 const navItems = [
 	{
@@ -132,7 +114,12 @@ export default function MedibridgePage() {
 					personal, contact, emergency, and physical details. Nothing is saved automatically. Staff
 					check every field, fix what the extraction got wrong, and save one patient at a time.
 				</CaseStudyReveal>
-				<ZoomableImageGroup images={patientOnboardingImages} width={3000} height={1800} />
+				<ZoomableImage
+					src={onboardingReview}
+					width={3000}
+					height={1800}
+					alt="Review Patient Information screen with editable extracted fields for one patient and the other uploaded documents waiting for review"
+				/>
 			</section>
 			<section id="patient-management" tabIndex={-1} className="mt-22 outline-none">
 				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
@@ -168,7 +155,12 @@ export default function MedibridgePage() {
 					fields that changed, and every change is logged with who made it, the old value, and the
 					new one. Encounters group the vitals and medications recorded during a single visit.
 				</CaseStudyReveal>
-				<ZoomableImageGroup images={patientManagementImages} width={3000} height={1800} />
+				<ZoomableImage
+					src={diagnosisActivity}
+					width={3000}
+					height={1800}
+					alt="Diagnosis details drawer with its activity log showing the severity stage changed from Stage 2 to Stage 1 and the updated clinical note"
+				/>
 			</section>
 
 			<section id="patient-records-transfer" tabIndex={-1} className="mt-22 outline-none">
@@ -207,7 +199,12 @@ export default function MedibridgePage() {
 					only the approved records, while the sending hospital watches the request move from
 					pending to completed.
 				</CaseStudyReveal>
-				<ZoomableImageGroup images={patientRecordsTransferImages} width={3000} height={1800} />
+				<ZoomableImage
+					src={transferApproval}
+					width={3000}
+					height={1800}
+					alt="Patient approval page listing the requesting hospital, the receiving hospital, the reason, when access ends, and every record that will be shared"
+				/>
 				<CaseStudyReveal as="p" className="my-16 md:my-22">
 					Medibridge is in active development. Follow along in the{" "}
 					<a
