@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 	description:
 		"Portfolio of Chibuike Maduabuchi, a design engineer blending design and code to build thoughtful digital products.",
 	icons: {
-		icon: [{ url: "/profile.png", type: "image/svg+xml", sizes: "any" }],
+		icon: [{ url: "/profile.png", type: "image/png", sizes: "1600x1600" }],
 	},
 	openGraph: {
 		title: "Chibuike Maduabuchi - Design Engineer",

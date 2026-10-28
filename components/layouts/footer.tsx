@@ -43,6 +43,7 @@ export function Footer() {
 					/>
 				</span>
 			</button>
+			<output className="sr-only">{copied ? "Email copied to clipboard" : ""}</output>
 			<noscript>
 				<span className="select-all break-all">chibuikemaduabuchi2023@gmail.com</span>
 			</noscript>

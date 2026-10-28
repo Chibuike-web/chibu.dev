@@ -16,8 +16,6 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { useNow } from "@/hooks/use-now";
 import { cn } from "@/lib/utils";
 
-const myZone = { timeZone: "Africa/Lagos", city: "Enugu" };
-
 const pillClass =
 	"group flex h-9 items-center gap-[5px] rounded-full pr-3 pl-2.5 text-[13px] font-semibold tabular-nums transition-colors duration-150 ease-out data-popup-open:bg-surface-hover sm:gap-1.5 sm:pr-4 sm:pl-3 sm:text-sm [@media(hover:hover)]:hover:bg-surface-hover";
 
@@ -36,24 +34,30 @@ function Pill({ time }: { time: string }) {
 }
 
 function readZone(date: Date, timeZone: string) {
-	const part = Object.fromEntries(
-		new Intl.DateTimeFormat("en-US", {
-			timeZone,
-			hourCycle: "h23",
-			year: "numeric",
-			month: "numeric",
-			day: "numeric",
-			hour: "numeric",
-			minute: "numeric",
-		})
-			.formatToParts(date)
-			.map(({ type, value }) => [type, Number(value)]),
-	);
+	const parts = new Intl.DateTimeFormat("en-US", {
+		timeZone,
+		hourCycle: "h23",
+		year: "numeric",
+		month: "numeric",
+		day: "numeric",
+		hour: "numeric",
+		minute: "numeric",
+	}).formatToParts(date);
+	const readPart = (type: Intl.DateTimeFormatPartTypes) =>
+		Number(parts.find((part) => part.type === type)?.value);
+
+	const year = readPart("year");
+	const month = readPart("month");
+	const day = readPart("day");
+	const hour = readPart("hour");
+	const minute = readPart("minute");
+	const clockHour = hour % 12 === 0 ? 12 : hour % 12;
+	const period = hour < 12 ? "AM" : "PM";
 
 	return {
-		wall: Date.UTC(part.year, part.month - 1, part.day, part.hour, part.minute) / 60000,
-		minutes: part.hour * 60 + part.minute,
-		time: `${String(part.hour % 12 || 12).padStart(2, "0")}:${String(part.minute).padStart(2, "0")}${part.hour < 12 ? "AM" : "PM"}`,
+		wall: Date.UTC(year, month - 1, day, hour, minute) / 60000,
+		minutes: hour * 60 + minute,
+		time: `${String(clockHour).padStart(2, "0")}:${String(minute).padStart(2, "0")}${period}`,
 		date: new Intl.DateTimeFormat("en-GB", { timeZone, day: "numeric", month: "short" }).format(
 			date,
 		),
@@ -93,7 +97,7 @@ function ZoneClock() {
 		...readZone(now, visitorZone),
 		city: visitorZone.split("/").pop()!.replaceAll("_", " "),
 	};
-	const mine = { ...readZone(now, myZone.timeZone), city: myZone.city };
+	const mine = { ...readZone(now, "Africa/Lagos"), city: "Enugu" };
 	const shown = showMine ? mine : yours;
 	const gapMinutes = Math.abs(mine.wall - yours.wall);
 	const hours = Math.floor(gapMinutes / 60);
@@ -170,17 +174,17 @@ function DayTrack({
 	const wraps = mine.date !== yours.date;
 	const bars = wraps
 		? [
-				[0, start],
-				[end, 100],
+				{ from: 0, to: start },
+				{ from: end, to: 100 },
 			]
-		: [[start, end]];
+		: [{ from: start, to: end }];
 
 	return (
 		<>
 			<div className="flex flex-col gap-2.5 sm:gap-3.5">
 				<div className="relative h-13 [--day:#f2c46b] [--night:#4a5a8c] dark:[--day:#d9a848] dark:[--night:#3a4878]">
 					<div className="absolute inset-x-0 top-5.5 h-2 rounded bg-[linear-gradient(to_right,var(--night)_20%,var(--day)_32%,var(--day)_72%,var(--night)_84%)]" />
-					{bars.map(([from, to]) => (
+					{bars.map(({ from, to }) => (
 						<div
 							key={from}
 							className="absolute top-6 h-1 rounded-sm bg-white/55"
@@ -230,36 +234,55 @@ function DayTrack({
 							showMine && "translate-x-full",
 						)}
 					/>
-					{[
-						{ title: "Your time", zone: yours, mineOption: false },
-						{ title: "My time", zone: mine, mineOption: true },
-					].map(({ title, zone, mineOption }) => (
-						<label
-							key={title}
-							className="relative flex h-14 cursor-pointer flex-col justify-center gap-[3px] rounded-[10px] px-3 sm:h-auto sm:rounded-[9px] sm:px-2.5 sm:py-[7px]"
-						>
-							<input
-								type="radio"
-								name="clock-zone"
-								checked={showMine === mineOption}
-								onChange={() => onChoose(mineOption)}
-								className="sr-only"
-							/>
-							<span
-								className={cn(
-									"text-sm font-semibold tracking-[-0.14px] transition-colors sm:text-[13px]",
-									showMine === mineOption ? "text-accent" : "text-muted-foreground",
-								)}
-							>
-								{title}
-							</span>
-							<span className="text-xs text-muted-foreground sm:text-[11px]">
-								{zone.time} · {zone.city}
-							</span>
-						</label>
-					))}
+					<ZoneOption
+						title="Your time"
+						zone={yours}
+						selected={!showMine}
+						onSelect={() => onChoose(false)}
+					/>
+					<ZoneOption
+						title="My time"
+						zone={mine}
+						selected={showMine}
+						onSelect={() => onChoose(true)}
+					/>
 				</fieldset>
 			)}
 		</>
+	);
+}
+
+function ZoneOption({
+	title,
+	zone,
+	selected,
+	onSelect,
+}: {
+	title: string;
+	zone: Zone;
+	selected: boolean;
+	onSelect: () => void;
+}) {
+	return (
+		<label className="relative flex h-14 cursor-pointer flex-col justify-center gap-[3px] rounded-[10px] px-3 sm:h-auto sm:rounded-[9px] sm:px-2.5 sm:py-[7px]">
+			<input
+				type="radio"
+				name="clock-zone"
+				checked={selected}
+				onChange={onSelect}
+				className="sr-only"
+			/>
+			<span
+				className={cn(
+					"text-sm font-semibold tracking-[-0.14px] transition-colors sm:text-[13px]",
+					selected ? "text-accent" : "text-muted-foreground",
+				)}
+			>
+				{title}
+			</span>
+			<span className="text-xs text-muted-foreground sm:text-[11px]">
+				{zone.time} · {zone.city}
+			</span>
+		</label>
 	);
 }

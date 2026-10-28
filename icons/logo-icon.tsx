@@ -1,6 +1,4 @@
-import type { IconProps } from "@/lib/types";
-
-export function LogoIcon({ className }: IconProps) {
+export function LogoIcon({ className }: { className?: string }) {
 	return (
 		<svg
 			width="30"

@@ -1,13 +1,7 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
-
-const subscribe = () => () => {};
+import { usePathname } from "next/navigation";
 
 export function MissingPath() {
-	return useSyncExternalStore(
-		subscribe,
-		() => window.location.pathname,
-		() => "this page",
-	);
+	return usePathname();
 }

@@ -2,84 +2,39 @@
 
 import { cn } from "@/lib/utils";
 import { ChevronsUpDown } from "lucide-react";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProgressRing from "@/components/progress-ring";
 
-const expandedChangeEvent = "case-study-sections-change";
-
-function subscribe(onChange: () => void) {
-	window.addEventListener(expandedChangeEvent, onChange);
-	return () => window.removeEventListener(expandedChangeEvent, onChange);
-}
-
-function getExpandedSnapshot() {
-	return document.cookie.split("; ").includes("isExpandedValue=true");
-}
-
-function getServerSnapshot(): boolean | null {
-	return null;
-}
-
-function setSectionsExpanded(expanded: boolean) {
-	document.cookie = `isExpandedValue=${expanded}; path=/; max-age=31536000; samesite=lax`;
-	window.dispatchEvent(new Event(expandedChangeEvent));
-}
-
-export default function ProgressBar({ items }: { items: Record<string, string>[] }) {
-	const isExpanded = useSyncExternalStore<boolean | null>(
-		subscribe,
-		getExpandedSnapshot,
-		getServerSnapshot,
-	);
-
-	const [activeSectionHeading, setActiveSectionHeading] = useState<string | undefined>(
-		items[0].label,
-	);
+export default function ProgressBar({ items }: { items: { id: string; label: string }[] }) {
+	const [isExpanded, setIsExpanded] = useState(false);
 	const [activeSection, setActiveSection] = useState(0);
 	const toggleRef = useRef<HTMLButtonElement>(null);
 
 	useEffect(() => {
-		let observer: IntersectionObserver | undefined;
-
-		const observeSections = () => {
-			observer?.disconnect();
-			observer = new IntersectionObserver(
-				(entries) => {
-					entries.forEach((entry) => {
-						if (entry.isIntersecting) {
-							const sectionIndex = items.findIndex((section) => section.id === entry.target.id);
-							setActiveSection(sectionIndex);
-							setActiveSectionHeading(items[sectionIndex].label);
-						}
-					});
-				},
-				{
-					rootMargin: `0px 0px -${document.documentElement.clientHeight * 0.8}px 0px`,
-					threshold: 0,
-				},
-			);
-			for (const item of items) {
-				const section = document.getElementById(item.id);
-				if (section) {
-					observer.observe(section);
-				}
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						setActiveSection(items.findIndex((section) => section.id === entry.target.id));
+					}
+				});
+			},
+			{ rootMargin: "0px 0px -80% 0px", threshold: 0 },
+		);
+		for (const item of items) {
+			const section = document.getElementById(item.id);
+			if (section) {
+				observer.observe(section);
 			}
-		};
-
-		observeSections();
-		window.addEventListener("resize", observeSections);
-
-		return () => {
-			observer?.disconnect();
-			window.removeEventListener("resize", observeSections);
-		};
+		}
+		return () => observer.disconnect();
 	}, [items]);
 
 	useEffect(() => {
 		if (!isExpanded) return;
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === "Escape" && isExpanded) {
-				setSectionsExpanded(false);
+			if (e.key === "Escape") {
+				setIsExpanded(false);
 				toggleRef.current?.focus();
 			}
 		};
@@ -87,10 +42,9 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 		return () => document.removeEventListener("keydown", handleKeyDown);
 	}, [isExpanded]);
 
-	if (isExpanded === null) return null;
-
 	return (
 		<nav
+			data-js-only
 			aria-label="Case study sections"
 			className="progress-mount fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-85 -translate-x-1/2 overflow-hidden rounded-3xl bg-background text-foreground shadow-lg ring-1 ring-border dark:bg-[#464648] dark:text-white dark:shadow-none dark:ring-0 has-[>button:focus-visible]:outline has-[>button:focus-visible]:outline-(--focus) has-[>button:focus-visible]:ring-4 has-[>button:focus-visible]:ring-(--focus-ring)"
 		>
@@ -98,12 +52,12 @@ export default function ProgressBar({ items }: { items: Record<string, string>[]
 				className="sticky top-0 z-10 flex w-full cursor-pointer items-center justify-between gap-3 border border-transparent h-10 bg-background px-5 dark:bg-[#464648] text-left focus-visible:outline-none! focus-visible:shadow-none!"
 				aria-expanded={isExpanded}
 				ref={toggleRef}
-				onClick={() => setSectionsExpanded(!isExpanded)}
+				onClick={() => setIsExpanded(!isExpanded)}
 			>
 				<span className="flex min-w-0 items-center gap-2.5">
 					<ProgressRing />
 					<span className="sr-only">Sections, current: </span>
-					<span className="truncate">{activeSectionHeading}</span>
+					<span className="truncate">{items[activeSection].label}</span>
 				</span>
 				<ChevronsUpDown className="size-4 shrink-0" />
 			</button>

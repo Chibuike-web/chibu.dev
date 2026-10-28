@@ -35,7 +35,6 @@ export const metadata: Metadata = {
 
 const headingClass = "font-medium tight text-balance";
 const bodyClass = "font-medium tight text-muted-foreground text-pretty";
-const detailListClass = "my-6 rounded-xl bg-surface-muted p-4";
 const detailItemClass = "font-medium tight text-muted-foreground";
 const feedbackItemClass = "mt-6 flex items-start gap-4 sm:gap-6";
 const feedbackNumberClass =
@@ -120,7 +119,7 @@ export default function BulkAirtimePage() {
 						screen, providing a clear visual summary for review.
 					</p>
 				</CaseStudyReveal>
-				<CaseStudyReveal as="ul" siblingIndex={1} className={detailListClass}>
+				<CaseStudyReveal as="ul" siblingIndex={1} className="my-6 rounded-xl bg-surface-muted p-4">
 					<li>
 						<span className="font-medium text-foreground">User Action:</span>{" "}
 						<span className={detailItemClass}>Select recipients from the contact list.</span>
@@ -155,7 +154,7 @@ export default function BulkAirtimePage() {
 						offering greater flexibility and control over the input process.
 					</p>
 				</CaseStudyReveal>
-				<CaseStudyReveal as="ul" siblingIndex={1} className={detailListClass}>
+				<CaseStudyReveal as="ul" siblingIndex={1} className="my-6 rounded-xl bg-surface-muted p-4">
 					<li>
 						<span className="font-medium text-foreground">User Action:</span>{" "}
 						<span className={detailItemClass}>

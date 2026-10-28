@@ -31,19 +31,6 @@ const accents = [
 ] as const;
 type Accent = (typeof accents)[number];
 
-const applyAccent = (name: Accent) => {
-	const root = document.documentElement;
-	try {
-		if (name === "graphite") {
-			delete root.dataset.accent;
-			localStorage.removeItem("accent");
-		} else {
-			root.dataset.accent = name;
-			localStorage.setItem("accent", name);
-		}
-	} catch {}
-};
-
 // The name is a heading, which can't go inside a button, so the button's ::after stretches over the whole profile instead.
 const triggerClass =
 	"flex size-12 shrink-0 cursor-pointer items-center justify-center rounded-full bg-accent-soft text-accent after:absolute after:inset-0 after:rounded-full";
@@ -74,7 +61,16 @@ export function AccentPicker() {
 							checked={selected}
 							onChange={() => {
 								setAccent(name);
-								applyAccent(name);
+								const root = document.documentElement;
+								try {
+									if (name === "graphite") {
+										delete root.dataset.accent;
+										localStorage.removeItem("accent");
+									} else {
+										root.dataset.accent = name;
+										localStorage.setItem("accent", name);
+									}
+								} catch {}
 							}}
 							className="sr-only"
 						/>
