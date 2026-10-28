@@ -5,39 +5,9 @@ import { LoopVideo } from "@/components/loop-video";
 import { ZoomableImageGroup } from "@/components/zoomable-image-group";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
-import patientOnboardingFirst from "@/assets/medibridge/patient-onboarding-first.webp";
-import patientOnboardingSecond from "@/assets/medibridge/patient-onboarding-second.webp";
-import patientOnboardingThird from "@/assets/medibridge/patient-onboarding-third.webp";
-import patientOnboardingFourth from "@/assets/medibridge/patient-onboarding-fourth.webp";
-import patientOnboardingFifth from "@/assets/medibridge/patient-onboarding-fifth.webp";
-import patientOnboardingSixth from "@/assets/medibridge/patient-onboarding-sixth.webp";
-import patientOnboardingSeventh from "@/assets/medibridge/patient-onboarding-seventh.webp";
-import patientManagementFirst from "@/assets/medibridge/patient-management-first.webp";
-import patientManagementSecond from "@/assets/medibridge/patient-management-second.webp";
-import patientManagementThird from "@/assets/medibridge/patient-management-third.webp";
-import patientManagementFourth from "@/assets/medibridge/patient-management-fourth.webp";
-import patientManagementFifth from "@/assets/medibridge/patient-management-fifth.webp";
-import patientManagementSixth from "@/assets/medibridge/patient-management-sixth.webp";
-import patientManagementSeventh from "@/assets/medibridge/patient-management-seventh.webp";
-import patientManagementEighth from "@/assets/medibridge/patient-management-eighth.webp";
-import patientManagementNinth from "@/assets/medibridge/patient-management-ninth.webp";
-import patientManagementTenth from "@/assets/medibridge/patient-management-tenth.webp";
-import patientManagementEleventh from "@/assets/medibridge/patient-management-eleventh.webp";
-import patientManagementTwelfth from "@/assets/medibridge/patient-management-twelfth.webp";
-import patientManagementThirteenth from "@/assets/medibridge/patient-management-thirteenth.webp";
-import patientManagementFourteenth from "@/assets/medibridge/patient-management-fourteenth.webp";
-import patientManagementFifteenth from "@/assets/medibridge/patient-management-fifteenth.webp";
-import patientRecordsTransferFirst from "@/assets/medibridge/patient-records-transfer-first.webp";
-import patientRecordsTransferSecond from "@/assets/medibridge/patient-records-transfer-second.webp";
-import patientRecordsTransferThird from "@/assets/medibridge/patient-records-transfer-third.webp";
-import patientRecordsTransferFourth from "@/assets/medibridge/patient-records-transfer-fourth.webp";
-import patientRecordsTransferFifth from "@/assets/medibridge/patient-records-transfer-fifth.webp";
-import patientRecordsTransferSixth from "@/assets/medibridge/patient-records-transfer-sixth.webp";
-import patientRecordsTransferSeventh from "@/assets/medibridge/patient-records-transfer-seventh.webp";
-import patientRecordsTransferEighth from "@/assets/medibridge/patient-records-transfer-eighth.webp";
-import patientRecordsTransferNinth from "@/assets/medibridge/patient-records-transfer-ninth.webp";
-import patientRecordsTransferTenth from "@/assets/medibridge/patient-records-transfer-tenth.webp";
-import patientRecordsTransferEleventh from "@/assets/medibridge/patient-records-transfer-eleventh.webp";
+import onboardingReview from "@/assets/medibridge/onboarding-review.webp";
+import diagnosisActivity from "@/assets/medibridge/diagnosis-activity.webp";
+import transferApproval from "@/assets/medibridge/transfer-approval.webp";
 
 import { CaseStudyNavigation } from "@/components/case-study-navigation";
 
@@ -60,140 +30,20 @@ const headingClass = "font-medium tight text-balance";
 const bodyClass = "font-medium tight text-muted-foreground text-pretty";
 const patientOnboardingImages = [
 	{
-		src: patientOnboardingFirst,
-		alt: "Overview page empty state with no patients yet and an Add patient button",
-	},
-	{
-		src: patientOnboardingSecond,
-		alt: "Upload Patient’s Record screen with a drop zone for JPEG, PNG, and PDF files",
-	},
-	{
-		src: patientOnboardingThird,
-		alt: "Seven patient PDFs uploaded while patient data is being extracted",
-	},
-	{
-		src: patientOnboardingFourth,
-		alt: "Confirm document selection dialog warning that files cannot be added once extraction starts",
-	},
-	{
-		src: patientOnboardingFifth,
-		alt: "All seven uploaded PDFs marked as extraction complete, with a Continue button",
-	},
-	{
-		src: patientOnboardingSixth,
-		alt: "Review Patient Information list of seven extracted patients above a Save Patient Record button",
-	},
-	{
-		src: patientOnboardingSeventh,
-		alt: "Expanded patient review card with editable extracted personal and contact fields",
+		src: onboardingReview,
+		alt: "Review Patient Information screen with editable extracted fields for one patient and the other uploaded documents waiting for review",
 	},
 ];
 const patientManagementImages = [
 	{
-		src: patientManagementFirst,
-		alt: "Patients page empty state with no patient records and an Add patient button",
-	},
-	{
-		src: patientManagementSecond,
-		alt: "Patient overview with personal and medical information and a table of recent diagnoses",
-	},
-	{
-		src: patientManagementThird,
-		alt: "Patients table filtered by gender, age, and date, with a row menu to view, transfer, export, or archive a patient",
-	},
-	{
-		src: patientManagementFourth,
-		alt: "Edit Contact Information dialog with required phone, email, address, state, and country fields",
-	},
-	{
-		src: patientManagementFifth,
-		alt: "Diagnoses table with onset, last reviewed, and status columns, and a row menu open",
-	},
-	{
-		src: patientManagementSixth,
-		alt: "Allergies table with reactions and severity, filtered by status, with a row menu open",
-	},
-	{
-		src: patientManagementSeventh,
-		alt: "Lab tests table with reference ranges and flags, with three tests selected for bulk export or archive",
-	},
-	{
-		src: patientManagementEighth,
-		alt: "Vitals page with a 30-day blood pressure trend chart above the vitals table",
-	},
-	{
-		src: patientManagementNinth,
-		alt: "Encounters table listing visit type, department, and physician, with a row menu open",
-	},
-	{
-		src: patientManagementTenth,
-		alt: "Encounter details showing the vitals and medications recorded during the visit",
-	},
-	{
-		src: patientManagementEleventh,
-		alt: "Immunization details panel for a hepatitis B dose, with its edit history",
-	},
-	{
-		src: patientManagementTwelfth,
-		alt: "Add medication form with required fields for medication, indication, dose, route, and frequency",
-	},
-	{
-		src: patientManagementThirteenth,
-		alt: "Edit document details panel for a chest X-ray report, confirming removal of an attached file",
-	},
-	{
-		src: patientManagementFourteenth,
-		alt: "Edit procedure details panel for an appendectomy, linked to a related diagnosis and medication",
-	},
-	{
-		src: patientManagementFifteenth,
-		alt: "Create encounter panel listing record types to add, from vitals and medications to lab tests and documents",
+		src: diagnosisActivity,
+		alt: "Diagnosis details drawer with its activity log showing the severity stage changed from Stage 2 to Stage 1 and the updated clinical note",
 	},
 ];
 const patientRecordsTransferImages = [
 	{
-		src: patientRecordsTransferFirst,
-		alt: "Transfers page empty state with no transfers yet and a Create transfer request button",
-	},
-	{
-		src: patientRecordsTransferSecond,
-		alt: "New transfer request, step 1 of 2, with a searchable patient picker",
-	},
-	{
-		src: patientRecordsTransferThird,
-		alt: "Step 1 of 2 with four patients selected for transfer",
-	},
-	{
-		src: patientRecordsTransferFourth,
-		alt: "Step 2 of 2 for attaching clinical records by type and entering the target hospital’s name and email",
-	},
-	{
-		src: patientRecordsTransferFifth,
-		alt: "Diagnosis picker for choosing which records to attach to the transfer",
-	},
-	{
-		src: patientRecordsTransferSixth,
-		alt: "Completed step 2 of 2 with eight records attached and Enugu State Teaching Hospital as the destination",
-	},
-	{
-		src: patientRecordsTransferSeventh,
-		alt: "Confirm Transfer Request dialog with a review checklist before sending for patient approval",
-	},
-	{
-		src: patientRecordsTransferEighth,
-		alt: "Transfer Request Sent confirmation explaining that the patient approves before records reach the hospital",
-	},
-	{
-		src: patientRecordsTransferNinth,
-		alt: "Receiving hospital’s read-only view of shared diagnoses, with a banner showing when access expires",
-	},
-	{
-		src: patientRecordsTransferTenth,
-		alt: "Read-only shared medications view with an access expiring soon warning",
-	},
-	{
-		src: patientRecordsTransferEleventh,
-		alt: "Transfers table showing each request’s target hospital and status, from pending to completed or rejected",
+		src: transferApproval,
+		alt: "Patient approval page listing the requesting hospital, the receiving hospital, the reason, when access ends, and every record that will be shared",
 	},
 ];
 
@@ -272,15 +122,15 @@ export default function MedibridgePage() {
 						poster="/videos/patient-onboarding.webp"
 						width={800}
 						height={450}
-						label="Silent screen recording of the patient onboarding flow, showing a document being uploaded and the extracted fields being reviewed and corrected before the patient is confirmed."
+						label="Silent screen recording of patient onboarding: four patient PDFs are uploaded, the extracted details are reviewed, a wrong age is corrected, and each patient is saved."
 					/>
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-6")}>
-					Re-typing patient details from printed files, scans, and PDFs is slow, so the upload reads
-					the text for staff. Digital PDFs and Word files are read directly, and scanned pages and
-					photos go through OCR. A language model then sorts that text into the patient’s personal,
-					contact, emergency, and physical details. Nothing is saved automatically. Staff review and
-					edit every field before confirming the patient.
+					Hospitals already hold patient details in printed files, scans, and PDFs, so staff upload
+					those instead of retyping them. Digital PDFs and Word files are read directly, scanned
+					pages and photos go through OCR, and a language model sorts the text into the patient’s
+					personal, contact, emergency, and physical details. Nothing is saved automatically. Staff
+					check every field, fix what the extraction got wrong, and save one patient at a time.
 				</CaseStudyReveal>
 				<ZoomableImageGroup images={patientOnboardingImages} width={3000} height={1800} />
 			</section>
@@ -297,7 +147,7 @@ export default function MedibridgePage() {
 						poster="/videos/patient-management-1.webp"
 						width={800}
 						height={450}
-						label="Silent screen recording of patient management, showing clinical sections in list and detail views as a record is browsed."
+						label="Silent screen recording of a patient record: the profile overview, a 30-day blood pressure chart, diagnoses with a detail drawer, then allergies, medications, and lab results."
 					/>
 				</CaseStudyReveal>
 				<CaseStudyReveal
@@ -309,14 +159,14 @@ export default function MedibridgePage() {
 						poster="/videos/patient-management-2.webp"
 						width={800}
 						height={450}
-						label="Silent screen recording of patient management, showing history views and the source documents that remain attached to a record."
+						label="Silent screen recording of a diagnosis being edited from Stage 2 to Stage 1, its activity log showing the change, and an encounter listing the vitals and medications recorded during the visit."
 					/>
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-6")}>
-					Each patient profile groups medications, allergies, diagnoses, procedures, immunizations,
-					lab results, and history into their own sections. List and detail views keep a growing
-					record easy to scan, history views show how details change, and the original documents
-					stay attached for context.
+					Each patient profile splits a growing record into sections, from vitals and diagnoses to
+					medications, labs, and encounters, each with a list and a detail view. Edits save only the
+					fields that changed, and every change is logged with who made it, the old value, and the
+					new one. Encounters group the vitals and medications recorded during a single visit.
 				</CaseStudyReveal>
 				<ZoomableImageGroup images={patientManagementImages} width={3000} height={1800} />
 			</section>
@@ -327,22 +177,35 @@ export default function MedibridgePage() {
 				</CaseStudyReveal>
 				<CaseStudyReveal
 					siblingIndex={1}
+					className="w-full rounded-2xl flex mb-3 bg-black overflow-hidden"
+				>
+					<LoopVideo
+						src="/videos/patient-records-transfer-request.mp4"
+						poster="/videos/patient-records-transfer-request.webp"
+						width={800}
+						height={450}
+						label="Silent screen recording of a transfer request: a patient is selected, diagnoses, allergies, medications, and labs are attached, the receiving hospital is entered, and the request is sent for patient approval."
+					/>
+				</CaseStudyReveal>
+				<CaseStudyReveal
+					siblingIndex={2}
 					className="w-full rounded-2xl flex mb-6 bg-black overflow-hidden"
 				>
 					<LoopVideo
-						src="/videos/patient-records-transfer.mp4"
-						poster="/videos/patient-records-transfer.webp"
+						src="/videos/patient-records-transfer-approval.mp4"
+						poster="/videos/patient-records-transfer-approval.webp"
 						width={800}
 						height={450}
-						label="Silent screen recording of the records transfer flow, showing a request being created, the patient approving it by email, and the recipient verifying a code to open a read-only view."
+						label="Silent screen recording of the patient approving the transfer, the receiving hospital entering a verification code to open a read-only, expiring view of the approved records, and the request showing as completed."
 					/>
 				</CaseStudyReveal>
-				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-6")}>
-					Transfers usually happen over email, printouts, and messaging apps, which are hard to
-					track or verify. In Medibridge, staff build a transfer from verified records, and the
-					patient approves it by email before anything is shared. The receiving hospital verifies a
-					short-lived code to open an expiring, read-only view, and statuses show whether each
-					request is pending, approved, declined, or completed.
+				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-6")}>
+					Records usually move between hospitals over email, printouts, and messaging apps, which
+					are hard to track or verify. In Medibridge, staff choose exactly which records to send and
+					where, and nothing is shared until the patient approves the request from their email. The
+					receiving hospital then enters a short-lived code to open an expiring, read-only view of
+					only the approved records, while the sending hospital watches the request move from
+					pending to completed.
 				</CaseStudyReveal>
 				<ZoomableImageGroup images={patientRecordsTransferImages} width={3000} height={1800} />
 				<CaseStudyReveal as="p" className="my-16 md:my-22">

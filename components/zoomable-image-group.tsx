@@ -112,7 +112,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 				/>
 			</motion.a>
 
-			<div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+			<div className={cn("grid grid-cols-1 gap-4 md:grid-cols-2", images.length > 1 && "mt-4")}>
 				{images.slice(1).map((image, index) => {
 					const imageIndex = index + 1;
 
