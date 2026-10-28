@@ -12,9 +12,9 @@ export function Hero() {
 					craft.
 				</p>
 				<p data-enter="2">
-					I work across product thinking, interface design, and frontend engineering, with a focus
-					on complex workflows, data-heavy interfaces, and systems that need to feel simple without
-					losing depth.
+					I work across product thinking, interface design, and frontend engineering, and I do my
+					best work on complex workflows, data-heavy interfaces, and systems that need to feel simple
+					without losing depth.
 				</p>
 				<p data-enter="3">
 					Recently, I’ve been building{" "}
@@ -26,7 +26,7 @@ export function Hero() {
 						Medibridge
 					</Link>
 					, a platform for managing and transferring patient records between hospitals. I designed
-					the workflows, structured the system, and built the frontend from the ground up.
+					and built all of it, from the workflows to the database.
 				</p>
 				<p data-enter="4">
 					I’m currently looking for opportunities to work with teams building applied AI products
@@ -37,9 +37,7 @@ export function Hero() {
 				<CopyEmailButton />
 				<HeroButton link="https://github.com/Chibuike-web">GitHub</HeroButton>
 				<HeroButton link="https://www.linkedin.com/in/chibuike-maduabuchi/">LinkedIn</HeroButton>
-				<HeroButton link="https://drive.google.com/file/d/1lB6mPhuiRfdUAimr9VTGugW6r2dQsEvZ/view?usp=sharing">
-					Resume
-				</HeroButton>
+				<HeroButton link="/chibuike-maduabuchi-resume.pdf">Resume</HeroButton>
 			</div>
 		</div>
 	);

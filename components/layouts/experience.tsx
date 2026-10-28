@@ -7,12 +7,12 @@ const experience = [
 		title: "Design Engineer at Roboto Studio",
 		href: "https://robotostudio.com",
 		description:
-			"Currently building web experiences with React, Next.js, TypeScript, and Sanity. Translating Figma designs into reusable interfaces with a focus on accessibility, motion, and performance.",
+			"Currently building web experiences with React, Next.js, TypeScript, and Sanity. Translating Figma designs into reusable interfaces, with close attention to accessibility, motion, and performance.",
 	},
 	{
 		start: "2024",
 		end: "2026",
-		title: "Design Engineer / Product Engineer — Self-employed",
+		title: "Design Engineer — Self-employed",
 		href: null,
 		description:
 			"Designed and built web applications end to end, including Medibridge’s patient onboarding, records management, and hospital transfers. Created reusable components, forms, dashboards, and validation flows.",

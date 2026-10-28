@@ -11,3 +11,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 # Always propose before implementing
 
 Before making any changes (editing files, writing code, installing packages, etc.), first explain the approach and show the code. Wait for confirmation before implementing.
+
+# Writing
+
+- Don't write "it is this, not that" contrasts, such as "access for one handover, not a permanent copy" or "approval comes from the patient, not the hospital". State what is true and why.
+- Don't use "quietly" or "silently".

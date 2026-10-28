@@ -88,7 +88,9 @@ export default function MedibridgePage() {
 				</CaseStudyReveal>
 				<CaseStudyReveal className="flex flex-col gap-3">
 					<h2 className={headingClass}>My role</h2>
-					<p className={bodyClass}>Product Engineer. I design and build Medibridge end to end.</p>
+					<p className={bodyClass}>
+						Design Engineer. I designed and built all of it, from the workflows to the database.
+					</p>
 				</CaseStudyReveal>
 			</section>
 			<section id="patient-onboarding" tabIndex={-1} className="outline-none">
@@ -107,12 +109,20 @@ export default function MedibridgePage() {
 						label="Silent screen recording of patient onboarding: four patient PDFs are uploaded, the extracted details are reviewed, a wrong age is corrected, and each patient is saved."
 					/>
 				</CaseStudyReveal>
-				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-6")}>
+				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-3")}>
 					Hospitals already hold patient details in printed files, scans, and PDFs, so staff upload
-					those instead of retyping them. Digital PDFs and Word files are read directly, scanned
+					those files directly. Digital PDFs and Word files are read directly, scanned
 					pages and photos go through OCR, and a language model sorts the text into the patient’s
-					personal, contact, emergency, and physical details. Nothing is saved automatically. Staff
-					check every field, fix what the extraction got wrong, and save one patient at a time.
+					personal, contact, emergency, and physical details.
+				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-6")}>
+					The review screen is built around one question: can staff trust this? I built a review
+					screen because the job is checking one form against one document, and staff need to see
+					exactly what the model filled in. Each patient’s form is tied to
+					the document it came from, one click from the original. If the document doesn’t state a
+					value, the field stays empty, because a guessed date of birth looks exactly like a right
+					one. If one file in a batch fails, staff retry that file alone, and
+					nothing is saved until they save it.
 				</CaseStudyReveal>
 				<ZoomableImage
 					src={onboardingReview}
@@ -153,7 +163,9 @@ export default function MedibridgePage() {
 					Each patient profile splits a growing record into sections, from vitals and diagnoses to
 					medications, labs, and encounters, each with a list and a detail view. Edits save only the
 					fields that changed, and every change is logged with who made it, the old value, and the
-					new one. Encounters group the vitals and medications recorded during a single visit.
+					new one. I kept that history because in a medical record, who changed a diagnosis and what
+					it was before matter as much as the current value. Encounters group the
+					vitals and medications recorded during a single visit.
 				</CaseStudyReveal>
 				<ZoomableImage
 					src={diagnosisActivity}
@@ -197,7 +209,10 @@ export default function MedibridgePage() {
 					where, and nothing is shared until the patient approves the request from their email. The
 					receiving hospital then enters a short-lived code to open an expiring, read-only view of
 					only the approved records, while the sending hospital watches the request move from
-					pending to completed.
+					pending to completed. The patient approves each request, because the records are theirs
+					and a hospital approving its own request checks nothing. The view is read-only and
+					expires, so the receiving hospital can read the records for the handover and loses access
+					after it.
 				</CaseStudyReveal>
 				<ZoomableImage
 					src={transferApproval}
