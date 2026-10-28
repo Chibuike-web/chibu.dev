@@ -99,7 +99,7 @@ export default function MedibridgePage() {
 				</CaseStudyReveal>
 				<CaseStudyReveal
 					siblingIndex={1}
-					className="w-full rounded-2xl flex mb-6 bg-black overflow-hidden"
+					className="w-full flex mb-6 overflow-hidden rounded-xl ring ring-surface-hover isolate"
 				>
 					<LoopVideo
 						src="/videos/patient-onboarding.mp4"
@@ -137,7 +137,7 @@ export default function MedibridgePage() {
 				</CaseStudyReveal>
 				<CaseStudyReveal
 					siblingIndex={1}
-					className="w-full rounded-2xl flex mb-3 bg-black overflow-hidden"
+					className="w-full flex mb-3 overflow-hidden rounded-xl ring ring-surface-hover isolate"
 				>
 					<LoopVideo
 						src="/videos/patient-management-1.mp4"
@@ -149,7 +149,7 @@ export default function MedibridgePage() {
 				</CaseStudyReveal>
 				<CaseStudyReveal
 					siblingIndex={2}
-					className="w-full rounded-2xl flex mb-6 bg-black overflow-hidden"
+					className="w-full flex mb-6 overflow-hidden rounded-xl ring ring-surface-hover isolate"
 				>
 					<LoopVideo
 						src="/videos/patient-management-2.mp4"
@@ -181,7 +181,7 @@ export default function MedibridgePage() {
 				</CaseStudyReveal>
 				<CaseStudyReveal
 					siblingIndex={1}
-					className="w-full rounded-2xl flex mb-3 bg-black overflow-hidden"
+					className="w-full flex mb-3 overflow-hidden rounded-xl ring ring-surface-hover isolate"
 				>
 					<LoopVideo
 						src="/videos/patient-records-transfer-request.mp4"
@@ -193,7 +193,7 @@ export default function MedibridgePage() {
 				</CaseStudyReveal>
 				<CaseStudyReveal
 					siblingIndex={2}
-					className="w-full rounded-2xl flex mb-6 bg-black overflow-hidden"
+					className="w-full flex mb-6 overflow-hidden rounded-xl ring ring-surface-hover isolate"
 				>
 					<LoopVideo
 						src="/videos/patient-records-transfer-approval.mp4"

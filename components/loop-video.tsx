@@ -66,7 +66,7 @@ export function LoopVideo({ src, poster, label, width, height }: LoopVideoProps)
 				height={height}
 				poster={poster}
 				aria-label={label}
-				className="block h-auto w-full"
+				className="block h-auto w-full object-cover"
 				onPlay={() => setIsPlaying(true)}
 				onPause={() => setIsPlaying(false)}
 			>
