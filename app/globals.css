@@ -1,6 +1,35 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* These must share the family names next/font gives the core faces. A separate family would sit behind the generated fallback, so Arial would draw these characters instead. */
+@font-face {
+	font-family: sans;
+	src: url("../assets/fonts/inter/inter-extended.woff2") format("woff2");
+	font-display: swap;
+	font-weight: 100 900;
+	font-style: normal;
+	unicode-range: U+A1-A8, U+AA-AC, U+AE-B6, U+B8-148, U+14A-17F;
+}
+
+@font-face {
+	font-family: caveat;
+	src: url("../assets/fonts/caveat/caveat-extended.woff2") format("woff2");
+	font-display: swap;
+	font-weight: 500;
+	font-style: normal;
+	unicode-range: U+A1-A8, U+AA-B6, U+B8-17E;
+}
+
+/* Set by hand because next/font/local measures different metrics from next/font/google, and the difference would shift the fallback text. */
+@font-face {
+	font-family: "Caveat Fallback";
+	src: local(Arial);
+	ascent-override: 124.77%;
+	descent-override: 38.99%;
+	line-gap-override: 0%;
+	size-adjust: 76.94%;
+}
+
 :root {
 	--background: oklch(100% 0 0);
 	--foreground: oklch(37.2% 0 0);

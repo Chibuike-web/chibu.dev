@@ -1,6 +1,6 @@
 "use client";
 
-import { Caveat } from "next/font/google";
+import localFont from "next/font/local";
 import { useState } from "react";
 import {
 	Drawer,
@@ -15,7 +15,20 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { LogoIcon } from "@/icons/logo-icon";
 import { cn } from "@/lib/utils";
 
-const caveat = Caveat({ subsets: ["latin"], weight: "500" });
+const caveat = localFont({
+	src: "../assets/fonts/caveat/caveat-core.woff2",
+	weight: "500",
+	style: "normal",
+	display: "swap",
+	adjustFontFallback: false,
+	fallback: ["Caveat Fallback"],
+	declarations: [
+		{
+			prop: "unicode-range",
+			value: "U+20-7E,U+A0,U+A9,U+B7,U+2013-2014,U+2018-2019,U+201C-201D,U+2026",
+		},
+	],
+});
 
 const accents = [
 	"graphite",

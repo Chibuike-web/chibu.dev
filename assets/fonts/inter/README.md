@@ -8,4 +8,4 @@
 - License: SIL Open Font License 1.1, included in `LICENSE.txt`.
 - SHA-256: `693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3`
 
-The font is served locally through `next/font/local`. The italic font is not bundled because the site currently uses upright text only.
+`InterVariable.woff2` is the source for `scripts/subset-fonts.py`. The site serves `inter-core.woff2` through `next/font/local` and `inter-extended.woff2` through `app/globals.css`. The italic font is not bundled because the site currently uses upright text only.

@@ -4,11 +4,17 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const sans = localFont({
-	src: "../assets/fonts/inter/InterVariable.woff2",
+	src: "../assets/fonts/inter/inter-core.woff2",
 	variable: "--font-sans",
 	weight: "100 900",
 	style: "normal",
 	display: "swap",
+	declarations: [
+		{
+			prop: "unicode-range",
+			value: "U+20-7E,U+A0,U+A9,U+B7,U+2013-2014,U+2018-2019,U+201C-201D,U+2026",
+		},
+	],
 });
 
 const themeInitScript = String.raw`
