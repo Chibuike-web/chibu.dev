@@ -2,11 +2,29 @@
 
 import { cn } from "@/lib/utils";
 import { ChevronsUpDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import ProgressRing from "@/components/progress-ring";
 
+function subscribe() {
+	return () => {};
+}
+
+function getSavedExpanded() {
+	return document.cookie.split("; ").includes("isExpandedValue=true");
+}
+
+function getServerSavedExpanded(): boolean | null {
+	return null;
+}
+
 export default function ProgressBar({ items }: { items: { id: string; label: string }[] }) {
-	const [isExpanded, setIsExpanded] = useState(false);
+	const savedExpanded = useSyncExternalStore<boolean | null>(
+		subscribe,
+		getSavedExpanded,
+		getServerSavedExpanded,
+	);
+	const [toggledExpanded, setToggledExpanded] = useState<boolean | null>(null);
+	const isExpanded = toggledExpanded ?? savedExpanded;
 	const [activeSection, setActiveSection] = useState(0);
 	const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -34,13 +52,16 @@ export default function ProgressBar({ items }: { items: { id: string; label: str
 		if (!isExpanded) return;
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key === "Escape") {
-				setIsExpanded(false);
+				setToggledExpanded(false);
+				document.cookie = "isExpandedValue=false; path=/; max-age=31536000; samesite=lax";
 				toggleRef.current?.focus();
 			}
 		};
 		document.addEventListener("keydown", handleKeyDown);
 		return () => document.removeEventListener("keydown", handleKeyDown);
 	}, [isExpanded]);
+
+	if (isExpanded === null) return null;
 
 	return (
 		<nav
@@ -52,7 +73,10 @@ export default function ProgressBar({ items }: { items: { id: string; label: str
 				className="sticky top-0 z-10 flex w-full cursor-pointer items-center justify-between gap-3 border border-transparent h-10 bg-background px-5 dark:bg-[#464648] text-left focus-visible:outline-none! focus-visible:shadow-none!"
 				aria-expanded={isExpanded}
 				ref={toggleRef}
-				onClick={() => setIsExpanded(!isExpanded)}
+				onClick={() => {
+					setToggledExpanded(!isExpanded);
+					document.cookie = `isExpandedValue=${!isExpanded}; path=/; max-age=31536000; samesite=lax`;
+				}}
 			>
 				<span className="flex min-w-0 items-center gap-2.5">
 					<ProgressRing />
