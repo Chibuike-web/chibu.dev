@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { Pause, Play } from "lucide-react";
+import { Maximize2 } from "lucide-react";
 import { type RefObject, useEffect, useEffectEvent, useRef, useState } from "react";
 import { ZoomLightbox } from "@/components/zoom-lightbox";
 import { cn } from "@/lib/utils";
@@ -36,24 +36,33 @@ function VideoPlayer({
 	suspended = false,
 	startTime = 0,
 }: VideoPlayerProps) {
-	const [isPlaying, setIsPlaying] = useState(false);
+	const pausedBySystem = useRef(false);
+
+	const pauseForSystem = () => {
+		const video = videoRef.current;
+		if (!video || video.paused) return;
+		pausedBySystem.current = true;
+		video.pause();
+	};
 
 	const handleVisibilityChange = useEffectEvent((isVisible: boolean) => {
 		const video = videoRef.current;
 		if (!video) return;
 		if (!isVisible) {
-			video.pause();
+			pauseForSystem();
 			return;
 		}
 		if (pausedByViewer.current) return;
 		video.play().catch(() => {});
 	});
 
+	const suspend = useEffectEvent(pauseForSystem);
+
 	useEffect(() => {
 		const video = videoRef.current;
 		if (!video) return;
 		if (suspended) {
-			video.pause();
+			suspend();
 			return;
 		}
 
@@ -65,22 +74,11 @@ function VideoPlayer({
 		return () => observer.disconnect();
 	}, [suspended, videoRef]);
 
-	const togglePlayback = () => {
-		const video = videoRef.current;
-		if (!video) return;
-		if (video.paused) {
-			onViewerToggle(false);
-			video.play().catch(() => {});
-		} else {
-			onViewerToggle(true);
-			video.pause();
-		}
-	};
-
 	return (
 		<div className="relative w-full cursor-default">
 			<video
 				ref={videoRef}
+				controls
 				muted
 				loop
 				playsInline
@@ -90,26 +88,21 @@ function VideoPlayer({
 				poster={poster}
 				aria-label={label}
 				className="block h-auto w-full object-cover"
-				onPlay={() => setIsPlaying(true)}
-				onPause={() => setIsPlaying(false)}
+				onPlay={() => onViewerToggle(false)}
+				onPause={(event) => {
+					if (!event.currentTarget.isConnected) return;
+					if (pausedBySystem.current) {
+						pausedBySystem.current = false;
+						return;
+					}
+					onViewerToggle(true);
+				}}
 				onLoadedMetadata={(event) => {
 					event.currentTarget.currentTime = startTime;
 				}}
 			>
 				<source src={src} type="video/mp4" />
 			</video>
-			<button
-				type="button"
-				onClick={togglePlayback}
-				aria-label={isPlaying ? "Pause video" : "Play video"}
-				className="absolute right-3 bottom-3 z-10 flex size-9 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648]"
-			>
-				{isPlaying ? (
-					<Pause className="size-4" fill="currentColor" aria-hidden />
-				) : (
-					<Play className="size-4" fill="currentColor" aria-hidden />
-				)}
-			</button>
 		</div>
 	);
 }
@@ -160,8 +153,10 @@ export function LoopVideo(props: LoopVideoProps) {
 						setStartTime(thumbnailVideoRef.current?.currentTime ?? 0);
 						setIsZoomed(true);
 					}}
-					className="absolute inset-0 cursor-zoom-in rounded-xl focus-visible:inset-ring-3! focus-visible:inset-ring-(--focus-ring)"
-				/>
+					className="absolute right-3 top-3 z-10 flex size-9 cursor-zoom-in items-center justify-center rounded-full border border-transparent bg-[#464648]/80 text-white transition-[background-color] duration-150 hover:bg-[#464648] focus-visible:inset-ring-3! focus-visible:inset-ring-(--focus-ring)"
+				>
+					<Maximize2 className="size-4" aria-hidden />
+				</button>
 			</motion.div>
 
 			<ZoomLightbox
