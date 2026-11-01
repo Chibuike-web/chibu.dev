@@ -43,7 +43,7 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 					setIsZoomed(true);
 				}}
 				className={cn(
-					"block w-full cursor-zoom-in overflow-hidden rounded-xl ring ring-surface-hover",
+					"block w-full cursor-zoom-in overflow-hidden rounded-xl ring ring-surface-hover [background:linear-gradient(var(--surface-muted),var(--surface-muted)),var(--background)]",
 					isZoomed && "pointer-events-none opacity-0",
 					className,
 				)}

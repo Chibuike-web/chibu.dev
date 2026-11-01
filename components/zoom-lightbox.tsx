@@ -50,7 +50,7 @@ export function ZoomLightbox({
 							initial={reducedMotion ? { opacity: 0 } : false}
 							animate={{ opacity: 1 }}
 							exit={reducedMotion ? { opacity: 0 } : undefined}
-							className="w-full select-none overflow-hidden rounded-xl ring ring-surface-hover bg-background"
+							className="w-full select-none overflow-hidden rounded-xl ring ring-surface-hover [background:linear-gradient(var(--surface-muted),var(--surface-muted)),var(--background)]"
 							transition={
 								reducedMotion ? { duration: 0.12 } : { type: "spring", duration: 0.2, bounce: 0 }
 							}
