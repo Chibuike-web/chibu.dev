@@ -13,8 +13,8 @@ export function Hero() {
 				</p>
 				<p data-enter="2">
 					I work across product thinking, interface design, and frontend engineering, and I do my
-					best work on complex workflows, data-heavy interfaces, and systems that need to feel simple
-					without losing depth.
+					best work on complex workflows, data-heavy interfaces, and systems that need to feel
+					simple without losing depth.
 				</p>
 				<p data-enter="3">
 					Recently, I’ve been building{" "}
@@ -47,7 +47,10 @@ function HeroButton({ link, children }: { link: string; children: ReactNode }) {
 	return (
 		<a href={link} target="_blank" rel="noopener noreferrer" className="social-pill reveal-link">
 			{children}
-			<span className="reveal-link-icon" aria-hidden="true">
+			<span
+				className="reveal-link-icon [--reveal-icon-end:-3px] [--reveal-icon-gap:1px]"
+				aria-hidden="true"
+			>
 				<ArrowUpRight />
 			</span>
 		</a>

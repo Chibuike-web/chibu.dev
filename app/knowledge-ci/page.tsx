@@ -218,9 +218,9 @@ export default function KnowledgeCiPage() {
 				/>
 				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-3")}>
 					The Ask tab is a chat over the Knowledge Base, so an editor can see what an agent would
-					say. In the recording it calls snake plants safe for cats, then says they’re toxic once
-					the conflict is settled. Checks never use an AI model. The chat is built to use the team’s
-					own Vercel AI Gateway key.
+					say. In the Decisions recording it calls snake plants safe for cats, then says they’re
+					toxic once the conflict is settled. Checks never use an AI model. The chat is built to use
+					the team’s own Vercel AI Gateway key.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-6")}>
 					Settings holds the Sanity token, the AI key, and MCP setup for Claude Code, Cursor, and

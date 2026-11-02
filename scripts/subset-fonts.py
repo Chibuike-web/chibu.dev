@@ -11,13 +11,11 @@ copy its printed unicode-range into the @font-face rules in app/globals.css.
 from io import BytesIO
 from pathlib import Path
 
-from fontTools.merge import Merger
 from fontTools.subset import Options, Subsetter
 from fontTools.ttLib import TTFont
 
 ROOT = Path(__file__).resolve().parent.parent
 INTER = ROOT / "assets/fonts/inter"
-CAVEAT = ROOT / "assets/fonts/caveat"
 
 ASCII = set(range(0x20, 0x7F))
 PUNCTUATION = {0xA0, 0xA9, 0xB7, 0x2013, 0x2014, 0x2018, 0x2019, 0x201C, 0x201D, 0x2026}
@@ -34,7 +32,6 @@ USED = {ord(char) for char in source_text if ord(char) > 0x7E}
 EXTENDED = (LATIN | USED) - CORE
 
 INTER_FEATURES = ["calt", "ccmp", "kern", "mark", "mkmk", "tnum"]
-CAVEAT_FEATURES = ["calt", "kern", "liga", "mark", "mkmk"]
 
 
 def subset(font, unicodes, features):
@@ -84,23 +81,4 @@ def build_inter():
     write(subset(reopen(source), EXTENDED, INTER_FEATURES), INTER / "inter-extended.woff2")
 
 
-def build_caveat():
-    latin = CAVEAT / "Caveat-Medium-latin.woff2"
-    latin_ext = CAVEAT / "Caveat-Medium-latin-ext.woff2"
-    write(subset(TTFont(latin), CORE, CAVEAT_FEATURES), CAVEAT / "caveat-core.woff2")
-
-    parts = []
-    for source in (latin, latin_ext):
-        part = subset(TTFont(source), EXTENDED, CAVEAT_FEATURES)
-        part.flavor = None
-        path = source.with_suffix(".ttf")
-        part.save(path)
-        parts.append(path)
-    merged = Merger().merge([str(path) for path in parts])
-    for path in parts:
-        path.unlink()
-    write(merged, CAVEAT / "caveat-extended.woff2")
-
-
 build_inter()
-build_caveat()

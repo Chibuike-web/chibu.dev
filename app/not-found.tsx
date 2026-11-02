@@ -40,7 +40,10 @@ export default function NotFound() {
 					{links.map(({ href, label }) => (
 						<Link key={href} href={href} className="social-pill reveal-link">
 							{label}
-							<span className="reveal-link-icon" aria-hidden="true">
+							<span
+								className="reveal-link-icon [--reveal-icon-end:-3px] [--reveal-icon-gap:1px]"
+								aria-hidden="true"
+							>
 								<ArrowUpRight />
 							</span>
 						</Link>
