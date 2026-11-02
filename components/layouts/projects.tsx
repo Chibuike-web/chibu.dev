@@ -31,12 +31,12 @@ export function Projects() {
 			<h2 id="projects-heading" className="tight font-medium text-[1rem] text-foreground">
 				Projects
 			</h2>
-			<div className="-mx-4 -mb-4 mt-2 flex snap-x gap-8 overflow-x-auto scroll-px-4 p-4 [scrollbar-width:none]">
+			<div className="no-scrollbar -mb-4 mt-2 ml-[calc(50%-50vw)] flex w-screen snap-x gap-8 overflow-x-auto scroll-px-(--gutter) px-(--gutter) py-4 [--gutter:max(1rem,calc(50vw-19rem))] lg:[--gutter:calc(50vw-20rem)]">
 				{projects.map((project) => (
 					<Link
 						key={project.href}
 						href={project.href}
-						className="group block w-[85%] shrink-0 snap-start rounded-xl sm:w-[44%]"
+						className="group block w-[82vw] shrink-0 snap-start rounded-xl sm:w-76"
 					>
 						<Image
 							src={project.image}
