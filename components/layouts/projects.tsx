@@ -1,9 +1,7 @@
-"use client";
-
-import { BlossomCarousel } from "@blossom-carousel/react";
 import "@blossom-carousel/react/style.css";
 import Image from "next/image";
 import Link from "next/link";
+import { BlossomCarousel } from "@/components/ui/blossom-carousel";
 import medibridgeThumbnail from "../../assets/thumbnails/light/medibridge-project-thumbnail.png";
 import knowledgeCiThumbnail from "../../assets/thumbnails/light/knowledge-ci-project-thumbnail.png";
 import bulkAirtimeThumbnail from "../../assets/thumbnails/light/bulk-airtime-project-thumbnail.png";
