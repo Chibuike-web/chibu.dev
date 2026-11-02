@@ -75,6 +75,42 @@ const navItems = [
 	},
 ];
 
+function ThemedVideo({
+	name,
+	label,
+	siblingIndex,
+}: {
+	name: string;
+	label: string;
+	siblingIndex: number;
+}) {
+	return (
+		<CaseStudyReveal
+			siblingIndex={siblingIndex}
+			className="w-full mb-6 rounded-xl ring ring-surface-hover isolate"
+		>
+			<div className="flex dark:hidden">
+				<LoopVideo
+					src={`/videos/${name}-light.mp4`}
+					poster={`/videos/${name}-light.webp`}
+					width={800}
+					height={450}
+					label={label}
+				/>
+			</div>
+			<div className="hidden dark:flex">
+				<LoopVideo
+					src={`/videos/${name}-dark.mp4`}
+					poster={`/videos/${name}-dark.webp`}
+					width={800}
+					height={450}
+					label={label}
+				/>
+			</div>
+		</CaseStudyReveal>
+	);
+}
+
 export default function KnowledgeCiPage() {
 	return (
 		<main className="page-shell case-study-page">
@@ -106,15 +142,15 @@ export default function KnowledgeCiPage() {
 						does the agent, until a customer complains.
 					</p>
 					<p className={bodyClass}>
-						This is something I worked on based on Sanity Knowledge Bases, to answer one question
-						after every content change: do the entries agents read still match the content?
+						I built this to answer one question after every content change: do the entries agents
+						read still match the content?
 					</p>
 				</CaseStudyReveal>
 				<CaseStudyReveal className="flex flex-col gap-3">
 					<h2 className={headingClass}>My role</h2>
 					<p className={bodyClass}>
 						Design Engineer. I designed and built it, from the Sanity webhook and the backend run to
-						the Studio screen.
+						the Studio screen. The recordings use a rebuilt interface with sample data.
 					</p>
 				</CaseStudyReveal>
 			</section>
@@ -122,33 +158,16 @@ export default function KnowledgeCiPage() {
 				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
 					Checks
 				</CaseStudyReveal>
-				<CaseStudyReveal
+				<ThemedVideo
+					name="knowledge-ci-checks"
 					siblingIndex={1}
-					className="w-full mb-6 rounded-xl ring ring-surface-hover isolate"
-				>
-					<div className="flex dark:hidden">
-						<LoopVideo
-							src="/videos/knowledge-ci-walkthrough-light.mp4"
-							poster="/videos/knowledge-ci-walkthrough-light.webp"
-							width={800}
-							height={450}
-							label="Silent screen recording of Knowledge CI: browsing conflicts and warnings, opening the check history, asking the Knowledge Base a question, running a check, settling a conflict, and asking the same question again."
-						/>
-					</div>
-					<div className="hidden dark:flex">
-						<LoopVideo
-							src="/videos/knowledge-ci-walkthrough-dark.mp4"
-							poster="/videos/knowledge-ci-walkthrough-dark.webp"
-							width={800}
-							height={450}
-							label="Silent screen recording of Knowledge CI: browsing conflicts and warnings, opening the check history, asking the Knowledge Base a question, running a check, settling a conflict, and asking the same question again."
-						/>
-					</div>
-				</CaseStudyReveal>
+					label="Silent screen recording of Knowledge CI: browsing conflicts and warnings, viewing hidden issues and the check history, then running a check that finds a new conflict."
+				/>
 				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-3")}>
 					Publishing starts a check. A Sanity webhook tells the backend what changed, and the
 					backend waits for 60 seconds with no new changes, so a burst of edits becomes one run.
-					Each run spends several minutes waiting on Sanity, so it lives in a durable workflow.
+					Each run spends several minutes waiting on Sanity, so it runs as a durable workflow on
+					Vercel’s Workflow Development Kit.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-3")}>
 					A run always rebuilds before it judges anything. A refresh alone leaves the entries as
@@ -166,33 +185,42 @@ export default function KnowledgeCiPage() {
 				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
 					Decisions
 				</CaseStudyReveal>
+				<ThemedVideo
+					name="knowledge-ci-decision"
+					siblingIndex={1}
+					label="Silent screen recording of Knowledge CI: the chat calls snake plants safe for cats, a check finds the conflict, an editor uses the document, and the chat now says they are toxic."
+				/>
 				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-3")}>
-					My first build put runs in the foreground and the issues behind them. Editors don’t care
-					about runs, so I turned that around. The screen now answers three questions in order: can
-					the Knowledge Base be trusted right now, what needs a person’s decision, and has anything
-					broken. A conflict shows both claims side by side, with the pages and documents behind
-					them.
+					The first version led with the list of runs. Editors want to know what’s wrong with their
+					content, so the screen now opens with one line saying whether the Knowledge Base can be
+					trusted, followed by the conflicts that need a decision. Each conflict shows the two
+					claims side by side, so you can see exactly what disagrees.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-3")}>
-					Knowledge CI never picks a winner, because which claim is true is a person’s call. A
-					project administrator settles or dismisses a conflict from its card after confirming, and
-					the next check picks up the fix.
+					Which claim is true is a person’s call, so Knowledge CI never decides. An administrator
+					picks a claim or dismisses the conflict, then confirms, and Sanity follows that choice in
+					every later build.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={3} className={bodyClass}>
-					The limit is what Sanity reports. It raised 5 of the 7 contradictions I planted in a test
-					store and settled the other two during the build without a word, so a clear list doesn’t
-					prove the content is right. Catching those was the next step.
+					Sanity doesn’t catch everything. In a test store with 7 planted contradictions, it flagged
+					5 and resolved the other 2 on its own during the build, with no warning. So an empty list
+					doesn’t prove the content is right, and catching those cases was the next step.
 				</CaseStudyReveal>
 			</section>
 			<section id="ask-and-settings" tabIndex={-1} className="mt-22 outline-none">
 				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
 					Ask and Settings
 				</CaseStudyReveal>
+				<ThemedVideo
+					name="knowledge-ci-settings"
+					siblingIndex={1}
+					label="Silent screen recording of Knowledge CI: the settings sections and agent setup, then the rejected token, all clear, and first run states."
+				/>
 				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-3")}>
 					The Ask tab is a chat over the Knowledge Base, so an editor can see what an agent would
 					say. In the recording it calls snake plants safe for cats, then says they’re toxic once
-					the conflict is settled. Checks never use an AI model. The chat runs on the team’s own
-					Vercel AI Gateway key.
+					the conflict is settled. Checks never use an AI model. The chat is built to use the team’s
+					own Vercel AI Gateway key.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-6")}>
 					Settings holds the Sanity token, the AI key, and MCP setup for Claude Code, Cursor, and
