@@ -42,6 +42,7 @@ export function Projects() {
 					>
 						<Image
 							src={project.image}
+							width={1200}
 							alt={`${project.name} project preview`}
 							className="block h-auto w-full rounded-xl shadow-(--project-image-shadow)"
 						/>

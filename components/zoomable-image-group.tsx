@@ -141,7 +141,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 						)}
 						transition={{ type: "spring", duration: 0.2, bounce: 0 }}
 					>
-						<ThemedImage image={image} width={width} height={height} />
+						<ThemedImage image={image} width={1200} height={Math.round((1200 * height) / width)} />
 					</motion.a>
 				))}
 			</div>
