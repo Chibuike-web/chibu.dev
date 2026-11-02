@@ -73,7 +73,6 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 					width={width}
 					height={height}
 					loading="lazy"
-					placeholder="blur"
 					className="h-auto w-full"
 				/>
 			</ZoomLightbox>
