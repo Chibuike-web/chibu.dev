@@ -1,3 +1,7 @@
+"use client";
+
+import { BlossomCarousel } from "@blossom-carousel/react";
+import "@blossom-carousel/react/style.css";
 import Image from "next/image";
 import Link from "next/link";
 import medibridgeThumbnail from "../../assets/thumbnails/light/medibridge-project-thumbnail.png";
@@ -31,7 +35,7 @@ export function Projects() {
 			<h2 id="projects-heading" className="tight font-medium text-[1rem] text-foreground">
 				Projects
 			</h2>
-			<div className="no-scrollbar -mb-4 mt-2 ml-[calc(50%-50vw)] flex w-screen snap-x gap-8 overflow-x-auto scroll-px-(--gutter) px-(--gutter) py-4 [--gutter:max(1rem,calc(50vw-19rem))] lg:[--gutter:calc(50vw-20rem)]">
+			<BlossomCarousel className="-mb-4 mt-2 ml-[calc(50%-50vw)] flex! w-screen! max-w-none! snap-x gap-8 scroll-px-(--gutter) px-(--gutter) py-4 [--gutter:max(1rem,calc(50vw-19rem))] lg:[--gutter:calc(50vw-20rem)]">
 				{projects.map((project) => (
 					<Link
 						key={project.href}
@@ -51,7 +55,7 @@ export function Projects() {
 						</p>
 					</Link>
 				))}
-			</div>
+			</BlossomCarousel>
 		</section>
 	);
 }
