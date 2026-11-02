@@ -13,15 +13,16 @@ export function caseStudyRevealProps(reducedMotion: boolean | null, siblingIndex
 		"data-case-reveal": "",
 		initial: {
 			opacity: 0,
-			transform: reducedMotion ? "none" : "translateY(6px)",
+			transform: "translateY(6px)",
 		},
 		whileInView: {
 			opacity: 1,
-			transform: reducedMotion ? "none" : "translateY(0px)",
+			transform: "translateY(0px)",
 			transition: {
 				duration: reducedMotion ? 0.12 : 0.45,
 				ease,
 				delay: reducedMotion ? 0 : siblingIndex * 0.07,
+				transform: reducedMotion ? { duration: 0 } : undefined,
 			},
 			transitionEnd: { transform: "none" },
 		},

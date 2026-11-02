@@ -53,17 +53,6 @@ function ThemedImage({
 	);
 }
 
-function controlMotion(reducedMotion: boolean | null, opacity = 1) {
-	const hidden = reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9, filter: "blur(2px)" };
-
-	return {
-		initial: hidden,
-		animate: reducedMotion ? { opacity } : { opacity, scale: 1, filter: "blur(0px)" },
-		exit: { ...hidden, transition: { duration: 0.1 } },
-		transition: { duration: 0.2, delay: reducedMotion ? 0 : 0.1 },
-	};
-}
-
 export function ZoomableImageGroup({ images, width, height }: Props) {
 	const reducedMotion = useReducedMotion();
 	const [openedFromIndex, setOpenedFromIndex] = useState<number | null>(null);
@@ -191,7 +180,25 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 
 							<div className="flex gap-4 lg:contents">
 								<motion.button
-									{...controlMotion(reducedMotion, previewIndex === 0 ? 0.4 : 1)}
+									initial={
+										reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9, filter: "blur(2px)" }
+									}
+									animate={
+										reducedMotion
+											? { opacity: previewIndex === 0 ? 0.4 : 1 }
+											: { opacity: previewIndex === 0 ? 0.4 : 1, scale: 1, filter: "blur(0px)" }
+									}
+									exit={
+										reducedMotion
+											? { opacity: 0, transition: { duration: 0.1 } }
+											: {
+													opacity: 0,
+													scale: 0.9,
+													filter: "blur(2px)",
+													transition: { duration: 0.1 },
+												}
+									}
+									transition={{ duration: 0.2, delay: reducedMotion ? 0 : 0.1 }}
 									ref={previousButtonRef}
 									type="button"
 									onClick={showPreviousImage}
@@ -202,7 +209,29 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 									<ArrowLeft className="size-5" aria-hidden />
 								</motion.button>
 								<motion.button
-									{...controlMotion(reducedMotion, previewIndex === images.length - 1 ? 0.4 : 1)}
+									initial={
+										reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9, filter: "blur(2px)" }
+									}
+									animate={
+										reducedMotion
+											? { opacity: previewIndex === images.length - 1 ? 0.4 : 1 }
+											: {
+													opacity: previewIndex === images.length - 1 ? 0.4 : 1,
+													scale: 1,
+													filter: "blur(0px)",
+												}
+									}
+									exit={
+										reducedMotion
+											? { opacity: 0, transition: { duration: 0.1 } }
+											: {
+													opacity: 0,
+													scale: 0.9,
+													filter: "blur(2px)",
+													transition: { duration: 0.1 },
+												}
+									}
+									transition={{ duration: 0.2, delay: reducedMotion ? 0 : 0.1 }}
 									ref={nextButtonRef}
 									type="button"
 									onClick={showNextImage}
@@ -215,7 +244,29 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 							</div>
 
 							<DialogClose
-								render={<motion.button {...controlMotion(reducedMotion)} />}
+								render={
+									<motion.button
+										initial={
+											reducedMotion
+												? { opacity: 0 }
+												: { opacity: 0, scale: 0.9, filter: "blur(2px)" }
+										}
+										animate={
+											reducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1, filter: "blur(0px)" }
+										}
+										exit={
+											reducedMotion
+												? { opacity: 0, transition: { duration: 0.1 } }
+												: {
+														opacity: 0,
+														scale: 0.9,
+														filter: "blur(2px)",
+														transition: { duration: 0.1 },
+													}
+										}
+										transition={{ duration: 0.2, delay: reducedMotion ? 0 : 0.1 }}
+									/>
+								}
 								className="pointer-events-auto absolute right-4 top-4 z-10 flex size-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-foreground"
 								aria-label="Close image preview"
 							>
