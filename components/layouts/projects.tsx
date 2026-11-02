@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import medibridgeThumbnail from "../../assets/thumbnails/light/medibridge-project-thumbnail.png";
+import knowledgeCiThumbnail from "../../assets/thumbnails/light/knowledge-ci-project-thumbnail.png";
 import bulkAirtimeThumbnail from "../../assets/thumbnails/light/bulk-airtime-project-thumbnail.png";
 
 const projects = [
@@ -9,6 +10,12 @@ const projects = [
 		name: "Medibridge",
 		description: "Healthcare management system",
 		image: medibridgeThumbnail,
+	},
+	{
+		href: "/knowledge-ci",
+		name: "Knowledge CI",
+		description: "Content checks for Sanity Knowledge Bases",
+		image: knowledgeCiThumbnail,
 	},
 	{
 		href: "/bulk-airtime",
@@ -24,9 +31,13 @@ export function Projects() {
 			<h2 id="projects-heading" className="tight font-medium text-[1rem] text-foreground">
 				Projects
 			</h2>
-			<div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
+			<div className="-mx-4 -mb-4 mt-2 flex snap-x gap-8 overflow-x-auto scroll-px-4 p-4 [scrollbar-width:none]">
 				{projects.map((project) => (
-					<Link key={project.href} href={project.href} className="group block min-w-0 rounded-xl">
+					<Link
+						key={project.href}
+						href={project.href}
+						className="group block w-[85%] shrink-0 snap-start rounded-xl sm:w-[44%]"
+					>
 						<Image
 							src={project.image}
 							alt={`${project.name} project preview`}

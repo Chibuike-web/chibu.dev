@@ -372,12 +372,12 @@ export default function BulkAirtimePage() {
 					/>
 				</div>
 			</section>
-			<CaseStudyLink href="/medibridge" className="case-study-nav-card">
+			<CaseStudyLink href="/knowledge-ci" className="case-study-nav-card">
 				<ArrowUpLeft className="size-6" />
 
 				<div className="flex flex-col items-end gap-3">
 					<p className="text-muted-foreground font-medium no-line-height">Previous</p>
-					<p className="text-foreground font-medium no-line-height">Medibridge</p>
+					<p className="text-foreground font-medium no-line-height">Knowledge CI</p>
 				</div>
 			</CaseStudyLink>
 			<CaseStudyNavigation items={navItems} />
