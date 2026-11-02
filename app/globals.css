@@ -11,25 +11,6 @@
 	unicode-range: U+A1-A8, U+AA-AC, U+AE-B6, U+B8-148, U+14A-17F;
 }
 
-@font-face {
-	font-family: caveat;
-	src: url("../assets/fonts/caveat/caveat-extended.woff2") format("woff2");
-	font-display: swap;
-	font-weight: 500;
-	font-style: normal;
-	unicode-range: U+A1-A8, U+AA-B6, U+B8-17E;
-}
-
-/* Set by hand because next/font/local measures different metrics from next/font/google, and the difference would shift the fallback text. */
-@font-face {
-	font-family: "Caveat Fallback";
-	src: local(Arial);
-	ascent-override: 124.77%;
-	descent-override: 38.99%;
-	line-gap-override: 0%;
-	size-adjust: 76.94%;
-}
-
 :root {
 	--background: oklch(100% 0 0);
 	--foreground: oklch(37.2% 0 0);
@@ -292,6 +273,7 @@ body {
 	color: var(--foreground);
 	font-family: var(--font-primary), Arial, Helvetica, sans-serif;
 	min-width: 0;
+	overflow-x: clip;
 	font-size: 0.875rem;
 	line-height: 1.4;
 }
@@ -320,7 +302,7 @@ section[id] {
 	border: 1px solid transparent;
 	border-radius: 9999px;
 	background: var(--surface-muted);
-	padding: 0.375rem 1rem;
+	padding: 0.375rem 0.75rem;
 	color: var(--foreground);
 	font-weight: 600;
 	cursor: pointer;
@@ -342,7 +324,7 @@ section[id] {
 	opacity: 0;
 	transition:
 		width 200ms ease,
-		margin-inline-start 200ms ease,
+		margin-inline 200ms ease,
 		opacity 150ms ease;
 }
 
@@ -383,7 +365,7 @@ section[id] {
 .reveal-link:focus-visible .reveal-link-icon,
 .reveal-link[data-copied="true"] .reveal-link-icon {
 	width: 1em;
-	margin-inline-start: 0.25rem;
+	margin-inline: var(--reveal-icon-gap, 0.25rem) var(--reveal-icon-end, 0);
 	opacity: 1;
 }
 
@@ -394,7 +376,7 @@ section[id] {
 @media (hover: hover) and (pointer: fine) {
 	.reveal-link:hover .reveal-link-icon {
 		width: 1em;
-		margin-inline-start: 0.25rem;
+		margin-inline: var(--reveal-icon-gap, 0.25rem) var(--reveal-icon-end, 0);
 		opacity: 1;
 	}
 

@@ -281,10 +281,10 @@ export default function MedibridgePage() {
 					.
 				</CaseStudyReveal>
 			</section>
-			<CaseStudyLink href="/bulk-airtime" className="case-study-nav-card">
+			<CaseStudyLink href="/knowledge-ci" className="case-study-nav-card">
 				<div className="flex flex-col gap-3">
 					<p className="text-muted-foreground font-medium no-line-height">Next</p>
-					<p className="text-foreground font-medium no-line-height">Bulk Airtime</p>
+					<p className="text-foreground font-medium no-line-height">Knowledge CI</p>
 				</div>
 				<ArrowUpRight className="size-6" />
 			</CaseStudyLink>

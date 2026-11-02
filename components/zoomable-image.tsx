@@ -52,8 +52,7 @@ export function ZoomableImage({ src, alt, width, height, className }: ZoomableIm
 				<Image
 					src={src}
 					alt={alt}
-					width={width}
-					height={height}
+					width={1200}
 					loading="lazy"
 					placeholder="blur"
 					className="h-auto w-full"
