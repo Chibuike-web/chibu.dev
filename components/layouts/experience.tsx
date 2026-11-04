@@ -7,7 +7,7 @@ const experience = [
 		title: "Design Engineer at Roboto Studio",
 		href: "https://robotostudio.com",
 		description:
-			"Currently building web experiences with React, Next.js, TypeScript, and Sanity. Translating Figma designs into reusable interfaces, with close attention to accessibility, motion, and performance.",
+			"Currently building web experiences with React, Next.js, TypeScript, and Sanity. Redesigned and built the interfaces for the site search dialog and Ask a question widget on robotostudio.com. Translating Figma designs into reusable interfaces, with close attention to accessibility, motion, and performance.",
 	},
 	{
 		start: "2024",
@@ -46,7 +46,7 @@ export function Experience() {
 										href={role.href}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="inline-flex items-center gap-1 rounded underline decoration-transparent underline-offset-3 transition-[text-decoration-color] duration-150 hover:decoration-accent focus-visible:decoration-accent motion-reduce:transition-none"
+										className="inline-flex items-center gap-1 rounded underline decoration-accent underline-offset-3 [@media(hover:hover)]:decoration-transparent transition-[text-decoration-color] duration-150 hover:decoration-accent focus-visible:decoration-accent motion-reduce:transition-none"
 									>
 										{role.title}
 										<ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
