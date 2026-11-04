@@ -21,9 +21,10 @@ export function Hero() {
 					<Link
 						href="/medibridge"
 						prefetch={true}
-						className="link rounded border border-transparent"
+						className="link inline-flex items-center gap-0.5 rounded border border-transparent"
 					>
 						Medibridge
+						<ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
 					</Link>
 					, a platform for managing and transferring patient records between hospitals. I designed
 					and built all of it, from the workflows to the database.

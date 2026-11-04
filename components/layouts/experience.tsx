@@ -7,7 +7,7 @@ const experience = [
 		title: "Design Engineer at Roboto Studio",
 		href: "https://robotostudio.com",
 		description:
-			"Currently building web experiences with React, Next.js, TypeScript, and Sanity. Translating Figma designs into reusable interfaces, with close attention to accessibility, motion, and performance.",
+			"Currently building web experiences with React, Next.js, TypeScript, and Sanity. Redesigned and built the interfaces for the site search dialog and Ask a question widget on robotostudio.com. Translating Figma designs into reusable interfaces, with close attention to accessibility, motion, and performance.",
 	},
 	{
 		start: "2024",
