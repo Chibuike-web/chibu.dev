@@ -25,6 +25,7 @@ export default function Home() {
 			"Product design",
 			"Interface design",
 			"Frontend engineering",
+			"Product engineering",
 		],
 		description:
 			"Design engineer who designs and builds digital products, with a focus on complex workflows, data-heavy interfaces, and healthcare software.",
