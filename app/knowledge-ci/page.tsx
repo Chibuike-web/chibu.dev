@@ -122,12 +122,12 @@ export default function KnowledgeCiPage() {
 				siblingIndex={1}
 				className="mt-16 mb-8 md:mt-22 flex flex-col gap-3"
 			>
-				<h1 className="text-[1.125rem] font-semibold tight text-balance">Knowledge CI</h1>
+				<h1 id="overview" className="text-[1.125rem] font-semibold tight text-balance">Knowledge CI</h1>
 				<p className="text-[1rem] font-medium text-muted-foreground text-balance tight no-line-height">
 					Content checks for Sanity Knowledge Bases
 				</p>
 			</CaseStudyReveal>
-			<section id="overview" tabIndex={-1} className="mb-22 flex flex-col gap-6 outline-none">
+			<section className="mb-22 flex flex-col gap-6">
 				<CaseStudyReveal as="p" siblingIndex={2} className="font-medium tight text-pretty">
 					Knowledge CI keeps a Sanity Knowledge Base in step with the content it was built from.
 					After every publish it refreshes and rebuilds the Knowledge Base, cleans up the issues

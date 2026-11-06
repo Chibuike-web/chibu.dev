@@ -122,12 +122,12 @@ export default function MedibridgePage() {
 				siblingIndex={1}
 				className="mt-16 mb-8 md:mt-22 flex flex-col gap-3"
 			>
-				<h1 className="text-[1.125rem] font-semibold tight text-balance">Medibridge</h1>
+				<h1 id="overview" className="text-[1.125rem] font-semibold tight text-balance">Medibridge</h1>
 				<p className="text-[1rem] font-medium text-muted-foreground text-balance tight no-line-height">
 					Healthcare management system
 				</p>
 			</CaseStudyReveal>
-			<section id="overview" tabIndex={-1} className="mb-22 flex flex-col gap-6 outline-none">
+			<section className="mb-22 flex flex-col gap-6">
 				<CaseStudyReveal as="p" siblingIndex={2} className="font-medium tight text-pretty">
 					Medibridge is a patient records platform for hospitals. It turns the paper, scanned, and
 					photographed records hospitals already keep into structured patient profiles, gives staff
