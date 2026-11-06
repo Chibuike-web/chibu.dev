@@ -48,10 +48,7 @@ function HeroButton({ link, children }: { link: string; children: ReactNode }) {
 	return (
 		<a href={link} target="_blank" rel="noopener noreferrer" className="social-pill reveal-link">
 			{children}
-			<span
-				className="reveal-link-icon [--reveal-icon-end:-3px] [--reveal-icon-gap:1px]"
-				aria-hidden="true"
-			>
+			<span className="reveal-link-icon" aria-hidden="true">
 				<ArrowUpRight />
 			</span>
 		</a>
