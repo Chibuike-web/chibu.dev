@@ -1,7 +1,10 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	return ["", "/medibridge", "/knowledge-ci", "/bulk-airtime"].map((path) => ({
-		url: `https://chibu.dev${path}`,
-	}));
+	return [
+		{ url: "https://chibu.dev", lastModified: "2026-11-05" },
+		{ url: "https://chibu.dev/medibridge", lastModified: "2026-11-02" },
+		{ url: "https://chibu.dev/knowledge-ci", lastModified: "2026-11-02" },
+		{ url: "https://chibu.dev/bulk-airtime", lastModified: "2026-11-02" },
+	];
 }
