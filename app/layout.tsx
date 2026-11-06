@@ -80,6 +80,7 @@ export default function RootLayout({
 		>
 			<head>
 				<script type="text/javascript" dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+				<script src="/webmcp.js" defer />
 				<noscript>
 					<style>
 						{`[data-case-reveal], .home-page [data-enter] {
