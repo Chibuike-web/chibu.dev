@@ -1,4 +1,4 @@
-const modelContext = navigator.modelContext;
+const modelContext = document.modelContext ?? navigator.modelContext;
 
 if (modelContext) {
 	modelContext.registerTool({
