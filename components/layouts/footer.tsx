@@ -13,7 +13,7 @@ export function Footer() {
 	return (
 		<div
 			data-enter="8"
-			className="mount-5 mt-16 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between font-medium tight"
+			className="mount-footer mt-16 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between font-medium tight"
 		>
 			<p className="w-full md:max-w-[12.5rem]">Built by Chibuike ©2026</p>
 			<button

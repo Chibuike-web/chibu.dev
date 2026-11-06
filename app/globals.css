@@ -622,15 +622,15 @@ section[id] {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	:is(.mount-1, .mount-5) {
+	:is(.mount-navbar, .mount-footer) {
 		animation: mount 600ms ease both;
 		animation-delay: calc(var(--stagger) * 120ms);
 	}
 
-	.mount-1 {
+	.mount-navbar {
 		--stagger: 0;
 	}
-	.mount-5 {
+	.mount-footer {
 		--stagger: 4;
 	}
 }
