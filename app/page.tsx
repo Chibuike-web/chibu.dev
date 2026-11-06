@@ -7,7 +7,7 @@ import { Projects } from "@/components/layouts/projects";
 
 export const metadata: Metadata = {
 	title: "Chibuike Maduabuchi - Design Engineer",
-	alternates: { canonical: "/" },
+	alternates: { canonical: "/", types: { "text/markdown": "/index.md" } },
 	description:
 		"Chibuike Maduabuchi is a design engineer who designs and builds digital products, with a focus on complex workflows, data-heavy interfaces, and healthcare software.",
 };
@@ -20,6 +20,12 @@ export default function Home() {
 		url: "https://chibu.dev",
 		image: "https://chibu.dev/profile.png",
 		jobTitle: "Design Engineer",
+		knowsAbout: [
+			"Design engineering",
+			"Product design",
+			"Interface design",
+			"Frontend engineering",
+		],
 		description:
 			"Design engineer who designs and builds digital products, with a focus on complex workflows, data-heavy interfaces, and healthcare software.",
 		email: "mailto:chibuikemaduabuchi2023@gmail.com",

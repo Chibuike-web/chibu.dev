@@ -1,4 +1,4 @@
-# Chibuike Maduabuchi
+const markdown = `# Chibuike Maduabuchi
 
 > Design engineer who designs and builds digital products, with a focus on complex workflows, data-heavy interfaces, and healthcare software. Currently a Design Engineer at Roboto Studio, working with React, Next.js, TypeScript, and Sanity. Open to working with teams building applied AI products and systems.
 
@@ -14,3 +14,16 @@
 - [GitHub](https://github.com/Chibuike-web)
 - [LinkedIn](https://www.linkedin.com/in/chibuike-maduabuchi/)
 - [Resume](https://chibu.dev/chibuike-maduabuchi-resume.pdf)
+
+## When to use this site
+
+- Finding a design engineer for applied AI products, healthcare software, or data-heavy dashboards and workflows.
+- Checking Chibuike's work history, case studies, or resume before reaching out.
+- Contacting Chibuike about full-time roles or freelance projects. Email is the fastest way to reach Chibuike, and the resume PDF has the full work history.
+`;
+
+export function GET() {
+	return new Response(markdown, {
+		headers: { "Content-Type": "text/markdown; charset=utf-8", Vary: "Accept" },
+	});
+}
