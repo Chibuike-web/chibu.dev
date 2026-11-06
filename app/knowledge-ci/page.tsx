@@ -4,7 +4,7 @@ import { BackToHome } from "@/components/layouts/back-to-home";
 import { LoopVideo } from "@/components/loop-video";
 import { ZoomableImageGroup } from "@/components/zoomable-image-group";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpLeft } from "lucide-react";
 import runningLight from "@/assets/knowledge-ci/running-light.webp";
 import runningDark from "@/assets/knowledge-ci/running-dark.webp";
 import decisionLight from "@/assets/knowledge-ci/decision-light.webp";
@@ -229,12 +229,13 @@ export default function KnowledgeCiPage() {
 				</CaseStudyReveal>
 				<ZoomableImageGroup images={screenImages} width={2560} height={1600} />
 			</section>
-			<CaseStudyLink href="/bulk-airtime" className="case-study-nav-card">
-				<div className="flex flex-col gap-3">
-					<p className="text-muted-foreground font-medium no-line-height">Next</p>
-					<p className="text-foreground font-medium no-line-height">Bulk Airtime</p>
+			<CaseStudyLink href="/medibridge" className="case-study-nav-card">
+				<ArrowUpLeft className="size-6" />
+
+				<div className="flex flex-col items-end gap-3">
+					<p className="text-muted-foreground font-medium no-line-height">Previous</p>
+					<p className="text-foreground font-medium no-line-height">Medibridge</p>
 				</div>
-				<ArrowUpRight className="size-6" />
 			</CaseStudyLink>
 			<CaseStudyNavigation items={navItems} />
 		</main>

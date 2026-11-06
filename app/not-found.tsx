@@ -12,7 +12,6 @@ const links = [
 	{ href: "/", label: "Home" },
 	{ href: "/medibridge", label: "Medibridge" },
 	{ href: "/knowledge-ci", label: "Knowledge CI" },
-	{ href: "/bulk-airtime", label: "Bulk Airtime" },
 ] as const;
 
 export default function NotFound() {
