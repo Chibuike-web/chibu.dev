@@ -1,6 +1,6 @@
 const markdown = `# Chibuike Maduabuchi
 
-> Design engineer who designs and builds digital products, with a focus on complex workflows, data-heavy interfaces, and healthcare software. Currently a Design Engineer at Roboto Studio, working with React, Next.js, TypeScript, and Sanity. Open to working with teams building applied AI products and systems.
+> Design engineer who designs and builds digital products with a strong focus on structure, usability, and craft. Works across product thinking, interface design, and frontend engineering, on complex workflows, data-heavy interfaces, and systems that need to feel simple without losing depth. Currently a Design Engineer at Roboto Studio, working with React, Next.js, TypeScript, and Sanity. Open to working with teams building applied AI products and systems.
 
 ## Case studies
 
