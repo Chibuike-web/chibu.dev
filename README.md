@@ -1,6 +1,6 @@
 # chibu.dev
 
-My personal portfolio as a design engineer, featuring my experience and case studies for Medibridge, Knowledge CI and Bulk Airtime.
+My personal portfolio as a design engineer, featuring my experience and case studies for Medibridge and Knowledge CI.
 
 **Live website:** [chibu.dev](https://chibu.dev)
 

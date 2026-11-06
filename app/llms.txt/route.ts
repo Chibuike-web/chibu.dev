@@ -6,7 +6,6 @@ const markdown = `# Chibuike Maduabuchi
 
 - [Medibridge](https://chibu.dev/medibridge): A healthcare platform that turns paper, PDF, and image medical records into structured patient data and transfers them between hospitals with patient approval. Designed and built end to end.
 - [Knowledge CI](https://chibu.dev/knowledge-ci): A Sanity Studio tool that rebuilds a Knowledge Base after every publish and shows editors which conflicts need a decision.
-- [Bulk Airtime](https://chibu.dev/bulk-airtime): A bulk airtime transfer feature that lets people send airtime to multiple recipients in one transaction.
 
 ## Contact
 

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { BlossomCarousel } from "@/components/ui/blossom-carousel";
 import medibridgeThumbnail from "../../assets/thumbnails/light/medibridge-project-thumbnail.png";
 import knowledgeCiThumbnail from "../../assets/thumbnails/light/knowledge-ci-project-thumbnail.png";
-import bulkAirtimeThumbnail from "../../assets/thumbnails/light/bulk-airtime-project-thumbnail.png";
 
 const projects = [
 	{
@@ -18,12 +17,6 @@ const projects = [
 		name: "Knowledge CI",
 		description: "Content checks for Sanity Knowledge Bases",
 		image: knowledgeCiThumbnail,
-	},
-	{
-		href: "/bulk-airtime",
-		name: "Bulk Airtime",
-		description: "Mobile payments concept",
-		image: bulkAirtimeThumbnail,
 	},
 ] as const;
 
