@@ -129,28 +129,29 @@ export default function KnowledgeCiPage() {
 			</CaseStudyReveal>
 			<section className="mb-22 flex flex-col gap-6">
 				<CaseStudyReveal as="p" siblingIndex={2} className="font-medium tight text-pretty">
-					Knowledge CI keeps a Sanity Knowledge Base in step with the content it was built from.
-					After every publish it refreshes and rebuilds the Knowledge Base, cleans up the issues
-					Sanity files, and shows editors what needs a decision.
+					Knowledge CI checks a Sanity Knowledge Base against the content it was built from. After
+					every publish it rebuilds the Knowledge Base and lists the conflicts an editor has to
+					decide.
 				</CaseStudyReveal>
 				<CaseStudyReveal siblingIndex={3} className="flex flex-col gap-3">
 					<h2 className={headingClass}>Why I built it</h2>
 					<p className={bodyClass}>
-						A Knowledge Base is a compiled summary of a site’s content, and AI agents answer from
-						that summary. Picture a shop that changes its returns policy from 30 days to 14 and
-						publishes. The site updates at once. The Knowledge Base keeps saying 30 days, and so
-						does the agent, until a customer complains.
+						A Knowledge Base is a summary of a site’s content, and AI agents answer from that
+						summary. A shop changes its returns policy from 30 days to 14 and publishes. The site
+						updates at once. The Knowledge Base keeps saying 30 days, and so does the agent, until
+						a customer complains.
 					</p>
 					<p className={bodyClass}>
 						I built this to answer one question after every content change: do the entries agents
-						read still match the content?
+						read still match the content? Sanity’s Knowledge Base is in beta, so the tool covers
+						what the beta offers today.
 					</p>
 				</CaseStudyReveal>
 				<CaseStudyReveal className="flex flex-col gap-3">
 					<h2 className={headingClass}>My role</h2>
 					<p className={bodyClass}>
-						Design Engineer. I designed and built it, from the Sanity webhook and the backend run to
-						the Studio screen. The recordings use a rebuilt interface with sample data.
+						Design Engineer. I designed and built it, from the backend to the Studio screen. The
+						recordings use a rebuilt interface with sample data.
 					</p>
 				</CaseStudyReveal>
 			</section>
@@ -158,27 +159,22 @@ export default function KnowledgeCiPage() {
 				<CaseStudyReveal as="h2" className={cn(headingClass, "mb-3")}>
 					Checks
 				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-3")}>
+					The Checks screen lists conflicts and warnings, hidden issues, and the history of past
+					runs. In the recording, a check runs and finds a new conflict.
+				</CaseStudyReveal>
 				<ThemedVideo
 					name="knowledge-ci-checks"
-					siblingIndex={1}
-					label="Silent screen recording of Knowledge CI: browsing conflicts and warnings, viewing hidden issues and the check history, then running a check that finds a new conflict."
+					siblingIndex={2}
+					label="Screen recording of Knowledge CI: browsing conflicts and warnings, viewing hidden issues and the check history, then running a check that finds a new conflict."
 				/>
-				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-3")}>
-					Publishing starts a check. A Sanity webhook tells the backend what changed, and the
-					backend waits for 60 seconds with no new changes, so a burst of edits becomes one run.
-					Each run spends several minutes waiting on Sanity, so it runs as a durable workflow on
-					Vercel’s Workflow Development Kit.
-				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-3")}>
-					A run always rebuilds before it judges anything. A refresh alone leaves the entries as
-					they were, so in testing a correct edit from 1pm to 3pm came back as a critical conflict
-					until the build caught up.
+					Publishing in Sanity starts a check. The check rebuilds the Knowledge Base first and then
+					reads the issues Sanity raises, so the result reflects the latest content.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" className={bodyClass}>
-					Sanity’s issue list needed cleaning before anyone could act on it. Its open issue count
-					came back as 0 with 7 open and 10 with 13 open, old issues stayed open quoting text that
-					was gone from the entry, and one build raised the same fact twice. So Knowledge CI counts
-					the list itself, merges duplicates, and marks an issue stale when its quote has gone.
+					Sanity’s issue list contains duplicates and issues quoting text that has left the entry.
+					Knowledge CI merges the duplicates and marks those issues stale.
 				</CaseStudyReveal>
 			</section>
 			<section id="decisions" tabIndex={-1} className="mt-22 outline-none">
@@ -188,23 +184,22 @@ export default function KnowledgeCiPage() {
 				<ThemedVideo
 					name="knowledge-ci-decision"
 					siblingIndex={1}
-					label="Silent screen recording of Knowledge CI: the chat calls snake plants safe for cats, a check finds the conflict, an editor uses the document, and the chat now says they are toxic."
+					label="Screen recording of Knowledge CI: the chat calls snake plants safe for cats, a check finds the conflict, an editor uses the document, and the chat now says they are toxic."
 				/>
 				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-3")}>
-					The first version led with the list of runs. Editors want to know what’s wrong with their
-					content, so the screen now opens with one line saying whether the Knowledge Base can be
-					trusted, followed by the conflicts that need a decision. Each conflict shows the two
-					claims side by side, so you can see exactly what disagrees.
+					Each conflict shows the two claims side by side. An administrator picks a claim or
+					dismisses the conflict, and Sanity follows that choice in later builds. Knowledge CI
+					never decides which claim is true.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-3")}>
-					Which claim is true is a person’s call, so Knowledge CI never decides. An administrator
-					picks a claim or dismisses the conflict, then confirms, and Sanity follows that choice in
-					every later build.
+					The Ask tab is a chat over the Knowledge Base, so an editor sees what an agent would
+					answer. In the recording it calls snake plants safe for cats, then calls them toxic once
+					the conflict is settled. Checks do not use an AI model.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={3} className={bodyClass}>
-					Sanity doesn’t catch everything. In a test store with 7 planted contradictions, it flagged
-					5 and resolved the other 2 on its own during the build, with no warning. So an empty list
-					doesn’t prove the content is right, and catching those cases was the next step.
+					The screen opens with one line saying whether the Knowledge Base can be trusted,
+					followed by the conflicts. Sanity does not flag every conflict, so an empty list does not
+					prove the content is right.
 				</CaseStudyReveal>
 			</section>
 			<section id="ask-and-settings" tabIndex={-1} className="mt-22 outline-none">
@@ -214,15 +209,9 @@ export default function KnowledgeCiPage() {
 				<ThemedVideo
 					name="knowledge-ci-settings"
 					siblingIndex={1}
-					label="Silent screen recording of Knowledge CI: the settings sections and agent setup, then the rejected token, all clear, and first run states."
+					label="Screen recording of Knowledge CI: the settings sections and agent setup, then the rejected token, all clear, and first run states."
 				/>
-				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-3")}>
-					The Ask tab is a chat over the Knowledge Base, so an editor can see what an agent would
-					say. In the Decisions recording it calls snake plants safe for cats, then says they’re
-					toxic once the conflict is settled. Checks never use an AI model. The chat is built to use
-					the team’s own Vercel AI Gateway key.
-				</CaseStudyReveal>
-				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-6")}>
+				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-6")}>
 					Settings holds the Sanity token, the AI key, and MCP setup for Claude Code, Cursor, and
 					Codex. Tokens stay encrypted on the backend, because anything kept in Studio reaches every
 					Studio user.
