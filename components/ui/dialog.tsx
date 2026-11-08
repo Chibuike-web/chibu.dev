@@ -25,7 +25,7 @@ export function DialogContent({
 						transition={{ duration: 0.2 }}
 					/>
 				}
-				className="fixed inset-0 z-[999] bg-background/90 backdrop-blur-md"
+				className="fixed inset-0 z-[999] bg-background backdrop-blur-md"
 			/>
 			<BaseDialog.Viewport
 				className={cn(

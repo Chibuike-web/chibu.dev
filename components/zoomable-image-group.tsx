@@ -16,8 +16,6 @@ type Props = {
 	height: number;
 };
 
-const SLIDE_DISTANCE = 1000;
-
 function ThemedImage({
 	image,
 	width,
@@ -55,7 +53,6 @@ function ThemedImage({
 
 export function ZoomableImageGroup({ images, width, height }: Props) {
 	const reducedMotion = useReducedMotion();
-	const [openedFromIndex, setOpenedFromIndex] = useState<number | null>(null);
 	const [previewIndex, setPreviewIndex] = useState<number | null>(null);
 	const [direction, setDirection] = useState<number | null>(null);
 	const previousButtonRef = useRef<HTMLButtonElement>(null);
@@ -63,24 +60,22 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 	const openerRef = useRef<HTMLAnchorElement>(null);
 	const dialogActionsRef = useRef<DialogActions>(null);
 
-	const isPreviewOpen = openedFromIndex !== null;
+	const isPreviewOpen = previewIndex !== null;
 
 	const previewImage = previewIndex !== null ? images[previewIndex] : null;
 
 	const zoomLayoutId =
-		!reducedMotion && direction === null && openedFromIndex !== null
-			? `zoom-group-${images[openedFromIndex].src.src}`
+		!reducedMotion && previewIndex !== null
+			? `zoom-group-${images[previewIndex].src.src}`
 			: undefined;
 
 	const openPreview = (index: number, opener: HTMLAnchorElement) => {
 		openerRef.current = opener;
 		setDirection(null);
-		setOpenedFromIndex(index);
 		setPreviewIndex(index);
 	};
 
 	const closePreview = () => {
-		setOpenedFromIndex(null);
 		setPreviewIndex(null);
 		setDirection(null);
 	};
@@ -126,7 +121,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 						}}
 						className={cn(
 							"block w-full cursor-zoom-in overflow-hidden rounded-xl ring ring-surface-hover [background:linear-gradient(var(--surface-muted),var(--surface-muted)),var(--background)] md:rounded-lg",
-							openedFromIndex === index && "pointer-events-none opacity-0",
+							previewIndex === index && "pointer-events-none opacity-0",
 						)}
 						transition={{ type: "spring", duration: 0.2, bounce: 0 }}
 					>
@@ -160,24 +155,33 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 							<motion.div
 								layoutId={zoomLayoutId}
 								layoutCrossfade={false}
-								className="pointer-events-auto w-full select-none overflow-hidden rounded-xl ring ring-surface-hover [background:linear-gradient(var(--surface-muted),var(--surface-muted)),var(--background)]"
-								key={previewIndex}
-								initial={
-									reducedMotion
-										? { opacity: 0 }
-										: {
-												transform: `translateX(${direction === null ? 0 : direction === 1 ? SLIDE_DISTANCE : -SLIDE_DISTANCE}px)`,
-											}
-								}
-								animate={reducedMotion ? { opacity: 1 } : { transform: "translateX(0px)" }}
-								exit={zoomLayoutId ? undefined : { opacity: 0 }}
-								transition={
-									reducedMotion ? { duration: 0.12 } : { type: "spring", duration: 0.2, bounce: 0 }
-								}
+								className="pointer-events-auto w-full select-none"
 							>
-								<ThemedImage image={previewImage} width={width} height={height} />
+								<AnimatePresence mode="popLayout" initial={false} custom={direction} propagate>
+									<motion.div
+										key={previewIndex}
+										custom={direction}
+										className="overflow-hidden rounded-xl ring ring-surface-hover"
+										variants={{
+											enter: (side: number | null) =>
+												side === null
+													? {}
+													: { opacity: 0, transform: `translateX(${side * 120}%)` },
+											center: { opacity: 1, transform: "translateX(0px)" },
+											exit: (side: number | null) =>
+												side === null
+													? {}
+													: { opacity: 0, transform: `translateX(${side * -120}%)` },
+										}}
+										initial="enter"
+										animate="center"
+										exit="exit"
+										transition={{ type: "spring", duration: 0.25, bounce: 0 }}
+									>
+										<ThemedImage image={previewImage} width={width} height={height} />
+									</motion.div>
+								</AnimatePresence>
 							</motion.div>
-
 							<div className="flex gap-4 lg:contents">
 								<motion.button
 									initial={
