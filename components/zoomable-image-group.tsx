@@ -120,7 +120,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 							openPreview(index, event.currentTarget);
 						}}
 						className={cn(
-							"block w-full cursor-zoom-in overflow-hidden rounded-xl ring ring-surface-hover [background:linear-gradient(var(--surface-muted),var(--surface-muted)),var(--background)] md:rounded-lg",
+							"block w-full cursor-zoom-in overflow-hidden rounded-xl ring ring-surface-hover md:rounded-lg",
 							previewIndex === index && "pointer-events-none opacity-0",
 						)}
 						transition={{ type: "spring", duration: 0.2, bounce: 0 }}
@@ -199,10 +199,10 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 													opacity: 0,
 													scale: 0.9,
 													filter: "blur(2px)",
-													transition: { duration: 0.1 },
+													transition: { duration: 0 },
 												}
 									}
-									transition={{ duration: 0.2, delay: reducedMotion ? 0 : 0.1 }}
+									transition={{ duration: 0.2, delay: reducedMotion ? 0 : 0.35 }}
 									ref={previousButtonRef}
 									type="button"
 									onClick={showPreviousImage}
@@ -232,10 +232,10 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 													opacity: 0,
 													scale: 0.9,
 													filter: "blur(2px)",
-													transition: { duration: 0.1 },
+													transition: { duration: 0 },
 												}
 									}
-									transition={{ duration: 0.2, delay: reducedMotion ? 0 : 0.1 }}
+									transition={{ duration: 0.2, delay: reducedMotion ? 0 : 0.35 }}
 									ref={nextButtonRef}
 									type="button"
 									onClick={showNextImage}
