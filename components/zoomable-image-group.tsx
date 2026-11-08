@@ -16,6 +16,8 @@ type Props = {
 	height: number;
 };
 
+const SLIDE_DISTANCE = 1000;
+
 function ThemedImage({
 	image,
 	width,
@@ -65,7 +67,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 	const previewImage = previewIndex !== null ? images[previewIndex] : null;
 
 	const zoomLayoutId =
-		!reducedMotion && previewIndex !== null
+		!reducedMotion && direction === null && previewIndex !== null
 			? `zoom-group-${images[previewIndex].src.src}`
 			: undefined;
 
@@ -120,7 +122,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 							openPreview(index, event.currentTarget);
 						}}
 						className={cn(
-							"block w-full cursor-zoom-in overflow-hidden rounded-xl ring ring-surface-hover md:rounded-lg",
+							"block w-full cursor-zoom-in overflow-hidden rounded-xl ring ring-surface-hover [background:linear-gradient(var(--surface-muted),var(--surface-muted)),var(--background)] md:rounded-lg",
 							previewIndex === index && "pointer-events-none opacity-0",
 						)}
 						transition={{ type: "spring", duration: 0.2, bounce: 0 }}
@@ -155,33 +157,24 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 							<motion.div
 								layoutId={zoomLayoutId}
 								layoutCrossfade={false}
-								className="pointer-events-auto w-full select-none"
+								className="pointer-events-auto w-full select-none overflow-hidden rounded-xl ring ring-surface-hover [background:linear-gradient(var(--surface-muted),var(--surface-muted)),var(--background)]"
+								key={previewIndex}
+								initial={
+									reducedMotion
+										? { opacity: 0 }
+										: {
+												transform: `translateX(${direction === null ? 0 : direction === 1 ? SLIDE_DISTANCE : -SLIDE_DISTANCE}px)`,
+											}
+								}
+								animate={reducedMotion ? { opacity: 1 } : { transform: "translateX(0px)" }}
+								exit={zoomLayoutId ? undefined : { opacity: 0 }}
+								transition={
+									reducedMotion ? { duration: 0.12 } : { type: "spring", duration: 0.2, bounce: 0 }
+								}
 							>
-								<AnimatePresence mode="popLayout" initial={false} custom={direction} propagate>
-									<motion.div
-										key={previewIndex}
-										custom={direction}
-										className="overflow-hidden rounded-xl ring ring-surface-hover"
-										variants={{
-											enter: (side: number | null) =>
-												side === null
-													? {}
-													: { opacity: 0, transform: `translateX(${side * 120}%)` },
-											center: { opacity: 1, transform: "translateX(0px)" },
-											exit: (side: number | null) =>
-												side === null
-													? {}
-													: { opacity: 0, transform: `translateX(${side * -120}%)` },
-										}}
-										initial="enter"
-										animate="center"
-										exit="exit"
-										transition={{ type: "spring", duration: 0.25, bounce: 0 }}
-									>
-										<ThemedImage image={previewImage} width={width} height={height} />
-									</motion.div>
-								</AnimatePresence>
+								<ThemedImage image={previewImage} width={width} height={height} />
 							</motion.div>
+
 							<div className="flex gap-4 lg:contents">
 								<motion.button
 									initial={
@@ -202,7 +195,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 													transition: { duration: 0 },
 												}
 									}
-									transition={{ duration: 0.2, delay: reducedMotion ? 0 : 0.35 }}
+									transition={{ duration: 0.2, delay: reducedMotion ? 0 : 0.2 }}
 									ref={previousButtonRef}
 									type="button"
 									onClick={showPreviousImage}
@@ -235,7 +228,7 @@ export function ZoomableImageGroup({ images, width, height }: Props) {
 													transition: { duration: 0 },
 												}
 									}
-									transition={{ duration: 0.2, delay: reducedMotion ? 0 : 0.35 }}
+									transition={{ duration: 0.2, delay: reducedMotion ? 0 : 0.2 }}
 									ref={nextButtonRef}
 									type="button"
 									onClick={showNextImage}
