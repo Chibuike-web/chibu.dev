@@ -20,7 +20,6 @@ export function Hero() {
 					Recently, I’ve been building{" "}
 					<Link
 						href="/medibridge"
-						prefetch={true}
 						className="inline-flex items-center gap-0.5 rounded border border-transparent font-medium text-accent underline decoration-accent underline-offset-1 [@media(hover:hover)]:decoration-transparent transition-[text-decoration-color] duration-150 hover:decoration-accent focus-visible:decoration-accent motion-reduce:transition-none"
 					>
 						Medibridge

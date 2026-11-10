@@ -12,11 +12,11 @@ export function CopyEmailButton() {
 				<button
 					type="button"
 					className="social-pill reveal-link"
-					aria-label={copied ? "Email copied" : "Copy email address"}
 					data-copied={copied || undefined}
 					onClick={copyEmail}
 				>
 					Mail
+					<span className="sr-only">, copy email address</span>
 					<span className="reveal-link-icon" aria-hidden="true">
 						<span className="relative inline-block size-[1em]">
 							<Copy className="copy-email-copy" />

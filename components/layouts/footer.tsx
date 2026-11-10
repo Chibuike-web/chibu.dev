@@ -8,7 +8,7 @@ import { ThemeSwitcher } from "../theme-switcher";
 export function Footer() {
 	const { copyEmail, copied } = useCopyEmail();
 	const iconClass =
-		"absolute top-1/2 left-full ml-1 size-3.5 -translate-y-1/2 transition-[opacity,filter,scale,translate] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]";
+		"absolute top-1/2 left-full ml-1 size-3.5 -translate-y-1/2 transition-[opacity,filter,scale,translate] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none";
 
 	return (
 		<div
@@ -19,11 +19,11 @@ export function Footer() {
 			<button
 				data-js-only
 				type="button"
-				aria-label={copied ? "Email copied" : "Copy email address"}
 				className="group relative flex max-w-full cursor-pointer items-center break-all rounded border border-transparent text-left text-pretty sm:break-normal"
 				onClick={copyEmail}
 			>
 				chibuikemaduabuchi2023@gmail.com
+				<span className="sr-only">, copy email address</span>
 				<span aria-hidden="true" className="relative">
 					<CopyIcon
 						className={cn(
