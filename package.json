@@ -16,6 +16,7 @@
 		"@base-ui/react": "^1.9.0",
 		"@blossom-carousel/react": "^1.7.1",
 		"@vercel/analytics": "^2.0.1",
+		"@vercel/speed-insights": "^2.1.0",
 		"cn": "^0.2.4",
 		"lucide-react": "^1.17.0",
 		"motion": "^12.40.0",

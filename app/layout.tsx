@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const sans = localFont({
@@ -108,6 +109,7 @@ export default function RootLayout({
 					<div className="bottom-blur-fade" />
 				</div>
 				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
