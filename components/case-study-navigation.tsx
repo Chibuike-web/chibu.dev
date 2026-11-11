@@ -8,7 +8,7 @@ export function CaseStudyNavigation({ items }: { items: { id: string; label: str
 			<noscript>
 				<nav
 					aria-label="Case study sections"
-					className="native-case-study-nav fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-85 -translate-x-1/2 rounded-3xl bg-background text-foreground shadow-lg ring-1 ring-border dark:bg-[#464648] dark:text-white dark:shadow-none dark:ring-0"
+					className="native-case-study-nav fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-85 -translate-x-1/2 rounded-3xl bg-background text-foreground shadow-lg ring-1 ring-border dark:bg-surface-raised dark:text-white dark:shadow-none dark:ring-0"
 				>
 					<details>
 						<summary className="flex h-10 cursor-pointer list-none items-center justify-between rounded-3xl border border-transparent px-5">

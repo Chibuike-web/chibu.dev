@@ -19,6 +19,7 @@
 	--ring: oklch(37.2% 0 0 / 15%);
 	--surface-hover: oklch(37.2% 0 0 / 10%);
 	--surface-muted: oklch(37.2% 0 0 / 5%);
+	--surface-raised: oklch(39.5% 0.003 286);
 	--project-image-shadow:
 		0 1px 1px -0.5px rgb(0 0 0 / 3%), 0 3px 3px -1.5px rgb(0 0 0 / 3%),
 		0 6px 6px -3px rgb(0 0 0 / 3%), 0 12px 12px -6px rgb(0 0 0 / 3%),
@@ -214,6 +215,7 @@ label:has(:focus-visible) {
 	--color-surface: var(--surface);
 	--color-surface-hover: var(--surface-hover);
 	--color-surface-muted: var(--surface-muted);
+	--color-surface-raised: var(--surface-raised);
 	--color-accent: var(--accent);
 	--color-accent-soft: var(--accent-soft);
 
