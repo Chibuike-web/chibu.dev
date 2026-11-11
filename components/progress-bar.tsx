@@ -67,7 +67,7 @@ export function ProgressBar({ items }: { items: { id: string; label: string }[] 
 		<nav
 			data-js-only
 			aria-label="Case study sections"
-			className="progress-mount fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-85 -translate-x-1/2 overflow-hidden rounded-3xl bg-background text-foreground shadow-lg ring-1 ring-border dark:bg-surface-raised dark:text-white dark:shadow-none dark:ring-0 has-[>button:focus-visible]:outline has-[>button:focus-visible]:outline-(--focus) has-[>button:focus-visible]:ring-4 has-[>button:focus-visible]:ring-(--focus-ring)"
+			className="progress-mount fixed bottom-4 left-1/2 z-[100] w-[calc(100%_-_2rem)] max-w-85 -translate-x-1/2 overflow-hidden rounded-3xl bg-background text-foreground shadow-lg ring-1 ring-border dark:bg-surface-raised dark:text-white has-[>button:focus-visible]:outline has-[>button:focus-visible]:outline-(--focus) has-[>button:focus-visible]:ring-4 has-[>button:focus-visible]:ring-(--focus-ring)"
 		>
 			<button
 				className="sticky top-0 z-10 flex w-full cursor-pointer items-center justify-between gap-3 border border-transparent h-10 bg-background px-5 dark:bg-surface-raised text-left focus-visible:outline-none! focus-visible:shadow-none!"
