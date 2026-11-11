@@ -31,11 +31,11 @@ export function ProgressBar({ items }: { items: { id: string; label: string }[] 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			(entries) => {
-				entries.forEach((entry) => {
+				for (const entry of entries) {
 					if (entry.isIntersecting) {
 						setActiveSection(entry.target.id);
 					}
-				});
+				}
 			},
 			{ rootMargin: "0px 0px -80% 0px", threshold: 0 },
 		);

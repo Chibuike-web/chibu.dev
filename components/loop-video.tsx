@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useEffectEvent, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type LoopVideoProps = {
 	src: string;
@@ -12,34 +12,27 @@ type LoopVideoProps = {
 
 export function LoopVideo({ src, poster, label, width, height }: LoopVideoProps) {
 	const videoRef = useRef<HTMLVideoElement>(null);
-	const pausedByViewer = useRef(false);
-	const pausedBySystem = useRef(false);
-
-	const handleVisibilityChange = useEffectEvent((isVisible: boolean) => {
-		const video = videoRef.current;
-		if (!video) return;
-		if (!isVisible) {
-			if (video.paused) return;
-			pausedBySystem.current = true;
-			video.pause();
-			return;
-		}
-		if (pausedByViewer.current) return;
-		video.play().catch(() => {});
-	});
+	const isOnScreen = useRef(false);
+	const shouldPlay = useRef(true);
 
 	useEffect(() => {
+		const video = videoRef.current;
+		if (!video) return;
 		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-			pausedByViewer.current = true;
+			shouldPlay.current = false;
 		}
-	}, []);
-
-	useEffect(() => {
-		const video = videoRef.current;
-		if (!video) return;
 
 		const observer = new IntersectionObserver(
-			([entry]) => handleVisibilityChange(entry.isIntersecting),
+			(entries) => {
+				for (const entry of entries) {
+					isOnScreen.current = entry.isIntersecting;
+					if (!entry.isIntersecting) {
+						video.pause();
+					} else if (shouldPlay.current) {
+						video.play().catch(() => {});
+					}
+				}
+			},
 			{ threshold: 0.5 },
 		);
 		observer.observe(video);
@@ -61,14 +54,12 @@ export function LoopVideo({ src, poster, label, width, height }: LoopVideoProps)
 				aria-label={label}
 				className="block h-auto w-full object-cover"
 				onPlay={() => {
-					pausedByViewer.current = false;
+					shouldPlay.current = true;
 				}}
 				onPause={() => {
-					if (pausedBySystem.current) {
-						pausedBySystem.current = false;
-						return;
+					if (isOnScreen.current) {
+						shouldPlay.current = false;
 					}
-					pausedByViewer.current = true;
 				}}
 			>
 				<source src={src} type="video/mp4" />
