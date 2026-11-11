@@ -17,7 +17,7 @@ function getServerSavedExpanded(): boolean | null {
 	return null;
 }
 
-export default function ProgressBar({ items }: { items: { id: string; label: string }[] }) {
+export function ProgressBar({ items }: { items: { id: string; label: string }[] }) {
 	const savedExpanded = useSyncExternalStore<boolean | null>(
 		subscribe,
 		getSavedExpanded,
@@ -25,7 +25,7 @@ export default function ProgressBar({ items }: { items: { id: string; label: str
 	);
 	const [toggledExpanded, setToggledExpanded] = useState<boolean | null>(null);
 	const isExpanded = toggledExpanded ?? savedExpanded;
-	const [activeSection, setActiveSection] = useState(0);
+	const [activeSection, setActiveSection] = useState(items[0].id);
 	const toggleRef = useRef<HTMLButtonElement>(null);
 
 	useEffect(() => {
@@ -33,7 +33,7 @@ export default function ProgressBar({ items }: { items: { id: string; label: str
 			(entries) => {
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
-						setActiveSection(items.findIndex((section) => section.id === entry.target.id));
+						setActiveSection(entry.target.id);
 					}
 				});
 			},
@@ -81,7 +81,7 @@ export default function ProgressBar({ items }: { items: { id: string; label: str
 				<span className="flex min-w-0 items-center gap-2.5">
 					<ProgressRing />
 					<span className="sr-only">Sections, current: </span>
-					<span className="truncate">{items[activeSection].label}</span>
+					<span className="truncate">{items.find((item) => item.id === activeSection)?.label}</span>
 				</span>
 				<ChevronsUpDown className="size-4 shrink-0" />
 			</button>
@@ -96,8 +96,8 @@ export default function ProgressBar({ items }: { items: { id: string; label: str
 			>
 				<div className="min-h-0 overflow-hidden">
 					<ul className="flex flex-col gap-0.5 px-2 pt-1 pb-2">
-						{items.map((item, index) => {
-							const isActive = index === activeSection;
+						{items.map((item) => {
+							const isActive = item.id === activeSection;
 							return (
 								<li
 									key={item.id}

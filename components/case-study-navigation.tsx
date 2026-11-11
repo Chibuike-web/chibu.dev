@@ -1,4 +1,4 @@
-import ProgressBar from "@/components/progress-bar";
+import { ProgressBar } from "@/components/progress-bar";
 import { ChevronsUpDown } from "lucide-react";
 
 export function CaseStudyNavigation({ items }: { items: { id: string; label: string }[] }) {
