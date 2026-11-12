@@ -40,7 +40,7 @@ export function LoopVideo({ src, poster, label, width, height }: LoopVideoProps)
 	}, []);
 
 	return (
-		<div className="relative w-full overflow-hidden rounded-xl">
+		<div className="relative w-full">
 			<video
 				ref={videoRef}
 				controls

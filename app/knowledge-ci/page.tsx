@@ -87,7 +87,7 @@ function ThemedVideo({
 	return (
 		<CaseStudyReveal
 			siblingIndex={siblingIndex}
-			className="w-full mb-6 rounded-xl ring ring-surface-hover isolate"
+			className="w-full mb-6 overflow-hidden rounded-xl ring ring-surface-hover isolate"
 		>
 			<div className="flex dark:hidden">
 				<LoopVideo
