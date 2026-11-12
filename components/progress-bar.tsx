@@ -102,7 +102,7 @@ export function ProgressBar({ items }: { items: { id: string; label: string }[] 
 							return (
 								<li
 									key={item.id}
-									className="w-full rounded-full text-sm hover:bg-surface-hover dark:hover:bg-white/10"
+									className="w-full rounded-full text-sm hover:bg-surface-muted dark:hover:bg-white/10"
 								>
 									<button
 										aria-current={isActive ? "location" : undefined}
@@ -120,7 +120,7 @@ export function ProgressBar({ items }: { items: { id: string; label: string }[] 
 						})}
 						<li
 							aria-hidden="true"
-							className="absolute inset-x-2 top-0 h-9 rounded-full bg-surface-muted transition-transform duration-150 ease-out dark:bg-white/15"
+							className="absolute inset-x-2 top-0 h-9 rounded-full bg-surface-hover transition-transform duration-150 ease-out dark:bg-white/15"
 							style={{ transform: `translateY(${activeIndex * 38}px)` }}
 						/>
 					</ul>
