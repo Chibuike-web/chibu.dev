@@ -152,7 +152,7 @@ export default function MedibridgePage() {
 				<CaseStudyReveal className="flex flex-col gap-3">
 					<h2 className={headingClass}>My role</h2>
 					<p className={bodyClass}>
-						Design Engineer. I designed and built all of it, from the workflows to the database.
+						Design Engineer. I designed and built it, from ideation to implementation.
 					</p>
 				</CaseStudyReveal>
 			</section>
@@ -173,19 +173,17 @@ export default function MedibridgePage() {
 					/>
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-3")}>
-					Hospitals already hold patient details in printed files, scans, and PDFs, so staff upload
-					those files directly. Digital PDFs and Word files are read directly, scanned
-					pages and photos go through OCR, and a language model sorts the text into the patient’s
-					personal, contact, emergency, and physical details.
+					Staff upload the patient documents the hospital already has, including printed forms,
+					scanned records, photos, and digital PDFs and Word files. Medibridge extracts text
+					directly from digital documents and uses OCR for scans and photos. A language model then
+					organises the extracted information into structured patient details, covering personal
+					information, contact details, emergency contacts, and physical details.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-6")}>
-					The review screen is built around one question: can staff trust this? I built a review
-					screen because the job is checking one form against one document, and staff need to see
-					exactly what the model filled in. Each patient’s form is tied to
-					the document it came from, one click from the original. If the document doesn’t state a
-					value, the field stays empty, because a guessed date of birth looks exactly like a right
-					one. If one file in a batch fails, staff retry that file alone, and
-					nothing is saved until they save it.
+					Nothing is saved automatically. Staff review the extracted information one patient at a
+					time, with access to the original source document just one click away. Fields missing
+					from the source are left empty for staff to complete. When processing a batch, a failed
+					file can be retried independently without affecting the others.
 				</CaseStudyReveal>
 				<ZoomableImageGroup images={patientOnboardingImages} width={3000} height={1800} />
 			</section>
@@ -202,7 +200,7 @@ export default function MedibridgePage() {
 						poster="/videos/patient-management-1.webp"
 						width={800}
 						height={450}
-						label="Silent screen recording of a patient record: the profile overview, a 30-day blood pressure chart, diagnoses with a detail drawer, then allergies, medications, and lab results."
+						label="Silent screen recording of a patient record: the profile overview, a 30-day blood pressure chart, diagnoses filtered to resolved and cleared, a diagnosis detail drawer, then allergies, medications, and lab results."
 					/>
 				</CaseStudyReveal>
 				<CaseStudyReveal
@@ -214,16 +212,19 @@ export default function MedibridgePage() {
 						poster="/videos/patient-management-2.webp"
 						width={800}
 						height={450}
-						label="Silent screen recording of a diagnosis being edited from Stage 2 to Stage 1, its activity log showing the change, and an encounter listing the vitals and medications recorded during the visit."
+						label="Silent screen recording of a diagnosis selected in the table and opened from the selection bar, edited from Stage 2 to Stage 1, its activity log showing the change, and an encounter listing the vitals and medications recorded during the visit."
 					/>
 				</CaseStudyReveal>
-				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-6")}>
-					Each patient profile splits a growing record into sections, from vitals and diagnoses to
-					medications, labs, and encounters, each with a list and a detail view. Edits save only the
-					fields that changed, and every change is logged with who made it, the old value, and the
-					new one. I kept that history because in a medical record, who changed a diagnosis and what
-					it was before matter as much as the current value. Encounters group the
-					vitals and medications recorded during a single visit.
+				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-3")}>
+					Each patient profile organises medical information into dedicated sections, including
+					vitals, diagnoses, medications, labs, and encounters. Staff can browse each section
+					through a list and open individual records for more detail.
+				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={4} className={cn(bodyClass, "mb-6")}>
+					Changes are saved at the field level, so only the information that has been edited is
+					updated. Every change is recorded in an audit log, including who made it and the values
+					before and after the edit. Encounters bring together the vitals, medications, and other
+					clinical information recorded during a patient’s visit.
 				</CaseStudyReveal>
 				<ZoomableImageGroup images={patientManagementImages} width={3000} height={1800} />
 			</section>
@@ -256,16 +257,17 @@ export default function MedibridgePage() {
 						label="Silent screen recording of the patient approving the transfer, the receiving hospital entering a verification code to open a read-only, expiring view of the approved records, and the request showing as completed."
 					/>
 				</CaseStudyReveal>
-				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-6")}>
-					Records usually move between hospitals over email, printouts, and messaging apps, which
-					are hard to track or verify. In Medibridge, staff choose exactly which records to send and
-					where, and nothing is shared until the patient approves the request from their email. The
-					receiving hospital then enters a short-lived code to open an expiring, read-only view of
-					only the approved records, while the sending hospital watches the request move from
-					pending to completed. The patient approves each request, because the records are theirs
-					and a hospital approving its own request checks nothing. The view is read-only and
-					expires, so the receiving hospital can read the records for the handover and loses access
-					after it.
+				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-3")}>
+					Patient records often move between hospitals through email, printed documents, and
+					messaging apps, making it difficult to track what has been shared and when.
+				</CaseStudyReveal>
+				<CaseStudyReveal as="p" siblingIndex={4} className={cn(bodyClass, "mb-6")}>
+					Medibridge provides a structured transfer process. Staff select the patient’s records and
+					the receiving hospital, then send a request for patient approval. No records are shared
+					until the patient approves the request through their email. Once approved, the receiving
+					hospital uses a short-lived access code to open a read-only view of the authorised
+					records. Access expires after the handover, while the sending hospital can track the
+					request from pending to completed.
 				</CaseStudyReveal>
 				<ZoomableImageGroup images={patientRecordsTransferImages} width={3000} height={1800} />
 				<CaseStudyReveal as="p" className="my-16 md:my-22">
