@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 	title: "Medibridge",
 	alternates: { canonical: "/medibridge" },
 	description:
-		"How I designed and built Medibridge, a healthcare platform that turns paper, PDF, and image medical records into structured patient data and transfers them between hospitals with patient approval.",
+		"How I built Medibridge, a platform for digitising patient records and transferring them between hospitals with patient approval.",
 	openGraph: {
 		url: "/medibridge",
 		siteName: "Chibuike Maduabuchi",

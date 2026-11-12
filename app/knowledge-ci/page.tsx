@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 	title: "Knowledge CI",
 	alternates: { canonical: "/knowledge-ci" },
 	description:
-		"How I designed and built Knowledge CI, a Sanity Studio tool that rebuilds a Knowledge Base after every publish and shows editors which conflicts need a decision.",
+		"How I built Knowledge CI, a Sanity Studio tool that checks a Knowledge Base for conflicts after every publish.",
 	openGraph: {
 		url: "/knowledge-ci",
 		siteName: "Chibuike Maduabuchi",
