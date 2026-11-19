@@ -112,8 +112,27 @@ function ThemedVideo({
 }
 
 export default function KnowledgeCiPage() {
+	const jsonLd = {
+		"@context": "https://schema.org",
+		"@type": "Article",
+		headline: "Knowledge CI",
+		description:
+			"How I built Knowledge CI, a Sanity Studio tool that checks a Knowledge Base for conflicts after every publish.",
+		url: "https://chibu.dev/knowledge-ci",
+		image: "https://chibu.dev/knowledge-ci/opengraph-image.jpg",
+		author: {
+			"@type": "Person",
+			name: "Chibuike Maduabuchi",
+			url: "https://chibu.dev",
+		},
+	};
+
 	return (
 		<main className="page-shell case-study-page">
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+			/>
 			<CaseStudyReveal as="nav" className="flex items-center justify-between">
 				<BackToHome />
 			</CaseStudyReveal>

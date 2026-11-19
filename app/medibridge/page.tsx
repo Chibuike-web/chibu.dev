@@ -112,8 +112,27 @@ const navItems = [
 ];
 
 export default function MedibridgePage() {
+	const jsonLd = {
+		"@context": "https://schema.org",
+		"@type": "Article",
+		headline: "Medibridge",
+		description:
+			"How I built Medibridge, a platform for digitising patient records and transferring them between hospitals with patient approval.",
+		url: "https://chibu.dev/medibridge",
+		image: "https://chibu.dev/medibridge/opengraph-image.jpg",
+		author: {
+			"@type": "Person",
+			name: "Chibuike Maduabuchi",
+			url: "https://chibu.dev",
+		},
+	};
+
 	return (
 		<main className="page-shell case-study-page">
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+			/>
 			<CaseStudyReveal as="nav" className="flex items-center justify-between">
 				<BackToHome />
 			</CaseStudyReveal>
