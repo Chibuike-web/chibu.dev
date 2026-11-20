@@ -19,10 +19,10 @@ export function Hero() {
 				<p data-enter="3">
 					Recently, I’ve been building{" "}
 					<Link
-						href="/medibridge"
+						href="/orta"
 						className="inline-flex items-center gap-0.5 rounded border border-transparent font-medium text-accent underline decoration-accent underline-offset-1 [@media(hover:hover)]:decoration-transparent transition-[text-decoration-color] duration-150 hover:decoration-accent focus-visible:decoration-accent motion-reduce:transition-none"
 					>
-						Medibridge
+						Orta
 						<ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
 					</Link>
 					, a platform for managing and transferring patient records between hospitals. I designed

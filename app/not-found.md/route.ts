@@ -3,7 +3,7 @@ const markdown = `# Page not found
 There is no page at this address. These are the pages on chibu.dev:
 
 - [Home](https://chibu.dev/)
-- [Medibridge](https://chibu.dev/medibridge)
+- [Orta](https://chibu.dev/orta)
 - [Knowledge CI](https://chibu.dev/knowledge-ci)
 - [llms.txt](https://chibu.dev/llms.txt)
 `;

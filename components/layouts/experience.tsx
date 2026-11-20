@@ -15,7 +15,7 @@ const experience = [
 		title: "Design Engineer — Self-employed",
 		href: null,
 		description:
-			"Designed and built web applications end to end, including Medibridge’s patient onboarding, records management, and hospital transfers. Created reusable components, forms, dashboards, and validation flows.",
+			"Designed and built web applications end to end, including Orta’s patient onboarding, records management, and hospital transfers. Created reusable components, forms, dashboards, and validation flows.",
 	},
 	{
 		start: "2024",

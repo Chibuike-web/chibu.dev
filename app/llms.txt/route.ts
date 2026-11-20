@@ -4,7 +4,7 @@ const markdown = `# Chibuike Maduabuchi
 
 ## Case studies
 
-- [Medibridge](https://chibu.dev/medibridge): A healthcare platform that turns paper, PDF, and image medical records into structured patient data and transfers them between hospitals with patient approval. Designed and built end to end.
+- [Orta](https://chibu.dev/orta): A healthcare platform that turns paper, PDF, and image medical records into structured patient data and transfers them between hospitals with patient approval. Designed and built end to end.
 - [Knowledge CI](https://chibu.dev/knowledge-ci): A Sanity Studio tool that rebuilds a Knowledge Base after every publish and shows editors which conflicts need a decision.
 
 ## Contact

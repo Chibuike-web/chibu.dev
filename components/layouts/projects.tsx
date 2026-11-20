@@ -2,15 +2,15 @@ import "@blossom-carousel/react/style.css";
 import Image from "next/image";
 import Link from "next/link";
 import { BlossomCarousel } from "@/components/ui/blossom-carousel";
-import medibridgeThumbnail from "../../assets/thumbnails/light/medibridge-project-thumbnail.png";
+import ortaThumbnail from "../../assets/thumbnails/light/orta-project-thumbnail.png";
 import knowledgeCiThumbnail from "../../assets/thumbnails/light/knowledge-ci-project-thumbnail.png";
 
 const projects = [
 	{
-		href: "/medibridge",
-		name: "Medibridge",
+		href: "/orta",
+		name: "Orta",
 		description: "Healthcare management system",
-		image: medibridgeThumbnail,
+		image: ortaThumbnail,
 	},
 	{
 		href: "/knowledge-ci",

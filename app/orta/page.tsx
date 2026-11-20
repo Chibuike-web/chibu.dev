@@ -5,28 +5,28 @@ import { LoopVideo } from "@/components/loop-video";
 import { ZoomableImageGroup } from "@/components/zoomable-image-group";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
-import onboardingReview from "@/assets/medibridge/onboarding-review.webp";
-import onboardingAddPatient from "@/assets/medibridge/onboarding-add-patient.webp";
-import onboardingUpload from "@/assets/medibridge/onboarding-upload.webp";
-import onboardingExtracting from "@/assets/medibridge/onboarding-extracting.webp";
-import diagnosisActivity from "@/assets/medibridge/diagnosis-activity.webp";
-import managementVitals from "@/assets/medibridge/management-vitals.webp";
-import managementDiagnoses from "@/assets/medibridge/management-diagnoses.webp";
-import managementMedications from "@/assets/medibridge/management-medications.webp";
-import transferApproval from "@/assets/medibridge/transfer-approval.webp";
-import transferRecordPicker from "@/assets/medibridge/transfer-record-picker.webp";
-import transferConfirm from "@/assets/medibridge/transfer-confirm.webp";
-import transferSharedDiagnoses from "@/assets/medibridge/transfer-shared-diagnoses.webp";
+import onboardingReview from "@/assets/orta/onboarding-review.webp";
+import onboardingAddPatient from "@/assets/orta/onboarding-add-patient.webp";
+import onboardingUpload from "@/assets/orta/onboarding-upload.webp";
+import onboardingExtracting from "@/assets/orta/onboarding-extracting.webp";
+import diagnosisActivity from "@/assets/orta/diagnosis-activity.webp";
+import managementVitals from "@/assets/orta/management-vitals.webp";
+import managementDiagnoses from "@/assets/orta/management-diagnoses.webp";
+import managementMedications from "@/assets/orta/management-medications.webp";
+import transferApproval from "@/assets/orta/transfer-approval.webp";
+import transferRecordPicker from "@/assets/orta/transfer-record-picker.webp";
+import transferConfirm from "@/assets/orta/transfer-confirm.webp";
+import transferSharedDiagnoses from "@/assets/orta/transfer-shared-diagnoses.webp";
 
 import { CaseStudyNavigation } from "@/components/case-study-navigation";
 
 export const metadata: Metadata = {
-	title: "Medibridge",
-	alternates: { canonical: "/medibridge" },
+	title: "Orta",
+	alternates: { canonical: "/orta" },
 	description:
-		"How I built Medibridge, a platform for digitising patient records and transferring them between hospitals with patient approval.",
+		"How I built Orta, a platform for digitising patient records and transferring them between hospitals with patient approval.",
 	openGraph: {
-		url: "/medibridge",
+		url: "/orta",
 		siteName: "Chibuike Maduabuchi",
 		type: "article",
 	},
@@ -111,15 +111,15 @@ const navItems = [
 	},
 ];
 
-export default function MedibridgePage() {
+export default function OrtaPage() {
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "Article",
-		headline: "Medibridge",
+		headline: "Orta",
 		description:
-			"How I built Medibridge, a platform for digitising patient records and transferring them between hospitals with patient approval.",
-		url: "https://chibu.dev/medibridge",
-		image: "https://chibu.dev/medibridge/opengraph-image.jpg",
+			"How I built Orta, a platform for digitising patient records and transferring them between hospitals with patient approval.",
+		url: "https://chibu.dev/orta",
+		image: "https://chibu.dev/orta/opengraph-image.jpg",
 		author: {
 			"@type": "Person",
 			name: "Chibuike Maduabuchi",
@@ -141,17 +141,19 @@ export default function MedibridgePage() {
 				siblingIndex={1}
 				className="mt-16 mb-8 md:mt-22 flex flex-col gap-3"
 			>
-				<h1 id="overview" className="text-[1.125rem] font-semibold tight text-balance">Medibridge</h1>
+				<h1 id="overview" className="text-[1.125rem] font-semibold tight text-balance">
+					Orta
+				</h1>
 				<p className="text-[1rem] font-medium text-muted-foreground text-balance tight no-line-height">
 					Healthcare management system
 				</p>
 			</CaseStudyReveal>
 			<section className="mb-22 flex flex-col gap-6">
 				<CaseStudyReveal as="p" siblingIndex={2} className="font-medium tight text-pretty">
-					Medibridge is a patient records platform for hospitals. It turns the paper, scanned, and
-					photographed records hospitals already keep into structured patient profiles, gives staff
-					one place to manage diagnoses, medications, allergies, labs, vitals, and encounters, and
-					moves records between hospitals once the patient approves.
+					Orta, formerly MediBridge, is a patient records platform for hospitals. It turns the
+					paper, scanned, and photographed records hospitals already keep into structured patient
+					profiles, gives staff one place to manage diagnoses, medications, allergies, labs, vitals,
+					and encounters, and moves records between hospitals once the patient approves.
 				</CaseStudyReveal>
 				<CaseStudyReveal siblingIndex={3} className="flex flex-col gap-3">
 					<h2 className={headingClass}>Why I built it</h2>
@@ -193,16 +195,16 @@ export default function MedibridgePage() {
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-3")}>
 					Staff upload the patient documents the hospital already has, including printed forms,
-					scanned records, photos, and digital PDFs and Word files. Medibridge extracts text
-					directly from digital documents and uses OCR for scans and photos. A language model then
-					organises the extracted information into structured patient details, covering personal
-					information, contact details, emergency contacts, and physical details.
+					scanned records, photos, and digital PDFs and Word files. Orta extracts text directly from
+					digital documents and uses OCR for scans and photos. A language model then organises the
+					extracted information into structured patient details, covering personal information,
+					contact details, emergency contacts, and physical details.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={3} className={cn(bodyClass, "mb-6")}>
 					Nothing is saved automatically. Staff review the extracted information one patient at a
-					time, with access to the original source document just one click away. Fields missing
-					from the source are left empty for staff to complete. When processing a batch, a failed
-					file can be retried independently without affecting the others.
+					time, with access to the original source document just one click away. Fields missing from
+					the source are left empty for staff to complete. When processing a batch, a failed file
+					can be retried independently without affecting the others.
 				</CaseStudyReveal>
 				<ZoomableImageGroup images={patientOnboardingImages} width={3000} height={1800} />
 			</section>
@@ -281,26 +283,14 @@ export default function MedibridgePage() {
 					messaging apps, making it difficult to track what has been shared and when.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={4} className={cn(bodyClass, "mb-6")}>
-					Medibridge provides a structured transfer process. Staff select the patient’s records and
-					the receiving hospital, then send a request for patient approval. No records are shared
-					until the patient approves the request through their email. Once approved, the receiving
+					Orta provides a structured transfer process. Staff select the patient’s records and the
+					receiving hospital, then send a request for patient approval. No records are shared until
+					the patient approves the request through their email. Once approved, the receiving
 					hospital uses a short-lived access code to open a read-only view of the authorised
 					records. Access expires after the handover, while the sending hospital can track the
 					request from pending to completed.
 				</CaseStudyReveal>
 				<ZoomableImageGroup images={patientRecordsTransferImages} width={3000} height={1800} />
-				<CaseStudyReveal as="p" className="my-16 md:my-22">
-					Medibridge is in active development. Follow along in the{" "}
-					<a
-						className="link rounded border border-transparent"
-						href="https://github.com/Chibuike-web/medibridge"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						GitHub repository
-					</a>
-					.
-				</CaseStudyReveal>
 			</section>
 			<CaseStudyLink href="/knowledge-ci" className="case-study-nav-card">
 				<div className="flex flex-col gap-3">

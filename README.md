@@ -1,6 +1,6 @@
 # chibu.dev
 
-My personal portfolio as a design engineer, featuring my experience and case studies for Medibridge and Knowledge CI.
+My personal portfolio as a design engineer, featuring my experience and case studies for Orta and Knowledge CI.
 
 **Live website:** [chibu.dev](https://chibu.dev)
 
