@@ -120,6 +120,8 @@ export default function KnowledgeCiPage() {
 			"How I built Knowledge CI, a Sanity Studio tool that checks a Knowledge Base for conflicts after every publish.",
 		url: "https://chibu.dev/knowledge-ci",
 		image: "https://chibu.dev/knowledge-ci/opengraph-image.jpg",
+		datePublished: "2026-11-02",
+		dateModified: "2026-11-06",
 		author: {
 			"@type": "Person",
 			name: "Chibuike Maduabuchi",

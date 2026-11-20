@@ -120,6 +120,8 @@ export default function OrtaPage() {
 			"How I built Orta, a platform for digitising patient records and transferring them between hospitals with patient approval.",
 		url: "https://chibu.dev/orta",
 		image: "https://chibu.dev/orta/opengraph-image.jpg",
+		datePublished: "2026-03-20",
+		dateModified: "2026-11-20",
 		author: {
 			"@type": "Person",
 			name: "Chibuike Maduabuchi",
