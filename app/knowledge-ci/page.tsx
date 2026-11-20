@@ -141,7 +141,9 @@ export default function KnowledgeCiPage() {
 				siblingIndex={1}
 				className="mt-16 mb-8 md:mt-22 flex flex-col gap-3"
 			>
-				<h1 id="overview" className="text-[1.125rem] font-semibold tight text-balance">Knowledge CI</h1>
+				<h1 id="overview" className="text-[1.125rem] font-semibold tight text-balance">
+					Knowledge CI
+				</h1>
 				<p className="text-[1rem] font-medium text-muted-foreground text-balance tight no-line-height">
 					Content checks for Sanity Knowledge Bases
 				</p>
@@ -157,8 +159,8 @@ export default function KnowledgeCiPage() {
 					<p className={bodyClass}>
 						A Knowledge Base is a summary of a site’s content, and AI agents answer from that
 						summary. A shop changes its returns policy from 30 days to 14 and publishes. The site
-						updates at once. The Knowledge Base keeps saying 30 days, and so does the agent, until
-						a customer complains.
+						updates at once. The Knowledge Base keeps saying 30 days, and so does the agent, until a
+						customer complains.
 					</p>
 					<p className={bodyClass}>
 						I built this to answer one question after every content change: do the entries agents
@@ -207,8 +209,8 @@ export default function KnowledgeCiPage() {
 				/>
 				<CaseStudyReveal as="p" siblingIndex={1} className={cn(bodyClass, "mb-3")}>
 					Each conflict shows the two claims side by side. An administrator picks a claim or
-					dismisses the conflict, and Sanity follows that choice in later builds. Knowledge CI
-					never decides which claim is true.
+					dismisses the conflict, and Sanity follows that choice in later builds. Knowledge CI never
+					decides which claim is true.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={2} className={cn(bodyClass, "mb-3")}>
 					The Ask tab is a chat over the Knowledge Base, so an editor sees what an agent would
@@ -216,9 +218,9 @@ export default function KnowledgeCiPage() {
 					the conflict is settled. Checks do not use an AI model.
 				</CaseStudyReveal>
 				<CaseStudyReveal as="p" siblingIndex={3} className={bodyClass}>
-					The screen opens with one line saying whether the Knowledge Base can be trusted,
-					followed by the conflicts. Sanity does not flag every conflict, so an empty list does not
-					prove the content is right.
+					The screen opens with one line saying whether the Knowledge Base can be trusted, followed
+					by the conflicts. Sanity does not flag every conflict, so an empty list does not prove the
+					content is right.
 				</CaseStudyReveal>
 			</section>
 			<section id="ask-and-settings" tabIndex={-1} className="mt-22 outline-none">
