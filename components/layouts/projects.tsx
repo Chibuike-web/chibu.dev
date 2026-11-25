@@ -1,7 +1,5 @@
-import "@blossom-carousel/react/style.css";
 import Image from "next/image";
 import Link from "next/link";
-import { BlossomCarousel } from "@/components/ui/blossom-carousel";
 import ortaThumbnail from "../../assets/thumbnails/light/orta-project-thumbnail.png";
 import knowledgeCiThumbnail from "../../assets/thumbnails/light/knowledge-ci-project-thumbnail.png";
 
@@ -26,7 +24,7 @@ export function Projects() {
 			<h2 id="projects-heading" className="tight font-medium text-[1rem] text-foreground">
 				Projects
 			</h2>
-			<BlossomCarousel className="-mb-4 mt-2 ml-[calc(50%-50vw)] flex! w-screen! max-w-none! snap-x gap-8 scroll-px-(--gutter) px-(--gutter) py-4 [--gutter:max(1rem,calc(50vw-19rem))] lg:[--gutter:calc(50vw-20rem)]">
+			<div className="-mb-4 mt-2 ml-[calc(50%-50vw)] flex w-screen max-w-none snap-x snap-mandatory gap-8 overflow-x-auto overscroll-x-contain scroll-px-(--gutter) px-(--gutter) py-4 [scrollbar-width:none] [--gutter:max(1rem,calc(50vw-19rem))] lg:[--gutter:calc(50vw-20rem)]">
 				{projects.map((project) => (
 					<Link
 						key={project.href}
@@ -47,7 +45,7 @@ export function Projects() {
 						</p>
 					</Link>
 				))}
-			</BlossomCarousel>
+			</div>
 		</section>
 	);
 }
