@@ -23,10 +23,11 @@ With JavaScript disabled, the site keeps readable content, CSS theme switching, 
 The site is set up so agents can read and use it without scraping the page.
 
 - `/llms.txt` gives a markdown summary, the case studies, contact links and the resume.
-- Requests with `Accept: text/markdown` get markdown: `/` returns the same summary, and unknown paths return a markdown 404. `/index.md` serves the summary to any client.
+- `/index.md`, `/orta.md` and `/knowledge-ci.md` serve each page as markdown with a frontmatter block. Requests with `Accept: text/markdown` to `/`, `/orta` or `/knowledge-ci` get the same markdown, and unknown paths return a markdown 404.
+- Each page sends a `Link` header pointing to the sitemap and its markdown version.
 - The homepage includes `Person` JSON-LD with work, skills and profile links.
 - `/.well-known/agent-skills/index.json` lists one skill, `about-chibuike`, with a SHA-256 digest of its `SKILL.md`.
-- `public/webmcp.js` registers two WebMCP tools in browsers that support `navigator.modelContext`: `get_profile` returns the summary, and `draft_email` opens an email draft for the visitor to send.
+- `public/webmcp.js` registers three WebMCP tools in browsers that support `navigator.modelContext`: `get_profile` returns the summary, `get_case_study` returns a case study as markdown, and `open_email_draft` opens an email draft for the visitor to send.
 
 ## Run locally
 

@@ -35,7 +35,7 @@ if (modelContext) {
 	});
 
 	modelContext.registerTool({
-		name: "compose_email",
+		name: "open_email_draft",
 		description:
 			"Open the visitor's email app with a message to Chibuike filled in. The visitor reviews it and presses send. Subject and body are optional.",
 		inputSchema: {

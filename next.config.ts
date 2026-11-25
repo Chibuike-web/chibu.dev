@@ -53,11 +53,10 @@ const nextConfig: NextConfig = {
 		return {
 			// These pages are static and are served before afterFiles rewrites run, so their rewrites must be in beforeFiles.
 			beforeFiles: [
-				{ source: "/", has: wantsMarkdown, destination: "/llms.txt" },
+				{ source: "/", has: wantsMarkdown, destination: "/index.md" },
 				{ source: "/orta", has: wantsMarkdown, destination: "/orta.md" },
 				{ source: "/knowledge-ci", has: wantsMarkdown, destination: "/knowledge-ci.md" },
 			],
-			afterFiles: [{ source: "/index.md", destination: "/llms.txt" }],
 			fallback: [{ source: "/:path*", has: wantsMarkdown, destination: "/not-found.md" }],
 		};
 	},
