@@ -18,7 +18,7 @@ import { CaseStudyNavigation } from "@/components/case-study-navigation";
 
 export const metadata: Metadata = {
 	title: "Knowledge CI",
-	alternates: { canonical: "/knowledge-ci" },
+	alternates: { canonical: "/knowledge-ci", types: { "text/markdown": "/knowledge-ci.md" } },
 	description:
 		"How I built Knowledge CI, a Sanity Studio tool that checks a Knowledge Base for conflicts after every publish.",
 	openGraph: {

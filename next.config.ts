@@ -12,13 +12,51 @@ const nextConfig: NextConfig = {
 	async redirects() {
 		return [{ source: "/medibridge", destination: "/orta", permanent: true }];
 	},
+	async headers() {
+		return [
+			{
+				source: "/",
+				headers: [
+					{
+						key: "Link",
+						value:
+							'</sitemap.xml>; rel="sitemap", </index.md>; rel="alternate"; type="text/markdown"',
+					},
+				],
+			},
+			{
+				source: "/orta",
+				headers: [
+					{
+						key: "Link",
+						value:
+							'</sitemap.xml>; rel="sitemap", </orta.md>; rel="alternate"; type="text/markdown"',
+					},
+				],
+			},
+			{
+				source: "/knowledge-ci",
+				headers: [
+					{
+						key: "Link",
+						value:
+							'</sitemap.xml>; rel="sitemap", </knowledge-ci.md>; rel="alternate"; type="text/markdown"',
+					},
+				],
+			},
+		];
+	},
 	async rewrites() {
 		const wantsMarkdown = [
 			{ type: "header" as const, key: "accept", value: "(.*)text/markdown(.*)" },
 		];
 		return {
-			// The homepage is static and is served before afterFiles rewrites run, so this one must be in beforeFiles.
-			beforeFiles: [{ source: "/", has: wantsMarkdown, destination: "/llms.txt" }],
+			// These pages are static and are served before afterFiles rewrites run, so their rewrites must be in beforeFiles.
+			beforeFiles: [
+				{ source: "/", has: wantsMarkdown, destination: "/llms.txt" },
+				{ source: "/orta", has: wantsMarkdown, destination: "/orta.md" },
+				{ source: "/knowledge-ci", has: wantsMarkdown, destination: "/knowledge-ci.md" },
+			],
 			afterFiles: [{ source: "/index.md", destination: "/llms.txt" }],
 			fallback: [{ source: "/:path*", has: wantsMarkdown, destination: "/not-found.md" }],
 		};

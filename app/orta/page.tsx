@@ -22,7 +22,7 @@ import { CaseStudyNavigation } from "@/components/case-study-navigation";
 
 export const metadata: Metadata = {
 	title: "Orta",
-	alternates: { canonical: "/orta" },
+	alternates: { canonical: "/orta", types: { "text/markdown": "/orta.md" } },
 	description:
 		"How I built Orta, a platform for digitising patient records and transferring them between hospitals with patient approval.",
 	openGraph: {
